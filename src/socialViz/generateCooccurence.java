@@ -20,7 +20,18 @@ public class generateCooccurence {
 	
 	private Connection conn = null;
 	private Date dates[];
+	private int daily_max_count=0;
+	private int cum_max_count=0;
 	
+	
+	public int getDaily_max_count() {
+		return daily_max_count;
+	}
+
+	public int getCum_max_count() {
+		return cum_max_count;
+	}
+
 	public void openConnection(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -89,6 +100,7 @@ public class generateCooccurence {
 		int matrix[][]  = new int[hashtag_list_size][hashtag_list_size];
 		
 		int max_value; // Maximum count found for a particular date
+		int cum_max_value=0;
 		
 		Statement stmt = null;
 		ResultSet result = null;
@@ -146,6 +158,8 @@ public class generateCooccurence {
 							cumulativeMatrix[tag_id][tag_id]++;
 							if(matrix[tag_id][tag_id] > max_value)
 								max_value = matrix[tag_id][tag_id];
+							if(cumulativeMatrix[tag_id][tag_id] > cum_max_value)
+								cum_max_value = cumulativeMatrix[tag_id][tag_id];
 							count++;
 						}	
 					}
@@ -161,6 +175,8 @@ public class generateCooccurence {
 							cumulativeMatrix[hashtags[n]][hashtags[m]]++;
 							if(matrix[hashtags[m]][hashtags[n]] > max_value)
 								max_value = matrix[hashtags[m]][hashtags[n]];
+							if(cumulativeMatrix[hashtags[m]][hashtags[n]] > cum_max_value)
+									cum_max_value = cumulativeMatrix[hashtags[m]][hashtags[n]];
 						}
 					}
 				}// While loop ends => All tweets in a date considered 
@@ -168,9 +184,15 @@ public class generateCooccurence {
 				obj = getJSONObject(matrix,hashtag_list_size, max_value, dates[k],"Day-Wise Cooccurence");
 				System.out.println("Writing co-occurence JSON to file");
 				writeJSONToFile(obj, dates[k],"matrix");
-				obj = getJSONObject(cumulativeMatrix,hashtag_list_size, max_value, dates[k],"Cumulative Cooccurence");
+				obj = getJSONObject(cumulativeMatrix,hashtag_list_size, cum_max_value, dates[k],"Cumulative Cooccurence");
 				System.out.println("Writing cumulative co-occurence JSON to file");
 				writeJSONToFile(obj, dates[k],"cumMatrix");
+
+				if(max_value > daily_max_count)
+					daily_max_count = max_value;
+				
+				cum_max_count=cum_max_value;
+				
 			} catch(Exception e){
 				e.printStackTrace();
 			}	
@@ -217,10 +239,10 @@ public class generateCooccurence {
 		intensity_arr.put(max_value);
 		try {
 			obj.put("title","hashtag_vs_hashtag");
-			obj.put("x-axis_label", "Hashtags");
-			obj.put("y-axis_label", "Hashtags");
-			obj.put("x-axis_range", axis_arr);
-			obj.put("y-axis_range", axis_arr);
+			obj.put("x_axis_label", "Hashtags");
+			obj.put("y_axis_label", "Hashtags");
+			obj.put("x_axis_range", axis_arr);
+			obj.put("y_axis_range", axis_arr);
 			obj.put("intensity_range",intensity_arr);
 			obj.put("Date",d);
 			obj.put("Type",type);
