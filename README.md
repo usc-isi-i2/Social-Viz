@@ -4,10 +4,18 @@ Social-Viz
 OUTPUT
 ------
 
-- Output is present in the folder Resources -> jsonOutput.
-- jsonOutput in turn has two folders - Cooccurence and Cumulative.
+- JSON Output is present in the folder Resources -> jsonOutput.
+  jsonOutput in turn has two folders - Cooccurence and Cumulative.
   Coocurrence folder has the coocurence count for each day as a json file. 
   Cumulative folder has the cumulative-coocurence count for each day as a json file.
+
+- SVG output is present in the folder Resources -> svg
+
+- PNG output is present in the folder Resources -> png
+
+- Video files are present in the folder Resources -> video
+
+NOTE: svg, png and video output for Cumulative data is incomplete 
   
 DATA STATISTICS
 ---------------
