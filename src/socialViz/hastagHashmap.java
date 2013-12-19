@@ -1,5 +1,9 @@
 package socialViz;
 
+/**
+ * @author Vaishnavi Dalvi
+ * Create a LinkedHashMap for list of hash tags
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,12 +12,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-/*Create a LinkedHashMap for list of hash tags*/
-
 public class hastagHashmap {
 	
 	private Map<String, Integer> ht = new LinkedHashMap<String, Integer>();
 	
+	/**
+	 * Create Hashmap for hashtag list in the form <hastag, identifier>
+	 * @return : Returns the Hashmap
+	 */
 	public Map<String,Integer> create(){
 		
 		BufferedReader br = null;
@@ -46,6 +52,10 @@ public class hastagHashmap {
 		return ht;
 	}
 	
+	/**
+	 * Display Hashmap as key-value pair
+	 * @param ht : Hashmap to be displayed
+	 */
 	public void display(Map<String,Integer> ht){
 		Iterator<Entry<String, Integer>> iter = ht.entrySet().iterator();
 		

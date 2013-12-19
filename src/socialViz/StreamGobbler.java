@@ -7,8 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 /**
- * Taken from http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=4
- * 
+ * Adapted from http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=4
+ * Prints output stream and error stream of process on the console as separate threads
  */
 public class StreamGobbler extends Thread {
 

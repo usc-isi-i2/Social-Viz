@@ -1,3 +1,7 @@
+/*
+author: Vaishnavi Dalvi
+D3 function to create chart for json data using SVG
+*/
 function visualize(selector,data, max_count) {
 var el = window.document.querySelector(selector);
 
