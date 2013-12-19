@@ -15,10 +15,10 @@ OUTPUT
 
 - Video files are present in the folder Resources -> video
 
-NOTE: svg, png and video output for Cumulative data is incomplete 
   
 DATA STATISTICS
 ---------------
+- The data is for around 10 million tweets
 
 - The tweets data has 102 dates. 
   This includes: March 1 to March 31, 2013 ;
