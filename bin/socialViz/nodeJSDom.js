@@ -1,3 +1,7 @@
+/*
+author: Vaishnavi Dalvi
+Node.js script that uses jsdom to write D3 output to svg file.
+*/
 var jsdom = require('jsdom'),
 scripts = ["file://"+__dirname+"/d3.min.js",
 "file://"+__dirname+"/d3.layout.min.js",
