@@ -11,11 +11,11 @@ Requirements:
 - ffmpeg for creating video files
 
 JARS Required:
-batik-1.1.1
-crimson-1.1.3
-xml-apis-ext-1.3.04
-mysql-connector-java-5.1.6
-org.json-20120521
+- batik-1.1.1
+- crimson-1.1.3
+- xml-apis-ext-1.3.04
+- mysql-connector-java-5.1.6
+- org.json-20120521
 Refer to lib folder for the jars.
 
 OUTPUT
