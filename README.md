@@ -5,9 +5,10 @@ REQUIREMENTS
 ------------
 Code run on Ubuntu 11.10
 
-Requirements: MySQL for storing tweets data to generate JSON files
-              node.js with jsdom to create svg files
-              ffmpeg for creating video files
+Requirements: 
+- MySQL for storing tweets data to generate JSON files
+- node.js with jsdom to create svg files
+- ffmpeg for creating video files
 
 
 OUTPUT
@@ -49,4 +50,7 @@ DATA
   was used to transform the cells in the column 'created_at'. 
   The result of this transformation was exported as a csv file. 
 - The csv files were then loaded in MySQL.
+  SCHEMA NAME: health_data
+  TABLE NAME: health_tweets
+  See file generateCooccurence.java for functions communicating with DB.
   The SQL commands CREATE and LOAD DATA for the same are present in Resources->dr_sql.sql.
