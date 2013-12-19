@@ -1,6 +1,15 @@
 Social-Viz
 ==========
 
+REQUIREMENTS
+------------
+Code run on Ubuntu 11.10
+
+Requirements: MySQL for storing tweets data to generate JSON files
+              node.js with jsdom to create svg files
+              ffmpeg for creating video files
+
+
 OUTPUT
 ------
 
@@ -25,7 +34,7 @@ DATA STATISTICS
                  April 1 to April 12, 2013 ;
                  April 24 to April 30, 2013 ;
                  May 1 to May 31, 2013 ;
-                 June 1 to June 21, 2013 ;
+                 June 1 to June 21, 2013 .
 
 NOTE: The tweets for the period April 13 to April 23, 2013 are missing.
 
