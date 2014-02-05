@@ -221412,20 +221412,20 @@
     }
   ],
   "title": "hashtag_vs_hashtag",
-  "Date": "2013-05-21",
-  "x-axis_range": [
+  "y_axis_range": [
     0,
     836
   ],
-  "x-axis_label": "Hashtags",
+  "Date": "2013-05-21",
+  "x_axis_range": [
+    0,
+    836
+  ],
+  "y_axis_label": "Hashtags",
   "Type": "Cumulative Cooccurence",
   "intensity_range": [
     0,
-    14699
+    938739
   ],
-  "y-axis_label": "Hashtags",
-  "y-axis_range": [
-    0,
-    836
-  ]
+  "x_axis_label": "Hashtags"
 }

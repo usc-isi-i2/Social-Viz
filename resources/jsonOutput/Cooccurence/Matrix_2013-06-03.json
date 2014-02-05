@@ -31842,20 +31842,20 @@
     }
   ],
   "title": "hashtag_vs_hashtag",
-  "Date": "2013-06-03",
-  "x-axis_range": [
+  "y_axis_range": [
     0,
     836
   ],
-  "x-axis_label": "Hashtags",
+  "Date": "2013-06-03",
+  "x_axis_range": [
+    0,
+    836
+  ],
+  "y_axis_label": "Hashtags",
   "Type": "Day-Wise Cooccurence",
   "intensity_range": [
     0,
     14974
   ],
-  "y-axis_label": "Hashtags",
-  "y-axis_range": [
-    0,
-    836
-  ]
+  "x_axis_label": "Hashtags"
 }

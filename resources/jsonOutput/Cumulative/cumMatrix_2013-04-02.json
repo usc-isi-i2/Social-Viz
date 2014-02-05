@@ -159767,20 +159767,20 @@
     }
   ],
   "title": "hashtag_vs_hashtag",
-  "Date": "2013-04-02",
-  "x-axis_range": [
+  "y_axis_range": [
     0,
     836
   ],
-  "x-axis_label": "Hashtags",
+  "Date": "2013-04-02",
+  "x_axis_range": [
+    0,
+    836
+  ],
+  "y_axis_label": "Hashtags",
   "Type": "Cumulative Cooccurence",
   "intensity_range": [
     0,
-    27612
+    472697
   ],
-  "y-axis_label": "Hashtags",
-  "y-axis_range": [
-    0,
-    836
-  ]
+  "x_axis_label": "Hashtags"
 }
