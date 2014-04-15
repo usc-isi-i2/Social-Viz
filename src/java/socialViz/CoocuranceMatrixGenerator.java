@@ -146,6 +146,9 @@ public class CoocuranceMatrixGenerator {
 		int[][] cumulativeMatrix  = new int[hashtag_list_size][hashtag_list_size];
 		int matrix[][]  = new int[hashtag_list_size][hashtag_list_size];
 		
+		int prevDateMatrix[][]  = new int[hashtag_list_size][hashtag_list_size];
+		int prevDateCumulativeMatrix[][] = new int[hashtag_list_size][hashtag_list_size];
+		
 		int max_value; // Maximum count found for a particular date
 		int cum_max_value=0;
 		
@@ -162,6 +165,8 @@ public class CoocuranceMatrixGenerator {
 		int tag_id;
 		
 		initializeMatrix(cumulativeMatrix);
+		initializeMatrix(prevDateMatrix);
+		initializeMatrix(prevDateCumulativeMatrix);
 		
 		for(int k=0; k<dates.length;k++){
 			//For each date
@@ -235,10 +240,21 @@ public class CoocuranceMatrixGenerator {
 				obj = getJSONObject(matrix,hashtag_list_size, max_value, dates[k],"Day-Wise Cooccurence");
 				System.out.println("Writing co-occurence JSON to file");
 				writeJSONToFile(obj, dates[k],"matrix");
+				
+				obj = getJSONDiffObject(matrix, prevDateMatrix, hashtag_list_size, max_value, dates[k],"Day-Wise Cooccurence");
+				System.out.println("Writing co-occurence DIFF JSON to file");
+				writeJSONToFile(obj, dates[k],"matrixDiff");
+				copyMatrix(matrix, prevDateMatrix);
+				
 				obj = getJSONObject(cumulativeMatrix,hashtag_list_size, cum_max_value, dates[k],"Cumulative Cooccurence");
 				System.out.println("Writing cumulative co-occurence JSON to file");
 				writeJSONToFile(obj, dates[k],"cumMatrix");
 
+				obj = getJSONDiffObject(cumulativeMatrix, prevDateCumulativeMatrix, hashtag_list_size, cum_max_value, dates[k],"Cumulative Cooccurence");
+				System.out.println("Writing cumulative co-occurence DIFF JSON to file");
+				writeJSONToFile(obj, dates[k],"cumMatrixDiff");
+				copyMatrix(cumulativeMatrix, prevDateCumulativeMatrix);
+				
 				if(max_value > daily_max_count)
 					daily_max_count = max_value;
 				
@@ -249,6 +265,77 @@ public class CoocuranceMatrixGenerator {
 			}	
 			close(result, stmt);
 		}//For loop ends => All dates considered
+	}
+	
+	private JSONObject getJSONDiffObject(int matrix[][], int prevMatrix[][], int hashtag_list_size, int max_value, Date d, String type) {
+		JSONObject obj = new JSONObject();
+		JSONArray axis_arr = new JSONArray();
+		axis_arr.put(0);
+		axis_arr.put(hashtag_list_size-1);
+		JSONArray intensity_arr = new JSONArray();
+		intensity_arr.put(0);
+		intensity_arr.put(max_value);
+		try {
+			obj.put("title","hashtag_vs_hashtag");
+			obj.put("x_axis_label", "Hashtags");
+			obj.put("y_axis_label", "Hashtags");
+			obj.put("x_axis_range", axis_arr);
+			obj.put("y_axis_range", axis_arr);
+			obj.put("intensity_range",intensity_arr);
+			obj.put("Date",d);
+			obj.put("Type",type);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JSONArray addList = new JSONArray();
+		JSONArray removeList = new JSONArray();
+		JSONArray changeList = new JSONArray();
+		
+		for(int i=0; i<matrix.length; i++){
+			for(int j=0;j<matrix[0].length;j++){
+				if(matrix[i][j] == 0) {
+					if(prevMatrix[i][j] != 0) {
+						JSONObject data_point = new JSONObject();
+						try {
+							data_point.put("x_position", i);
+							data_point.put("y_position", j);
+							data_point.put("count", prevMatrix[i][j]);
+							removeList.put(data_point);
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				} else { //matrix[i][j] != 0
+					JSONObject data_point = new JSONObject();
+					try {
+						data_point.put("x_position", i);
+						data_point.put("y_position", j);
+						data_point.put("count", matrix[i][j]);
+						
+						if(prevMatrix[i][j] == 0)
+							addList.put(data_point);
+						else
+							changeList.put(data_point);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}	
+		}
+		
+		try {
+			obj.put("AddList", addList);
+			obj.put("RemoveList", removeList);
+			obj.put("ChangeList", changeList);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return obj;
 	}
 	
 	/**
@@ -321,9 +408,12 @@ public class CoocuranceMatrixGenerator {
 		String filepath="";
 		if(printWhat.equals("matrix"))
 			filepath = prop.getJsonOutputFolder() + "/Cooccurence/Matrix_"+d;
+		if(printWhat.equals("matrixDiff"))
+			filepath = prop.getJsonOutputFolder() + "/CooccurenceDiff/Matrix_"+d;
 		if(printWhat.equals("cumMatrix"))
 			filepath = prop.getJsonOutputFolder() + "/Cumulative/cumMatrix_"+d;
-	
+		if(printWhat.equals("cumMatrixDiff"))
+			filepath = prop.getJsonOutputFolder() + "/CumulativeDiff/cumMatrix_"+d;
 		try {
 			FileWriter fw = new FileWriter(filepath+".json");
 			try {
@@ -353,6 +443,17 @@ public class CoocuranceMatrixGenerator {
 		for(int i=0;i<matrix.length;i++)
 			for(int j=0;j<matrix[0].length;j++)
 				matrix[i][j]=0;
+	}
+	
+	/**
+	 * Copy matrix from source to target
+	 * @param source : Source matrix
+	 * * @param target : Target matrix
+	 */
+	private void copyMatrix(int source[][], int target[][]) {
+		for(int i=0;i<source.length;i++)
+			for(int j=0;j<source[0].length;j++)
+				target[i][j] = source[i][j];
 	}
 	
 	/**
@@ -406,6 +507,7 @@ public class CoocuranceMatrixGenerator {
 
 	
 	public static void main(String[] args) throws Exception {
+		long time1 = System.currentTimeMillis();
 		Map<String, Integer> ht = new LinkedHashMap<String, Integer>();
 		HashtagMap hthm = new HashtagMap();
 		ht = hthm.create();	
@@ -415,6 +517,8 @@ public class CoocuranceMatrixGenerator {
 		gc.buildMatrix(ht);
 		gc.closeConnection();
 		gc.writeCountsToFile();
+		long time2 = System.currentTimeMillis();
+		System.out.println("Time to generate Matrix:" + ((double)(time2 - time1)) /(1000 * 60) + " mins");
 	}
 }
 
