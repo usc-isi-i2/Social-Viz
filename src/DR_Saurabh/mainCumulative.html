@@ -1,0 +1,469 @@
+<!--
+    Change color scale, different gradients, single color
+    Transparency using the alpha channel
+    Size of the circles, try different scaling factors including logarithmic
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> DR Saurabh Chaure </title>
+		<script type="text/javascript" src="d3.v3.min.js"></script>
+		 <script type="text/javascript" src="jquery.js"></script>
+		<script src="customcolor.js"></script>
+		 <style>
+
+.palette {
+  cursor: pointer;
+  display: inline-block;
+  margin: 4px 0 4px 6px;
+  padding: 1px;
+  border: solid 1px #aaa;
+}
+
+.swatch {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+</style>
+	</head>
+	<body>
+				<table>
+					<tr>
+						<td> <div id="display"> </div>  </td>
+						<td> 
+							<input type="button" value="previous" onclick="callPrevious()"/>
+							<input type="button" value="next" onclick="callNext()"/> <br> <br>
+							<input type="button" value="Play" onclick="playMovie()"/>  
+							<input type="button" value="Pause" onclick="pauseMovie()"/> <br> <br>
+
+							<input type="button" value="Zoom Out" onclick="ZoomOut()"/> 
+							<input type="button" value="Zoom In" onclick="ZoomIn()"/> <br> <br>
+
+							<select id="alphaList" onchange = "changeAlpha(this)">
+									<option value="">Select Alpha Channel</option>
+									<option value="0.1">0.1</option>
+									<option value="0.2">0.2</option>
+									<option value="0.3">0.3</option>
+									<option value="0.4">0.4</option>
+									<option value="0.5">0.5</option>
+									<option value="0.6">0.6</option>
+									<option value="0.7">0.7</option>
+									<option value="0.8">0.8</option>
+									<option value="0.9">0.9</option>
+									<option value="1.0">1.0</option>
+							</select>
+
+							<div id="chart"></div>
+
+							<div id="textDisplay" />
+						</td>
+					 
+					</tr>
+				</table>
+		  
+				
+
+<script type="text/javascript"> 
+
+   var svgContainer;
+   var xscale;
+	var yscale;
+var intensity_scale;
+var color_brewer_scale;
+var str = "Matrix_2013-03-";
+var i=1;
+
+var factor = 1;
+var currentData;
+var objectArray = new Array();
+var hashTagArray = new Array();
+
+var j=0;
+var k = 0;
+var color_scale = ["#ffffe5","#fff7bc","#fee391","#fec44f","#fe9929","#ec7014","#cc4c02","#993404","#662506"];
+
+
+
+var opacityValue=1.0;
+var allcolors = [    
+					["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+					["#f7fcf0","#e0f3db","#ccebc5","#a8ddb5","#7bccc4","#4eb3d3","#2b8cbe","#0868ac","#084081"],
+					["#f7fcfd","#e5f5f9","#ccece6","#99d8c9","#66c2a4","#41ae76","#238b45","#006d2c","#00441b"],
+					["#fff7fb","#ece2f0","#d0d1e6","#a6bddb","#67a9cf","#3690c0","#02818a","#016c59","#014636"],
+					["#fff7fb","#ece7f2","#d0d1e6","#a6bddb","#74a9cf","#3690c0","#0570b0","#045a8d","#023858"],
+					["#f7fcfd","#e0ecf4","#bfd3e6","#9ebcda","#8c96c6","#8c6bb1","#88419d","#810f7c","#4d004b"],
+					["#fff7f3","#fde0dd","#fcc5c0","#fa9fb5","#f768a1","#dd3497","#ae017e","#7a0177","#49006a"],
+					["#f7f4f9","#e7e1ef","#d4b9da","#c994c7","#df65b0","#e7298a","#ce1256","#980043","#67001f"],
+					["#fff7ec","#fee8c8","#fdd49e","#fdbb84","#fc8d59","#ef6548","#d7301f","#b30000","#7f0000"],
+					["#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#bd0026","#800026"],
+					["#ffffe5","#fff7bc","#fee391","#fec44f","#fe9929","#ec7014","#cc4c02","#993404","#662506"],
+					["#fcfbfd","#efedf5","#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"],					 
+					["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"],
+					["#f7fcf5","#e5f5e0","#c7e9c0","#a1d99b","#74c476","#41ab5d","#238b45","#006d2c","#00441b"],
+					["#fff5eb","#fee6ce","#fdd0a2","#fdae6b","#fd8d3c","#f16913","#d94801","#a63603","#7f2704"],
+					["#fff5f0","#fee0d2","#fcbba1","#fc9272","#fb6a4a","#ef3b2c","#cb181d","#a50f15","#67000d"],
+					["#ffffff","#f0f0f0","#d9d9d9","#bdbdbd","#969696","#737373","#525252","#252525","#000000"]
+				 ] ; 
+
+while(j<=101){
+		  d3.json("./cumulativeData/"+j+".json", function(data){
+				  fetchData(data);
+		 });
+ 	j++; 
+	 
+} 
+
+	d3.csv("health_hashtag_list.csv", function(hashTagData){
+				  loadHashTags(hashTagData);
+	});
+
+  alert( ' Data Loaded ');
+ 
+ function loadHashTags(hashTags){
+	 //alert(hashTags);
+      hashTagArray.push(hashTags);
+  }
+
+ function fetchData(data){
+	 objectArray.push(data);
+ }
+  
+ currentData = objectArray[0];
+   
+ visualize( currentData , currentData.intensity_range[1] , color_scale  );
+  
+ function callNext(){
+	 k=k+1;
+	 d3.select("svg").remove();
+	 currentData = objectArray[k];
+     visualize( currentData , currentData.intensity_range[1] , color_scale );
+ }
+var kk = 0, howManyTimes = objectArray.length, startTimeOut;
+function playMovie(){
+	callNext();
+	kk = kk + 1;
+
+	if( kk < howManyTimes ){
+       startTimeOut = setTimeout( playMovie, 400 );
+    }
+}
+
+
+ function changeAlpha(selectedValue){
+	 d3.select("svg").remove();
+	 currentData = objectArray[k];
+	 opacityValue = selectedValue.value;
+	  
+     visualize( currentData , currentData.intensity_range[1] , color_scale );
+ }
+
+
+function pauseMovie(){
+ 		clearTimeout(startTimeOut);
+}
+
+ 
+
+ function callPrevious(){
+	 k=k-1;
+	 d3.select("svg").remove();
+	 currentData = objectArray[k];
+	//removeAndVisualize();
+	 visualize( currentData , currentData.intensity_range[1] , color_scale );
+ }
+   function loadDay(){
+	    svgContainer.selectAll("circle")
+		.transition()
+		.duration(1000)
+  		.attr("r", function(d){return 0 });
+   }
+
+ function removeAndVisualize(){
+ 
+ 		  d3.json("./testCumulative/"+str+i+".json", function(data){
+ 			//Create SVG element
+				d3.select("svg").remove();
+						visualize(data, data.intensity_range[1]);
+
+			 });
+ 
+ 
+ }
+
+function ZoomIn(){
+	factor = factor + 1;
+	 d3.select("svg").remove();
+	 currentData = objectArray[k];
+	//removeAndVisualize();
+	 visualize( currentData , currentData.intensity_range[1] , color_scale );
+}
+
+function ZoomOut(){
+	factor = factor - 1;
+	 d3.select("svg").remove();
+	 currentData = objectArray[k];
+	//removeAndVisualize();
+	 visualize( currentData , currentData.intensity_range[1] , color_scale );
+}
+function visualize(data, max_count , colorScale , flag ) { 
+ 
+ var displayElement = window.document.querySelector("#display");
+ 
+var svgWidth = 650;
+var svgHeight = 650;	// change to max_count for day - matrix
+var buffer	=	20;
+
+var jsonDataArray = data.Data;
+var x_range = data.x_axis_range[1]; 
+var y_range = data.y_axis_range[1]; 
+
+xscale = d3.scale.linear()
+			   .domain([0,x_range])
+			   .range([buffer, svgWidth-buffer]);
+
+yscale = d3.scale.linear()
+               .domain([0,y_range])
+               .range([svgHeight-buffer,buffer]);	
+intensity_scale = d3.scale.linear()
+						.domain([0, Math.log(max_count) ])
+						.range([0,10]);
+			 
+color_brewer_scale = d3.scale.quantize()
+						   .domain([0,  Math.log(max_count) ])						 
+						   .range( colorScale );
+						  
+						  		
+//Specifying axes details
+var xaxis = d3.svg.axis()
+			  .scale(xscale)
+			  .orient("bottom");
+				
+var yaxis = d3.svg.axis()
+			  .scale(yscale)
+			  .orient("left");
+		  			  
+//Creating svg element	
+
+  svgContainer = d3.select(displayElement)
+					 .append("svg")
+					 .attr("width",svgWidth)
+					 .attr("height",svgHeight);
+					 
+var rect = svgContainer.append("rect")
+					   .attr("width","100%")
+					   .attr("height","100%")
+					   .attr("fill","black");
+ 
+  
+ var circles = svgContainer.selectAll("circle")
+				          .data(jsonDataArray)
+						  .enter()
+						  .append("circle")
+						  .attr("cx", function(d){return xscale(d.x_position)})
+						  .attr("cy", function(d){return yscale(d.y_position)})
+						  .attr("r", function(d){return intensity_scale(Math.log(d.count * factor))})
+						  .attr("fill",  function(d){return color_brewer_scale(Math.log(d.count)) })				
+						  .attr("opacity",  opacityValue )				
+					 	  .append("title")
+   						 // .text(function(d) { return "X:"+d.x_position+"- Y:"+d.y_position+"-Count:"+d.count; });	
+						  .text( function(d) {  return hashTagArray[0][d.x_position].hashTagValue +"-"+hashTagArray[0][d.y_position].hashTagValue} );
+ 		
+//Creating axes
+svgContainer.append("g")
+			.attr("class","axes")
+			.attr("transform","translate(0,"+(svgHeight-buffer)+")")
+			.call(xaxis);
+				
+svgContainer.append("g")
+			.attr("class", "axes")
+			.attr("transform","translate("+buffer+",0)")
+			.call(yaxis);										 
+
+$(".axes path").attr("fill","none");
+$(".axes path").attr("stroke","white");
+$(".axes path").attr("shape-rendering","crispEdges");
+
+$(".axes text").attr("font-size","8px");
+$(".axes text").attr("fill","white");
+
+setPalette();
+
+}
+ 
+ function changeColor(index){
+		d3.select("svg").remove();
+		color_scale = allcolors[index];
+		visualize( currentData , currentData.intensity_range[1] , allcolors[index] );
+ }
+
+
+ function setPalette(){
+  
+ var str = " <span class='palette' title='YlGnBu' onclick='changeColor(1)'><span class='swatch' style='background-color: rgb(255, 255, 217);'></span><span class='swatch' style='background-color: rgb(237, 248, 177);'></span><span class='swatch' style='background-color: rgb(199, 233, 180);'></span><span class='swatch' style='background-color: rgb(127, 205, 187);'></span><span class='swatch' style='background-color: rgb(65, 182, 196);'></span><span class='swatch' style='background-color: rgb(29, 145, 192);'></span><span class='swatch' style='background-color: rgb(34, 94, 168);'></span><span class='swatch' style='background-color: rgb(37, 52, 148);'></span><span class='swatch' style='background-color: rgb(8, 29, 88);'></span></span>" 
+
++" <span class='palette' title='GnBu'  onclick='changeColor(2)'><span class='swatch' style='background-color: rgb(247, 252, 240);'></span><span class='swatch' style='background-color: rgb(224, 243, 219);'></span><span class='swatch' style='background-color: rgb(204, 235, 197);'></span><span class='swatch' style='background-color: rgb(168, 221, 181);'></span><span class='swatch' style='background-color: rgb(123, 204, 196);'></span><span class='swatch' style='background-color: rgb(78, 179, 211);'></span><span class='swatch' style='background-color: rgb(43, 140, 190);'></span><span class='swatch' style='background-color: rgb(8, 104, 172);'></span><span class='swatch' style='background-color: rgb(8, 64, 129);'></span></span> "
+
++ "<span class='palette' title='PuBuGn'  onclick='changeColor(3)'>"+
+"<span class='swatch' style='background-color: rgb(255, 247, 251);'></span>"+
+"<span class='swatch' style='background-color: rgb(236, 226, 240);'></span>"+
+"<span class='swatch' style='background-color: rgb(208, 209, 230);'></span>"+
+"<span class='swatch' style='background-color: rgb(166, 189, 219);'></span>"+
+"<span class='swatch' style='background-color: rgb(103, 169, 207);'></span>"+
+"<span class='swatch' style='background-color: rgb(54, 144, 192);'></span>"+
+"<span class='swatch' style='background-color: rgb(2, 129, 138);'></span>"+
+"<span class='swatch' style='background-color: rgb(1, 108, 89);'></span>"+
+"<span class='swatch' style='background-color: rgb(1, 70, 54);'></span>"+
+"</span>"+
+"<span class='palette' title='PuBu'  onclick='changeColor(4)'>"+
+"<span class='swatch' style='background-color: rgb(255, 247, 251);'></span>"+
+"<span class='swatch' style='background-color: rgb(236, 231, 242);'></span>"+
+"<span class='swatch' style='background-color: rgb(208, 209, 230);'></span>"+
+"<span class='swatch' style='background-color: rgb(166, 189, 219);'></span>"+
+"<span class='swatch' style='background-color: rgb(116, 169, 207);'></span>"+
+"<span class='swatch' style='background-color: rgb(54, 144, 192);'></span>"+
+"<span class='swatch' style='background-color: rgb(5, 112, 176);'></span>"+
+"<span class='swatch' style='background-color: rgb(4, 90, 141);'></span>"+
+"<span class='swatch' style='background-color: rgb(2, 56, 88);'></span>"+
+"</span>"+
+"<span class='palette' title='BuPu'  onclick='changeColor(5)'>"+
+"<span class='swatch' style='background-color: rgb(247, 252, 253);'></span>"+
+"<span class='swatch' style='background-color: rgb(224, 236, 244);'></span>"+
+"<span class='swatch' style='background-color: rgb(191, 211, 230);'></span>"+
+"<span class='swatch' style='background-color: rgb(158, 188, 218);'></span>"+
+"<span class='swatch' style='background-color: rgb(140, 150, 198);'></span>"+
+"<span class='swatch' style='background-color: rgb(140, 107, 177);'></span>"+
+"<span class='swatch' style='background-color: rgb(136, 65, 157);'></span>"+
+"<span class='swatch' style='background-color: rgb(129, 15, 124);'></span>"+
+"<span class='swatch' style='background-color: rgb(77, 0, 75);'></span>"+
+"</span>"+
+"<span class='palette' title='RdPu'  onclick='changeColor(6)'>"+
+"<span class='swatch' style='background-color: rgb(255, 247, 243);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 224, 221);'></span>"+
+"<span class='swatch' style='background-color: rgb(252, 197, 192);'></span>"+
+"<span class='swatch' style='background-color: rgb(250, 159, 181);'></span>"+
+"<span class='swatch' style='background-color: rgb(247, 104, 161);'></span>"+
+"<span class='swatch' style='background-color: rgb(221, 52, 151);'></span>"+
+"<span class='swatch' style='background-color: rgb(174, 1, 126);'></span>"+
+"<span class='swatch' style='background-color: rgb(122, 1, 119);'></span>"+
+"<span class='swatch' style='background-color: rgb(73, 0, 106);'></span>"+
+"</span>"+
+"<span class='palette' title='PuRd'  onclick='changeColor(7)'>"+
+"<span class='swatch' style='background-color: rgb(247, 244, 249);'></span>"+
+"<span class='swatch' style='background-color: rgb(231, 225, 239);'></span>"+
+"<span class='swatch' style='background-color: rgb(212, 185, 218);'></span>"+
+"<span class='swatch' style='background-color: rgb(201, 148, 199);'></span>"+
+"<span class='swatch' style='background-color: rgb(223, 101, 176);'></span>"+
+"<span class='swatch' style='background-color: rgb(231, 41, 138);'></span>"+
+"<span class='swatch' style='background-color: rgb(206, 18, 86);'></span>"+
+"<span class='swatch' style='background-color: rgb(152, 0, 67);'></span>"+
+"<span class='swatch' style='background-color: rgb(103, 0, 31);'></span>"+
+"</span>"+
+"<span class='palette' title='OrRd'  onclick='changeColor(8)'>"+
+"<span class='swatch' style='background-color: rgb(255, 247, 236);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 232, 200);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 212, 158);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 187, 132);'></span>"+
+"<span class='swatch' style='background-color: rgb(252, 141, 89);'></span>"+
+"<span class='swatch' style='background-color: rgb(239, 101, 72);'></span>"+
+"<span class='swatch' style='background-color: rgb(215, 48, 31);'></span>"+
+"<span class='swatch' style='background-color: rgb(179, 0, 0);'></span>"+
+"<span class='swatch' style='background-color: rgb(127, 0, 0);'></span>"+
+"</span>"+
+"<span class='palette' title='YlOrRd'  onclick='changeColor(9)'>"+
+"<span class='swatch' style='background-color: rgb(255, 255, 204);'></span>"+
+"<span class='swatch' style='background-color: rgb(255, 237, 160);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 217, 118);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 178, 76);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 141, 60);'></span>"+
+"<span class='swatch' style='background-color: rgb(252, 78, 42);'></span>"+
+"<span class='swatch' style='background-color: rgb(227, 26, 28);'></span>"+
+"<span class='swatch' style='background-color: rgb(189, 0, 38);'></span>"+
+"<span class='swatch' style='background-color: rgb(128, 0, 38);'></span>"+
+"</span>"+
+"<span class='palette' title='YlOrBr'  onclick='changeColor(10)'>"+
+"<span class='swatch' style='background-color: rgb(255, 255, 229);'></span>"+
+"<span class='swatch' style='background-color: rgb(255, 247, 188);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 227, 145);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 196, 79);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 153, 41);'></span>"+
+"<span class='swatch' style='background-color: rgb(236, 112, 20);'></span>"+
+"<span class='swatch' style='background-color: rgb(204, 76, 2);'></span>"+
+"<span class='swatch' style='background-color: rgb(153, 52, 4);'></span>"+
+"<span class='swatch' style='background-color: rgb(102, 37, 6);'></span>"+
+"</span>"+
+"<span class='palette' title='Purples'  onclick='changeColor(11)'>"+
+"<span class='swatch' style='background-color: rgb(252, 251, 253);'></span>"+
+"<span class='swatch' style='background-color: rgb(239, 237, 245);'></span>"+
+"<span class='swatch' style='background-color: rgb(218, 218, 235);'></span>"+
+"<span class='swatch' style='background-color: rgb(188, 189, 220);'></span>"+
+"<span class='swatch' style='background-color: rgb(158, 154, 200);'></span>"+
+"<span class='swatch' style='background-color: rgb(128, 125, 186);'></span>"+
+"<span class='swatch' style='background-color: rgb(106, 81, 163);'></span>"+
+"<span class='swatch' style='background-color: rgb(84, 39, 143);'></span>"+
+"<span class='swatch' style='background-color: rgb(63, 0, 125);'></span>"+
+"</span>"+
+"<span class='palette' title='Blues'  onclick='changeColor(12)'>"+
+"<span class='swatch' style='background-color: rgb(247, 251, 255);'></span>"+
+"<span class='swatch' style='background-color: rgb(222, 235, 247);'></span>"+
+"<span class='swatch' style='background-color: rgb(198, 219, 239);'></span>"+
+"<span class='swatch' style='background-color: rgb(158, 202, 225);'></span>"+
+"<span class='swatch' style='background-color: rgb(107, 174, 214);'></span>"+
+"<span class='swatch' style='background-color: rgb(66, 146, 198);'></span>"+
+"<span class='swatch' style='background-color: rgb(33, 113, 181);'></span>"+
+"<span class='swatch' style='background-color: rgb(8, 81, 156);'></span>"+
+"<span class='swatch' style='background-color: rgb(8, 48, 107);'></span>"+
+"</span>"+
+"<span class='palette' title='Greens'  onclick='changeColor(13)'>"+
+"<span class='swatch' style='background-color: rgb(247, 252, 245);'></span>"+
+"<span class='swatch' style='background-color: rgb(229, 245, 224);'></span>"+
+"<span class='swatch' style='background-color: rgb(199, 233, 192);'></span>"+
+"<span class='swatch' style='background-color: rgb(161, 217, 155);'></span>"+
+"<span class='swatch' style='background-color: rgb(116, 196, 118);'></span>"+
+"<span class='swatch' style='background-color: rgb(65, 171, 93);'></span>"+
+"<span class='swatch' style='background-color: rgb(35, 139, 69);'></span>"+
+"<span class='swatch' style='background-color: rgb(0, 109, 44);'></span>"+
+"<span class='swatch' style='background-color: rgb(0, 68, 27);'></span>"+
+"</span>"+
+"<span class='palette' title='Oranges'  onclick='changeColor(14)'>"+
+"<span class='swatch' style='background-color: rgb(255, 245, 235);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 230, 206);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 208, 162);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 174, 107);'></span>"+
+"<span class='swatch' style='background-color: rgb(253, 141, 60);'></span>"+
+"<span class='swatch' style='background-color: rgb(241, 105, 19);'></span>"+
+"<span class='swatch' style='background-color: rgb(217, 72, 1);'></span>"+
+"<span class='swatch' style='background-color: rgb(166, 54, 3);'></span>"+
+"<span class='swatch' style='background-color: rgb(127, 39, 4);'></span>"+
+"</span>"+
+"<span class='palette' title='Reds'  onclick='changeColor(15)'>"+
+"<span class='swatch' style='background-color: rgb(255, 245, 240);'></span>"+
+"<span class='swatch' style='background-color: rgb(254, 224, 210);'></span>"+
+"<span class='swatch' style='background-color: rgb(252, 187, 161);'></span>"+
+"<span class='swatch' style='background-color: rgb(252, 146, 114);'></span>"+
+"<span class='swatch' style='background-color: rgb(251, 106, 74);'></span>"+
+"<span class='swatch' style='background-color: rgb(239, 59, 44);'></span>"+
+"<span class='swatch' style='background-color: rgb(203, 24, 29);'></span>"+
+"<span class='swatch' style='background-color: rgb(165, 15, 21);'></span>"+
+"<span class='swatch' style='background-color: rgb(103, 0, 13);'></span>"+
+"</span>"+
+"<span class='palette' title='Greys'  onclick='changeColor(16)'>"+
+"<span class='swatch' style='background-color: rgb(255, 255, 255);'></span>"+
+"<span class='swatch' style='background-color: rgb(240, 240, 240);'></span>"+
+"<span class='swatch' style='background-color: rgb(217, 217, 217);'></span>"+
+"<span class='swatch' style='background-color: rgb(189, 189, 189);'></span>"+
+"<span class='swatch' style='background-color: rgb(150, 150, 150);'></span>"+
+"<span class='swatch' style='background-color: rgb(115, 115, 115);'></span>"+
+"<span class='swatch' style='background-color: rgb(82, 82, 82);'></span>"+
+"<span class='swatch' style='background-color: rgb(37, 37, 37);'></span>"+
+"<span class='swatch' style='background-color: rgb(0, 0, 0);'></span>"+
+"</span>";
+
+ document.getElementById('chart').innerHTML = str 
+
+ }
+		</script>
+	</body>
+</html>
