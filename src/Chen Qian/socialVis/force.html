@@ -1,0 +1,429 @@
+<html>
+<head>
+<style type="text/css">
+.node {
+    stroke: #000;
+    stroke-width: 1.5px;
+}
+
+.link {
+    stroke: red;
+    z-index: -1;
+}
+
+.link.highlight{
+    stroke-opacity:0.5;
+    stroke-width:1;
+}
+
+.node.fixed {
+    stroke: #FFFF66;
+    stroke-width: 3px;
+}
+
+.node.inactive{
+    opacity: 0.3;
+}
+
+.text{
+    font-size: 10px;
+    font-family: arial;
+    fill: white;
+}
+
+#date{
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    color: #ddd;
+}
+
+#tooltip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+      
+#tooltip.hidden {
+  display: none;
+}
+      
+#tooltip p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+
+
+body{
+  background-color: black;
+}
+</style>
+<script type="text/javascript" src="http://localhost/d3%20note/socialVis/d3.v3.min.js">
+</script>
+
+</head>
+<body>
+
+<div id="date" class="date">
+</div>
+
+<div id="tooltip" class="hidden">
+  <p><strong>Properties</strong></p>
+  <p>Id: <span id="term1"></span></p>
+  <p>Index: <span id="term2"></span></p>
+  <p>Degree: <span id="term3"></span></p>
+  <p>Weight: <span id="term4"></span></p>
+  <p>Group: <span id="term5"></span></p>
+</div>
+
+<script type="text/javascript">
+var padding=20; 
+var width=window.innerWidth-padding;                   //width and height of scope
+var height=window.innerHeight-padding;
+//alert(width+" "+height);
+ 
+var maxCount=5000;                             //maxCount is the largest value of json file
+var maxIndex=836;                              //maxIndex is fixed
+
+var K=4;
+var size=10;                                    //number of reading json files
+var transitionTime=100;                        //the time for transition process
+var count=0;                                   //count the number of transition execute
+var nodesSet=new Array();                      //store all nodes read from json file 
+var edgesSet=new Array();                      //store all edges read from json file
+var clustersSet=new Array();
+var prePosition=new Array();                   //the node's position of previous frame,used to avoid freak move of nodes when load new data
+var radius=5;                                  //the raduis of nodes
+var clusterMap={};                             //used to check if one node is cluster
+var fileDateSet=new Array();                   //the date of file
+var highlightNode=new Array();
+var highlightEdge=new Array();                 //highlight array is used when one node is hovered 
+
+
+var rScale=d3.scale.linear()                   //return the radius of node
+  .domain([0,Math.log(maxCount)])
+  .range([0,10]);
+
+var oScale=d3.scale.linear()                   //return opacity of node
+  .domain([0,Math.log(maxCount)])
+  .range([0,0.5]);
+
+var cScale = d3.scale.category20();            //return color of node
+
+var foci = [{x: 300, y: 150}, {x: 1000, y: 150}, {x: 1000, y: 450},{x: 200, y: 450},{x: width-100, y: height/2}];
+
+svg=d3.select("body")                         //create svg
+  .append("svg")
+  .attr("width",width)
+  .attr("height",height)
+
+link = svg.selectAll(".link");                //arrays of all edge
+node = svg.selectAll(".node");                //arrays of all node
+  
+var force = d3.layout.force()                 //create force layout
+    .charge(-15)                              //charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
+    .linkDistance(function(d){                //generally the distance between two nodes who are linked by edge
+        return (d.source.group==d.target.group)?10:20;
+        //return 50;                                //no group option, the link distance is same 
+    })
+    .friction(0.8)                                 //[0,1] default 0.9, velocity decay after tick
+    .linkStrength(0)                          //[0,1]  default 1
+    .gravity(0)                                   //the force to drag nodes to the enter
+    .size([width, height])
+    /*.on("tick", function() {                   //when links or nodes data changes, execute tick
+      link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+
+      node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+          .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+    });*/
+    .on("tick",tick);
+
+function tick(e) {
+  var k = .1 * e.alpha;
+  //alert(k);
+  //k=0.01;
+  // Push nodes toward their designated focus.
+  tmpNodes.forEach(function(o, i) {
+    o.y += (foci[o.group-1].y - o.y) * k;
+    o.x += (foci[o.group-1].x - o.x) * k;
+    //console.log(o.x+" "+o.y);
+  });
+
+  link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+
+  node
+      .attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+      .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+}    
+
+xmlhttp=new XMLHttpRequest();                  //AJAX, read file synchronous
+for(i=0;i<size;i++){
+  var url="formattedCo-Occurrence/"+i+".json";
+  xmlhttp.open("GET",url,false);
+  xmlhttp.send(null);
+  tmpJson=eval('(' + xmlhttp.responseText + ')');
+  var nodes=new Array();
+  var edges=new Array();
+  var clusters=new Array();
+  var fileDate="";
+  nodes=tmpJson.nodes;
+  edges=tmpJson.edges;  
+  clusters=tmpJson.clusters;
+  fileDate=tmpJson.date;
+  nodesSet.push(nodes);                       //store reading data into array
+  edgesSet.push(edges);
+  clustersSet.push(clusters);
+  fileDateSet.push(fileDate);
+}
+  
+
+setTimeout(transit,1000);                     //start to transition
+
+function transit(){
+  getPrePosition();                          //get the previous node's position 
+
+  tmpNodes=nodesSet[count];
+  var tmpEdges=edgesSet[count]; 
+  var tmpClusters=clustersSet[count]; 
+  var tmpFileDate=fileDateSet[count];
+
+  d3.select("#date").text(tmpFileDate);
+
+  clusterMap={};
+  for(var i=0;i<tmpClusters.length;i++){
+      clusterMap[tmpClusters[i].id]=tmpClusters[i];
+  }
+
+  var plus=20;                               //set the coordinate of new loading nodes
+  for(var i=0;i<tmpNodes.length;i++){
+      var index=tmpNodes[i].id;
+      if(prePosition[index]){
+          tmpNodes[i].x=prePosition[index].x;   //if the node is exist in the previous frame, get their coordinate
+          tmpNodes[i].y=prePosition[index].y;   //this will avoid freak move of nodes
+      }
+      /*else{
+          var group=tmpNodes[i].group;//for nodes not in the previous frame, give random position near clusters
+          if(group==K+1){
+              tmpNodes[i].x=0;
+              tmpNodes[i].y=0;
+          }
+          else{
+              var sign=Math.random()-0.5;
+              if(sign<0)
+                  sign=-1;
+              else sign=1;
+              tmpNodes[i].x=tmpClusters[group-1].x+plus*Math.random()*sign; 
+              tmpNodes[i].y=tmpClusters[group-1].y+plus*Math.random()*sign;
+          }    
+          //tmpNodes[i].x=0;
+          //tmpNodes[i].y=0;
+      }*/
+      if(index in clusterMap){
+          tmpNodes[i].x=clusterMap[index].x;
+          tmpNodes[i].y=clusterMap[index].y;
+      }
+  }
+
+
+  force.nodes(tmpNodes)                      //start force layout
+      .links(tmpEdges)
+      .start(); 
+        
+
+  //link = svg.selectAll(".link")
+  link=link.data(tmpEdges,function(d,i){       //give new loading data to edges
+          //return d.sid+"-"+d.tid;
+          //return d.source.id+"-"+d.target.id;
+          return i;
+        });
+
+  link.enter()                             //for new added edges, assign attribute
+      .append("line")
+      .attr("class", "link")
+      .attr("stroke-width", 0)
+      .attr("stroke-opacity", 0);
+   
+  /*  link.transition()                      //set the transition type
+      .delay(1000)
+      .duration(500)
+      .attr("stroke-opacity",function(d){   //edge's opacity from 0 to a computed value
+        if(d.source.group==d.target.group)
+           return 0;
+        else return Math.floor(oScale(Math.log(d.value)))+0.5;
+       //return 1;
+      })
+      .attr("stroke-width",1);
+ */ 
+    link.exit()                            //remove edges are not appear in json file
+      .transition()
+      .duration(500)
+      .attr("stroke-opacity", 0)
+      .remove();
+
+
+    //node = svg.selectAll(".node")
+    node=node.data(tmpNodes,function(d){    //give new loading data to nodes
+            //return d.id;
+            return d.id;
+        });
+
+    node.enter()                           //for new added node assign attributes
+        .append("circle")
+        .attr("class", "node")
+        .attr("r", 1)
+        //.attr("cx", function(d) { return d.x; })
+        //.attr("cy", function(d) { return d.y; })
+        .attr("fill", function(d) {             
+            return cScale(d.group); 
+        })
+        //.attr("fill", function(d) { return cScale(d.id); })      //no group option, color is random
+        .on("mouseover",function(d){
+            //var xpos=parseFloat(d3.select(this).attr("cx"));
+            //var ypos=parseFloat(d3.select(this).attr("cy"));
+            d3.select("#tooltip")
+              .style("left", (width/2-100) + "px")                        //set the tool tip of nodes               
+              .style("top",0 + "px");         
+            d3.select("#term1")
+              .text(d.id);
+            d3.select("#term2")
+              .text(d.indexN);
+            d3.select("#term3")
+              .text(d.degree);
+            d3.select("#term4")
+              .text(Math.ceil(d.weightN));
+            d3.select("#term5")
+              .text(d.group);
+            d3.select("#tooltip")
+              .classed("hidden", false);
+
+
+            var highMap=new Array();                       //highlight the node, its edge and its neighbor
+            highMap[d.index]=true;
+            link.each(function(o){
+                if(o.source.index==d.index){ 
+                    highMap[o.target.index]=true;
+                    d3.select(this).classed("highlight",true);                    
+                }
+                if(o.target.index==d.index){
+                    highMap[o.source.index]=true;
+                    d3.select(this).classed("highlight",true);
+                }
+            });
+            node.each(function(o){
+                if(o.index in highMap){
+                    svg.append("text")
+                        .classed("text",true)
+                        .text(o.label)
+                        .attr("x",o.x+5)
+                        .attr("y",o.y);
+                    return;
+                }
+                d3.select(this).classed("inactive",true);                
+            });
+        })
+        .on("mouseout",function(d){          //remove highlighted components
+            d3.select("#tooltip")
+              .classed("hidden",true);
+
+            d3.selectAll(".link.highlight")
+                .classed("highlight",false);
+            d3.selectAll(".node.inactive")
+                .classed("inactive",false);
+            d3.selectAll(".text")
+                .remove();
+        })
+        .call(force.drag);
+
+    /*nodes.forEach(function(d){
+        d.fixed=false;            
+        if(d.id in clusterMap){
+            d3.select(this).classed("fixed", d.fixed = true);
+            //alert(d.id);
+        }
+    });*/
+
+    node.transition()                     //set transition process, the radius of node from 0 to 5                 
+        .duration(1000)
+        .attr("fill",function(d){
+            d.fixed=false;
+            d3.select(this).classed("fixed",false);
+            if(d.id in clusterMap){
+                d3.select(this).classed("fixed", d.fixed = true);
+                //alert(d.id);
+            }
+            return cScale(d.group);
+        })
+        .each("end",function(d){
+            d3.select(this)
+                .transition()
+                .duration(1000)
+                .attr("r",radius);
+        });
+        /*.attr("r",function(d){
+            d.fixed=false;
+            d3.select(this).classed("fixed",false);
+            if(d.id in clusterMap){
+                d3.select(this).classed("fixed", d.fixed = true);
+                //alert(d.id);
+            }
+            return radius;
+        })
+        .each("end",function(d){
+            d3.select(this)
+                .transition()
+                .duration(1000)
+                .attr("fill",function(d){
+                    return cScale(d.group);
+                });
+        });*/
+
+    node.exit()                         //remove nodes no longer in the json file
+      .transition()
+      .duration(500)
+      .attr("r",0)
+      .remove();
+
+     
+    
+
+    count++;                           //if more json files are available
+    if(count<size)
+      setTimeout(transit,5000);        //go to next transition. 
+}
+
+function getPrePosition(){             //get the position of nodes in the previous frame
+    prePosition=[];
+    for(var i=0;i<node[0].length;i++){
+        var index=node[0][i].__data__.id;
+        var xpos=node[0][i].__data__.x;
+        var ypos=node[0][i].__data__.y;
+        prePosition[index]={
+            x:xpos,
+            y:ypos,
+        };
+    }
+}
+
+
+
+</script>
+</body>
+</html>
