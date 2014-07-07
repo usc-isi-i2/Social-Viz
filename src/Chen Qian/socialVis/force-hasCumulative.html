@@ -1,0 +1,517 @@
+<html>
+<head>
+<style type="text/css">
+.node {
+    stroke: #000;
+    stroke-width: 1.5px;
+}
+
+.link {
+    stroke: red; 
+}
+
+.linkHighlight{
+    stroke: red; 
+    stroke-opacity:0.5;
+    stroke-width:1;
+}
+
+.cluster {
+    stroke: yellow;
+    stroke-opacity:0.5;
+    opacity: 0.2;
+}
+
+.node.fixed{
+    stroke: #FFFF66;
+    stroke-opacity:0.6;
+    stroke-width:3;
+}
+
+.node.inactive{
+    opacity: 0.3;
+}
+
+.text{
+    font-size: 10px;
+    font-family: arial;
+    fill: white;
+}
+
+.moveText{
+    font-size: 10px;
+    font-family: arial;
+    fill: white;
+}
+
+#date{
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    color: #ddd;
+}
+
+#tooltip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+      
+#tooltip.hidden {
+  display: none;
+}
+      
+#tooltip p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+
+body{
+  background-color: black;
+}
+</style>
+
+<script type="text/javascript" src="d3.v3.min.js">
+</script>
+
+</head>
+
+
+<body>
+
+<div id="date" class="date">
+</div>
+
+<div id="tooltip" class="hidden">
+  <p><strong>Properties</strong></p>
+  <p>Id: <span id="term1"></span></p>
+  <p>Index: <span id="term2"></span></p>
+  <p>Degree: <span id="term3"></span></p>
+  <p>Weight: <span id="term4"></span></p>
+  <p>Label: <span id="term5"></span></p>
+</div>
+
+<script type="text/javascript">
+var padding=20; 
+var width=window.innerWidth-padding;           //width and height of scope
+var height=window.innerHeight-padding;
+ 
+var maxCountSet=new Array();                   //maxCount is the largest value of json file
+var maxIndex=836;                              //maxIndex is fixed
+var maxNumberOfNodes=300;                      //max number of nodes can be displayed on the screen
+
+var K=4;                                       //number of clusters
+var size=20;                                    //number of reading json files
+var transitionTime=100;                        //the time for transition process
+var count=0;                                   //count the number of transition execute
+var nodesSet=new Array();                      //store all nodes read from json file 
+var edgesSet=new Array();                      //store all edges read from json file
+var prePosition=new Array();                   //the node's position of previous frame,used to avoid freak move of nodes when load new data
+var radius=4;                                  //the raduis of nodes
+var clustersSet;                               //store cluster info by sequence
+var clusterMap={};                             //used to check if one node is cluster
+var fileDateSet=new Array();                   //the date of file
+var countGroupSet=new Array();                 //number of nodes for each group of each json file
+var tmpCountGroup=new Array();
+var highlightEdge=new Array();                 //highlight array is used when one node is hovered 
+var displayThreshold=0                         //whether or not display the nodes in normal size
+var nonDisplayDistance=100;                    //the distance for nodes that are not displayed to their cluster
+var tmpNodes=new Array();                      //tmpNodes store all nodes info for current file
+
+var rScale=d3.scale.linear()                   //return the radius of node
+    .range([0,10]);
+
+var cScale = d3.scale.category20();            //return color of node
+
+
+
+var nonGroupPos = {x: width-100, y: height/2};
+
+svg=d3.select("body")                         //create svg
+    .append("svg")
+    .attr("width",width)
+    .attr("height",height)
+
+link = svg.selectAll(".link");                //array of all edges
+node = svg.selectAll(".node");                //array of all nodes
+cluster = svg.selectAll(".cluster");          //array of all clusters
+text = svg.select(".text");                   //array of all texts
+  
+var force = d3.layout.force()                 //create force layout
+    .charge(function(d){
+        return d.radius<displayThreshold ? -2 :-10;
+    })                                        //charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
+    .linkDistance(function(d){                //generally the distance between two nodes who are linked by edge
+        //return (d.source.group==d.target.group)?10:20;
+        return 50;                            //no group option, the link distance is same 
+    })
+    .friction(0.8)                            //[0,1] default 0.9, velocity decay after tick
+    .linkStrength(0)                          //[0,1]  default 1
+    .gravity(0)                            //the force to drag nodes to the enter
+    .size([width, height])
+    .on("tick",tick);
+
+var forceCluster= d3.layout.force()           //the force-layout for clusters
+    .size([width, height])
+    .gravity(0.01)
+    /*.charge(function(d){
+        return -(padding+d.size)*50;
+    })*/
+    .charge(-800)
+    .on("tick",tickCluster);
+
+
+loadFile();
+getCluster();
+setCluster();
+setTimeout(transit,1000);                     //start to transition
+
+
+function tick(e) {
+  var k = .1 * e.alpha;                       // Push nodes toward their designated focus.  
+  tmpNodes.forEach(function(o, i) {
+      var plus=0,
+          diffX=(o.group<=K) ? clustersSet[o.group-1].x - o.x : nonGroupPos.x - o.x,
+          diffY=(o.group<=K) ? clustersSet[o.group-1].y - o.y : nonGroupPos.y - o.y,
+          distance=Math.sqrt(diffX*diffX+diffY*diffY),
+          r=(o.group<=K) ? cluster[0][o.group-1].__data__.radius : radius;
+      if(o.radius<displayThreshold){
+          plus=(o.group<=K) ? r : nonDisplayDistance;
+      }
+      else plus=5;
+      if(distance>plus){
+          o.y += (diffY) * k;
+          o.x += (diffX) * k;
+      }
+      if(o.radius==2 && distance<plus*0.9){
+          o.y -= (diffY) * k;
+          o.x -= (diffX) * k;          
+      }
+      /*if(o.radius>2 && distance>plus*0.9){
+          o.y += (diffY) * k;
+          o.x += (diffX) * k;          
+      }*/
+      /*if(o.text){
+          o.text
+              .transition()
+              .attr("x",o.x)
+              .attr("y",o.y);
+      }*/
+  });
+
+
+  link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+      .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+}   
+
+function tickCluster(e){
+    cluster.attr("cx", function(d) { return d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)); });
+}
+
+function loadFile(){
+    var xmlhttp=new XMLHttpRequest();                  //AJAX, read file synchronous
+    for(i=0;i<size;i++){
+        var url="formattedCumulative/"+i+".json";
+        xmlhttp.open("GET",url,false);
+        xmlhttp.send(null);
+        var tmpJson=eval('(' + xmlhttp.responseText + ')');
+        var nodes=new Array();
+        var edges=new Array();
+        var fileDate="";
+        var maxCount=tmpJson.maxCount;
+        var countGroup=tmpJson.countGroup;
+        nodes=tmpJson.nodes;
+        edges=tmpJson.edges;  
+        fileDate=tmpJson.date;
+        nodesSet.push(nodes);                       //store reading data into array
+        edgesSet.push(edges);
+        fileDateSet.push(fileDate);
+        maxCountSet.push(maxCount);
+        countGroupSet.push(countGroup);
+    }
+}
+
+function transit(){
+    getPrePosition();                             //get the previous node's position 
+    preTmpNodes=tmpNodes;
+    tmpNodes=nodesSet[count];
+    tmpEdges=edgesSet[count];  
+    tmpCountGroup=countGroupSet[count];
+    var tmpFileDate=fileDateSet[count];
+    var maxCount=maxCountSet[count];
+    rScale.domain([0,Math.log(maxCount)]);
+
+    d3.select("#date").text(tmpFileDate);
+
+    for(var i=0;i<tmpNodes.length;i++){
+        var index=tmpNodes[i].id;
+        if(prePosition[index]){
+            tmpNodes[i].x=prePosition[index].x;   //if the node is exist in the previous frame, get their coordinate
+            tmpNodes[i].y=prePosition[index].y;   //this will avoid freak move of nodes
+        }  
+    }
+
+    updateCluster();  
+    setNode(count);  
+
+    force.nodes(tmpNodes)                        //start force layout
+        .links(highlightEdge)
+        .start(); 
+
+    count++;                                     //if more json files are available
+    if(count<size)
+        setTimeout(transit,6000);               //go to next transition. 
+}
+
+function setLink(){
+  link=link.data(highlightEdge,function(d,i){        //give new loading data to edges
+      return d.source.id+"-"+d.target.id;
+  });
+
+  link.enter()                                  //for new added edges, assign attribute
+      .append("line")
+      .attr("class", "link")
+      .attr("stroke-width", 1)
+      .attr("stroke-opacity", 0.5)
+      .each(function(d){
+          d3.select(this)
+              .moveToBack();
+      });
+   
+  link.exit()                                   //remove edges are not appear in json file
+      .transition() 
+      .duration(500)
+      .attr("stroke-opacity", 0)
+      .remove();
+}
+
+function setNode(step){
+  //rScale less then displayThreshold will have 0 radius
+  displayThreshold=10-maxNumberOfNodes/tmpNodes.length*10;
+  //displayThreshold=10-0.3*10;
+  //console.log("displayThreshold: "+displayThreshold);
+  node=node.data(tmpNodes,function(d){          //give new loading data to nodes
+      return d.id;
+  });
+
+  node.enter()                                  //for new added node assign attributes
+      .append("circle")
+      .attr("class", "node")
+      .attr("r", 2)
+      .attr("fill", function(d) {             
+          return cScale(d.color); 
+      })
+      .on("mouseover",mouseoverFunc)
+      .on("mouseout",mouseoutFunc)
+      //.call(force.drag);
+
+  node.each(function(d){
+      if(d.id in clusterMap){
+          d3.select(this).classed("fixed",true);
+      }
+      var r=rScale(Math.log(d.weightN));
+      d.radius=r;
+  });
+
+  node.transition()                             //set transition process, the radius of node from 0 to 5 
+      .duration(1000)
+      /*.each("start", function(d){
+          if(step>0 && d.radius > displayThreshold){
+              if(preTmpNodes[d.indexN] || preTmpNodes[d.indexN].group != d.group){
+              var obj = svg.append("text")
+                  .classed("moveText", true)
+                  .attr("opacity", 0)
+                  .text(d.label)
+                  .attr("x", d.x + 5)
+                  .attr("y", d.y);
+              obj.transition()
+                  .duration(1000)
+                  .attr("opacity", 0.8);
+              d.text = obj.select("text");
+              obj.moveToBack();
+            }
+        }
+      })*/
+      .attr("r", function(d){          
+          return (d.radius > displayThreshold) ? 4 : 2;
+      })  
+      
+
+  d3.selectAll(".text")
+      .transition()
+      .duration(500)
+      .attr("opacity",1);
+   
+
+  node.exit()                                 //remove nodes no longer in the json file
+      .transition()
+      .duration(500)
+      .attr("r",0)
+      .remove();
+}
+
+function getPrePosition(){                    //get the position of nodes in the previous frame
+    prePosition=[];
+    for(var i=0;i<node[0].length;i++){
+        var index=node[0][i].__data__.id;
+        var xpos=node[0][i].__data__.x;
+        var ypos=node[0][i].__data__.y;
+        prePosition[index]={
+            x:xpos,
+            y:ypos,
+        };
+    }
+}
+
+function getCluster(){
+    var xmlhttp=new XMLHttpRequest();         //AJAX, read cluster file
+    var url="formattedCumulative/cluster.json";
+    xmlhttp.open("GET",url,false);
+    xmlhttp.send(null);
+    tmpJson=eval('(' + xmlhttp.responseText + ')');
+    var tmpClusters=tmpJson.clusters;
+    clustersSet=tmpClusters;
+    for(var i=0;i<tmpClusters.length;i++){
+        clusterMap[tmpClusters[i].id]=tmpClusters[i];
+    }
+}
+
+function setCluster(){                       //set the cluster force-layout
+    cluster=cluster.data(clustersSet);
+    cluster.enter()
+        .append("circle")
+        .attr("class","cluster")
+        .attr("fill",function(d){
+            return cScale(d.group);
+        })
+        .attr("stroke-width",function(d){
+            return 2;
+        })    
+}
+
+function updateCluster(){
+    cluster.transition()     
+        .duration(1000)   
+        .attr("r",function(d){               //this line compute the radius of cluster
+            var r=Math.ceil(Math.sqrt(tmpCountGroup[d.group-1])*10);
+            //alert(r);                    
+            d.radius=Math.max(r,nonDisplayDistance);
+            return d.radius;
+        });
+        
+    forceCluster.nodes(clustersSet)
+        .start();
+}
+
+function mouseoverFunc(d){
+          d3.select("#tooltip")               //set the tool tip of nodes    
+              .style("left", (width/2-100) + "px")              
+              .style("top",0 + "px");         
+          d3.select("#term1")
+              .text(d.id);
+          d3.select("#term2")
+              .text(d.indexN);
+          d3.select("#term3")
+              .text(d.degree);
+          d3.select("#term4")
+              .text(Math.ceil(d.weightN));
+          d3.select("#term5")
+              .text(d.label);
+          d3.select("#tooltip")
+              .classed("hidden", false);
+
+          
+          var highMap=new Array();            //highlight the node, its edges and its neighbors
+          highMap[d.index]=true;
+          for(var i=0;i<tmpEdges.length;i++){
+              var tmp=tmpEdges[i];
+              var src,tar;
+              if(tmp.source.indexN)
+                  src=tmp.source.indexN;
+              else 
+                  src=tmp.source;
+              if(tmp.target.indexN)
+                  tar=tmp.target.indexN;
+              else
+                  tar=tmp.target;
+              if(src==d.index){
+                  //console.log(i+":  "+src+"-----"+tar+"-----"+d.index);
+                  highMap[tar]=true;
+                  highlightEdge.push(tmp);
+              }
+              if(tar==d.index){
+                  //console.log(i+":  "+src+"-----"+tar+"-----"+d.index);
+                  highMap[src]=true;
+                  highlightEdge.push(tmp);
+              }              
+          }
+
+          console.log(d.indexN);
+        
+          force.links(highlightEdge)
+              .start();
+          setLink();
+
+          node.each(function(o){
+              if(o.index in highMap){
+                  var obj = svg.append("text")
+                      .classed("text",true)
+                      .text(o.label)
+                      .attr("x",o.x+5)
+                      .attr("y",o.y);
+                  obj.moveToBack();
+                  return;
+              }
+              d3.select(this).classed("inactive",true);                
+          });
+}
+
+function mouseoutFunc(d){                              //remove highlighted components
+    d3.select("#tooltip")
+        .classed("hidden",true);
+    highlightEdge=new Array();
+    force.links(highlightEdge)
+        .start();
+    setLink();
+
+    d3.selectAll(".node.inactive")
+        .classed("inactive",false);
+    d3.selectAll(".text")
+        .remove();
+}
+
+d3.selection.prototype.moveToBack = function() { 
+    return this.each(function() { 
+        var firstChild = this.parentNode.firstChild; 
+        if (firstChild) { 
+            this.parentNode.insertBefore(this, firstChild); 
+        } 
+    });    //move component to the down of svg
+};
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });   //move component to the up of svg
+};
+</script>
+</body>
+</html>

@@ -7,7 +7,8 @@ import org.json.*;
 
 
 public class translationSocialVis {
-	int size=10;                                                     //number of file need to read
+	int size=20;                                                     //number of file need to read
+	double maxWeight=0;                                             //the max weight of nodes
 	public ArrayList<String> fileDate=new ArrayList<String>();       //the date of reading file
 	ArrayList<Integer> clusterCoordX=new ArrayList<Integer>();       //store the fixed coordinate of cluster center
 	ArrayList<Integer> clusterCoordY=new ArrayList<Integer>();
@@ -17,7 +18,9 @@ public class translationSocialVis {
 	Map<Integer,node> nodeMap=new HashMap<Integer,node>();          //node's map <id,node>
 	ArrayList<node> nodeSet=new ArrayList<node>();                  //nodeSet and edgeSet store node and edge info of current file 
 	ArrayList<edge> edgeSet=new ArrayList<edge>();
-	
+	Map<Integer,Integer> colorMap=new HashMap<Integer,Integer>();   //assign color to all node based on the last cumulative json file
+																	//map<node id, group>
+	int [] groupCount;                                              //number of nodes for each group
 	
 	public class node{
 		int indexN;                                                //the rank of degree in all the node
@@ -26,12 +29,14 @@ public class translationSocialVis {
 		double weight;                                             //the weight of node
 		int group;                                                 //give the default group
 		ArrayList<Integer> neigId;                                 //the id of neighbor nodes
+		int color;                                                 //color of node is decided by the last cumulative file
 		node(int i,double w,int d,int g){
 			id=i;
 			weight=w;
 			degree=d;                    
 			indexN=-1;                   
-			group=g;    
+			group=g;   
+			color=-1;
 			neigId=new ArrayList<Integer>();
 		}		
 		node(){};		
@@ -58,8 +63,10 @@ public class translationSocialVis {
 		solution();
 	}
 	
+	//generate the date 
+	//and attach date to each json file
 	public void createFileDate(){
-		for(int i=1;i<=31;i++){                             //generate the date of each json file
+		for(int i=1;i<=31;i++){                             
 			String tmp="March ";
 			if(i<10)
 				tmp+="0"+i;
@@ -90,8 +97,10 @@ public class translationSocialVis {
 		}
 	}
 	
+	//calculate the position of clusters.
+	//In the furture, when K is not set, the position of clusters need an ALG to calculate
 	public void computeClusterCoord(){
-		/*int width=1346;                                 //set the position of clusters
+		/*int width=1346;                                 
 		int height=647;
 		int sideLen=150; 
 		int centerX=width/2;
@@ -108,10 +117,11 @@ public class translationSocialVis {
 		clusterCoordY.add(450);
 	}
 	
+	//read the label of hashtags, and attach these labels to nodes
 	public void readHashtag(){
 		try { 		
-			String line="";                     //read the label of hashtags
-			BufferedReader br=new BufferedReader(new FileReader("D:\\wamp\\www\\d3 note\\socialVis\\health_hashtag_list.csv")); 
+			String line="";                    
+			BufferedReader br=new BufferedReader(new FileReader("C:\\wamp\\www\\d3Note\\socialVis\\health_hashtag_list.csv")); 
 			while ((line = br.readLine()) != null) {
 				hashtag.add(line);
 			} 
@@ -127,14 +137,21 @@ public class translationSocialVis {
 		readHashtag();                        //read hashtag file
 		computeClusterCoord();                //generate the coordinate for clusters
 		
-		//readCumulative();             		  //read the last cumulative file, 
-		readCoOccurrence();                   //read number of size co-occurrence file
+		readLastCumulative();                     //read the last cumulative file, 
+		             		  
+		/*clusterSet.add(0);
+		clusterSet.add(22);
+		clusterSet.add(38);
+		clusterSet.add(42);*/
+		readCumulative();
+		//readCoOccurrence();                   //read number of size co-occurrence file
 	}
 
-	
+	//co-occurrence files provide the relationship of nodes in everyday
 	public void readCoOccurrence(){           //read co-occurrence file
-		String inUrl="D:\\wamp\\www\\d3 note\\socialVis\\Cooccurence\\";
-		String outUrl="D:\\wamp\\www\\d3 note\\socialVis\\formattedCo-Occurrence\\";
+		String inUrl="C:\\wamp\\www\\d3Note\\socialVis\\Cooccurence\\";
+		//String outUrl="D:\\wamp\\www\\d3 note\\socialVis\\formattedCo-Occurrence\\";
+		String outUrl="C:\\wamp\\www\\d3Note\\socialVis\\testcooccur\\";
 		for(int i=0;i<size;i++){
 			clearBuf();                                       //initialize
 			
@@ -143,34 +160,62 @@ public class translationSocialVis {
 			 
 			output=setAndWriteGeneralInfo(json,output,i);             //translate part
 			setNodes(json);
-			output=setAndWriteEdge(output,json);
-			output=setAndWriteCluster(output);
+			setEdge(json);
+			output=writeEdge(output);
 			setGroup();
-			output=writeNode(output);
+			readColorMap();
+			writeNode(output);
 			
 			writeJson(outUrl+i+".json",output);
 			System.out.println("Read "+i+".json finished");
 		}
 	}
 	
-	public void readCumulative(){             //read the last cumulative file, 
-		String cumulativeInUrl="D:\\wamp\\www\\d3 note\\socialVis\\Cumulative\\"+(size-1)+".json";
-		String cumulativeOutUrl="D:\\wamp\\www\\d3 note\\socialVis\\formattedCumulative\\"+(size-1)+".json";
+	public void readCumulative(){
+		String cumulativeInUrl="C:\\wamp\\www\\d3Note\\socialVis\\Cumulative\\";
+		String cumulativeOutUrl="C:\\wamp\\www\\d3Note\\socialVis\\formattedCumulative\\";
+		
+		for(int i=0;i<size;i++){
+			clearBuf();                                       //initialize
+			
+			JSONObject json=readJson(cumulativeInUrl+i+".json");
+			JSONObject output=new JSONObject();
+			 
+			output=setAndWriteGeneralInfo(json,output,i);             //translate part
+			setNodes(json);
+			setEdge(json);
+			output=writeEdge(output);
+			setGroup();
+			readColorMap();
+			writeNode(output);
+			
+			writeJson(cumulativeOutUrl+i+".json",output);
+			System.out.println("Read "+i+".json finished");
+		}
+	}
+	
+	//cumulative file provide clusters and node's group information.
+	public void readLastCumulative(){             //read the last cumulative file, 
+		String cumulativeInUrl="C:\\wamp\\www\\d3Note\\socialVis\\Cumulative\\"+(size-1)+".json";
+		String cumulativeOutUrl="C:\\wamp\\www\\d3Note\\socialVis\\formattedCumulative\\cluster.json";
 		JSONObject json=readJson(cumulativeInUrl);
 		JSONObject output=new JSONObject();
 		
 		clearBuf();
-		
 		setNodes(json);
-		setAndWriteCluster(output);
+		setEdge(json);
+		setCluster();
+		setGroup();
+		output=writeCluster(output);
+		setColorMap();
 		
 		
 		writeJson(cumulativeOutUrl,output);
 		System.out.println("Read cumulative"+(size-1)+".json finished");
 	}
 	
-	
-	public JSONObject readJson(String inUrl){          //read data json file
+	//read json from files
+	public JSONObject readJson(String inUrl){          
 		BufferedReader br = null;	
 		String rst="";
 		String line="";	
@@ -190,6 +235,7 @@ public class translationSocialVis {
 		return json;		
 	}
 	
+	//write json to files
 	public void writeJson(String outUrl,JSONObject output){		
 		try {
 			FileWriter fw;
@@ -202,14 +248,15 @@ public class translationSocialVis {
 		}			
 	}
 	
-	
+	//remove buffer info from previous iteration
 	public void clearBuf(){
 		nodeMap.clear();
 		nodeSet.clear();
 		edgeSet.clear();
-		clusterSet.clear();
+		//clusterSet.clear();
 	}
 	
+	//general info contains info like the range of node's id, intensity, date of file
 	public JSONObject setAndWriteGeneralInfo(JSONObject json,JSONObject output,int num){
 		try{
 			output.put("title", json.getString("title"));               //read general property from json file
@@ -228,6 +275,9 @@ public class translationSocialVis {
 		return output;
 	}
 	
+	//node's degree is how many edges connect to it.
+	//node's weight is the sum of weight of connected edges.
+	//nodes are sorted based on their weight
 	public void setNodes(JSONObject json){
 		try{
 			JSONArray position=json.getJSONArray("Data");              //get the x,y position json array
@@ -280,10 +330,14 @@ public class translationSocialVis {
 		}
 	}
 	
-	public JSONObject setAndWriteEdge(JSONObject output,JSONObject json){
+	//since the original file contains the situations that edge (a,b) and (b,a), 
+	//to remove these cases, just apply a'id<b's id.
+	//the weight of edge is square root of intensity, this function can be changed based on the data distribution of intensity.
+	//besides, edges are sorted based on the weight, for the using of assign group to nodes
+	public void setEdge(JSONObject json){
 		try{
 			JSONArray position=json.getJSONArray("Data");              //get the x,y position json array
-			JSONArray edges=new JSONArray();                           //edges json array
+			
 			//generate edgesSet
 			for(int i=0;i<position.length();i++){                 
 				int xpos=position.getJSONObject(i).getInt("x_position");
@@ -307,6 +361,17 @@ public class translationSocialVis {
 			};
 			Collections.sort(edgeSet,comparatorEdge);               //sort edge by edge's value
 			
+			 
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public JSONObject writeEdge(JSONObject output){
+		try{
+			JSONArray edges=new JSONArray();                           //edges json array
 			for(int i=0;i<edgeSet.size();i++){                     //put edgeSet into JSONArray.
 				edge tmp=edgeSet.get(i);
 				JSONObject tmpEdge=new JSONObject();
@@ -318,7 +383,7 @@ public class translationSocialVis {
 				tmpEdge.put("indexE", i);
 				edges.put(tmpEdge);
 			}			
-			output.put("edges", edges); 
+			output.put("edges", edges);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -326,12 +391,14 @@ public class translationSocialVis {
 		return output;
 	}
 	
-	public JSONObject setAndWriteCluster(JSONObject output){
-		try{
-			JSONArray clusters=new JSONArray();                         //store clusters 
+	//clusters are chosen in the sequence of node's degree, from high to low.
+	//if current node's neighbor's similarity to chosen clusters is less then one threshold, 
+	//then choose the node as cluster, and then move to next node. The process stops if K nodes have been chosen.
+	public void setCluster(){
+		try{ 
 			int count=0;                                          //number of cluster choosen
 			int index=0;                                          //start index of nodeSet to check proper cluster
-			double thresholdCluster=0.3;                          //the threshold of similarity for a node to be chosen as cluster
+			double thresholdCluster=0.5;                          //the threshold of similarity for a node to be chosen as cluster
 			
 			while(count<K){
 				boolean flag=true;
@@ -339,33 +406,40 @@ public class translationSocialVis {
 				double avg=0;
 				for(int i=0;i<clusterSet.size();i++){                //compute similarity to all cluster
 					node tmp=nodeMap.get(clusterSet.get(i));
-					//avg+=getSimilarity(cur.neigId,tmp.neigId);
 					avg=getSimilarity(cur.neigId,tmp.neigId);
 					if(avg>thresholdCluster){
 						flag=false;
 						break;
 					}
 				}
-				/*if(clusterSet.size()>0)
-					avg/=clusterSet.size();
-				if(avg<thresholdCluster){
-					clusterSet.add(cur.id);
-					count++;
-				}*/
 				if(flag){
 					clusterSet.add(cur.id);
 					count++;
 				}
 			}
-			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public JSONObject writeCluster(JSONObject output){
+		try{
+			JSONArray clusters=new JSONArray();                   //store clusters
 			for(int i=0;i<K;i++){                                 //store the id and coordinate of cluster into JSON
 				int id=clusterSet.get(i);
+				JSONObject cluster=new JSONObject();				
 				node tmpNode=nodeMap.get(id);
-				JSONObject cluster=new JSONObject();
+				cluster.put("id",tmpNode.id);                   //store node into nodes JSONObject
 				cluster.put("indexN", tmpNode.indexN);
-				cluster.put("id", tmpNode.id);
-				cluster.put("x", clusterCoordX.get(i));
-				cluster.put("y", clusterCoordY.get(i));
+				cluster.put("degree", tmpNode.degree);
+				cluster.put("weightN", tmpNode.weight);
+				cluster.put("group", tmpNode.group);
+				cluster.put("label", hashtag.get(tmpNode.id));
+				cluster.put("color", tmpNode.color);
+				cluster.put("xpos", clusterCoordX.get(i));
+				cluster.put("ypos", clusterCoordY.get(i));
+				cluster.put("size", groupCount[tmpNode.group-1]);
 				clusters.put(cluster);
 				System.out.print(tmpNode.indexN+" ");
 			}			
@@ -378,16 +452,28 @@ public class translationSocialVis {
 		return output;
 	}
 	
+	//set group based on the weight of edge, the method is similar to Kruskal ALG to compute MST.
+	//but each time we choose the highest weight edge to insert and stop when only left K clusters
 	public void setGroup(){	
 		try{
 			for(int i=0;i<K;i++){                                 //assign K colors to the K nodes in clusterSet
 				int id=clusterSet.get(i);
-				node tmpNode=nodeMap.get(id);
-				tmpNode.group=i+1;
-				nodeSet.set(tmpNode.indexN, tmpNode);
+				node tmpNode=null;
+				if(!nodeMap.containsKey(id)){
+					tmpNode=new node(id,0,0,-1);
+					tmpNode.indexN=nodeSet.size();
+					tmpNode.group=i+1;
+					nodeSet.add(tmpNode);
+				}
+				else {
+					tmpNode=nodeMap.get(id);
+					tmpNode.group=i+1;
+					nodeSet.set(tmpNode.indexN, tmpNode);
+				}
 				nodeMap.put(tmpNode.id, tmpNode);
 			}			
 			
+			groupCount=new int [K];
 			int count=0;
 			while(count!=edgeSet.size()){                        //stop when all nodes have group
 				count=edgeSet.size();
@@ -400,22 +486,29 @@ public class translationSocialVis {
 						nodeSet.set(B.indexN, B);
 						nodeMap.put(B.id, B);
 						edgeSet.remove(i--);
+						groupCount[A.group-1]++;
 					}
 					else if(A.group==K+1 && B.group!=K+1){
 						A.group=B.group;
 						nodeSet.set(A.indexN, A);
 						nodeMap.put(A.id, A);
 						edgeSet.remove(i--);
+						groupCount[B.group-1]++;
 					}
 				}
 			}
+			for(int i=0;i<K;i++)
+				System.out.print(groupCount[i]+" ");
+			System.out.println();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	} 
 	
+	//read node info from nodeSet and store this info into JSON
 	public JSONObject writeNode(JSONObject output){
+		//get the number of nodes in each group, the numbers will be considered as the weight of cluster
 		try{
 			JSONArray nodes=new JSONArray();                           //nodes json array
 			for(int i=0;i<nodeSet.size();i++){
@@ -427,15 +520,46 @@ public class translationSocialVis {
 				tmp.put("weightN", tmpNode.weight);
 				tmp.put("group", tmpNode.group);
 				tmp.put("label", hashtag.get(tmpNode.id));
+				tmp.put("color", tmpNode.color);
 				nodes.put(tmp);
 				//System.out.println("output  "+tmpNode.id+"  "+tmpNode.weight+"  "+tmpNode.degree);
+				/*if(tmpNode.group<=K)
+					groupCount[tmpNode.group-1]++;*/
+				maxWeight=Math.max(maxWeight, tmpNode.weight);
 			}			
-			output.put("nodes", nodes);  
+			output.put("nodes", nodes);
+			output.put("maxCount", maxWeight);
+			
+			//add the group count info into json file
+			JSONArray ary=new JSONArray();
+			for(int i=0;i<K;i++){
+				ary.put(groupCount[i]);
+			}
+			output.put("countGroup", ary);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 		return output;
+	}
+	
+	//cumulative file contains all node and edge from previous co-occurrence file
+	//we use the last cumulative file to provide cluster and group for all nodes.
+	//So after generate the nodeSet, just put there <id,group> pair into Map for referencing.
+	public void setColorMap(){                          
+		for(int i=0;i<nodeSet.size();i++){
+			node tmp=nodeSet.get(i);
+			colorMap.put(tmp.id, tmp.group);
+		}
+	}
+	
+	//read the color for nodes from colorMap, which is set by the last cumulative file.
+	public void readColorMap(){
+		for(node tmp:nodeSet){
+			tmp.color=colorMap.get(tmp.id);
+			nodeSet.set(tmp.indexN, tmp);
+			nodeMap.put(tmp.id, tmp);
+		}
 	}
 	
 	//compute the similarity of two ArrayList
@@ -465,4 +589,6 @@ public class translationSocialVis {
 		double rst=sameEle/(1.0*(A.size()+B.size())/2);		
 		return rst;
 	}
+	
+	
 }

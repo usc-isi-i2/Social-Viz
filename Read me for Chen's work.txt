@@ -1,0 +1,20 @@
+Path of workspace
+
+My work is located at "src\Chen Qian\".
+There are to folders under it.
+1) socialVis 
+	contains formated json file, js and html documents.
+2) translateJson-SocialVis
+	is eclipse project, it transforms json file in the "socialVis\Cumulative" to "socialVis\formattedCumulative".
+	If you want to run the Java program, you need to modify the absolute path of input and output url.
+	The original url is like "C:\\wamp\\www\\d3Note\\socialVis\\xxx".
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Running of HTML
+
+Since the Javascript use XMLRequest, if you open the html file directly on Chrome it will cause cross domain problem.
+You can install apache server and put all social-Vis file under www file.
+Then you can have access to the html page through localhost.
+
+The html file runs will on Firefox.
