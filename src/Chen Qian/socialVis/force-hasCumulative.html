@@ -1,87 +1,7 @@
 <html>
 <head>
-<style type="text/css">
-.node {
-    stroke: #000;
-    stroke-width: 1.5px;
-}
 
-.link {
-    stroke: red; 
-}
-
-.linkHighlight{
-    stroke: red; 
-    stroke-opacity:0.5;
-    stroke-width:1;
-}
-
-.cluster {
-    stroke: yellow;
-    stroke-opacity:0.5;
-    opacity: 0.2;
-}
-
-.node.fixed{
-    stroke: #FFFF66;
-    stroke-opacity:0.6;
-    stroke-width:3;
-}
-
-.node.inactive{
-    opacity: 0.3;
-}
-
-.text{
-    font-size: 10px;
-    font-family: arial;
-    fill: white;
-}
-
-.moveText{
-    font-size: 10px;
-    font-family: arial;
-    fill: white;
-}
-
-#date{
-    font-size: 20px;
-    font-family: arial;
-    font-weight: bold;
-    color: #ddd;
-}
-
-#tooltip {
-    position: absolute;
-    width: 200px;
-    height: auto;
-    padding: 10px;
-    background-color: white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
-}
-      
-#tooltip.hidden {
-  display: none;
-}
-      
-#tooltip p {
-  margin: 0;
-  font-family: sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-
-body{
-  background-color: black;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 <script type="text/javascript" src="d3.v3.min.js">
 </script>
@@ -98,23 +18,26 @@ body{
   <p><strong>Properties</strong></p>
   <p>Id: <span id="term1"></span></p>
   <p>Index: <span id="term2"></span></p>
-  <p>Degree: <span id="term3"></span></p>
+  <p>Correct: <span id="term3"></span></p>
   <p>Weight: <span id="term4"></span></p>
   <p>Label: <span id="term5"></span></p>
 </div>
 
+<script type="text/javascript" src="barChart.js">
+</script>
 <script type="text/javascript">
 var padding=20; 
 var width=window.innerWidth-padding;           //width and height of scope
 var height=window.innerHeight-padding;
  
-var maxCountSet=new Array();                   //maxCount is the largest value of json file
+var maxNodeWeightSet=new Array();              //maxNodeWeight is the largest value of json file
+var maxEdgeWeightSet = new Array();            //the larget weight of edge of json file
 var maxIndex=836;                              //maxIndex is fixed
 var maxNumberOfNodes=300;                      //max number of nodes can be displayed on the screen
 
 var K=4;                                       //number of clusters
-var size=20;                                    //number of reading json files
-var transitionTime=100;                        //the time for transition process
+var size=20                                    //number of reading json files
+var transitionTime=2000;                        //the time for transition process
 var count=0;                                   //count the number of transition execute
 var nodesSet=new Array();                      //store all nodes read from json file 
 var edgesSet=new Array();                      //store all edges read from json file
@@ -129,13 +52,21 @@ var highlightEdge=new Array();                 //highlight array is used when on
 var displayThreshold=0                         //whether or not display the nodes in normal size
 var nonDisplayDistance=100;                    //the distance for nodes that are not displayed to their cluster
 var tmpNodes=new Array();                      //tmpNodes store all nodes info for current file
+var preNodesMap = new Array();                 //The map of previous node, the key is node's id
+var nodeTraceMap = new Array();                //the trace map indicates how many times the node on its right cluster during the whole process.
+var traceMapCounter = new Array();             //traceMapCounter is used to count number of values in node trace map
+var clusterNodesHistory = new Array();         //history of how many nodes in the manner of different colors in the cluster for each file
+var showStackChart = -1;                       //whether the stack chart is shown, and the chart for which cluster
 
 var rScale=d3.scale.linear()                   //return the radius of node
     .range([0,10]);
 
 var cScale = d3.scale.category20();            //return color of node
 
+var linkColorScale = d3.scale.quantize()       //return color of edge
+    .range(["red", "pink", "orange", "yellow"]);
 
+var plusScale = d3.scale.ordinal();             //plusScale is used to compute the distance from nodes to cetner of cluster circle
 
 var nonGroupPos = {x: width-100, y: height/2};
 
@@ -147,11 +78,21 @@ svg=d3.select("body")                         //create svg
 link = svg.selectAll(".link");                //array of all edges
 node = svg.selectAll(".node");                //array of all nodes
 cluster = svg.selectAll(".cluster");          //array of all clusters
-text = svg.select(".text");                   //array of all texts
+text = svg.selectAll(".text");                //array of all texts
+moveText = svg.selectAll(".moveText");        //label generate when nodes moving between clusters
+layer = svg.selectAll(".layer")               //layer of stack layout
+rect = layer.selectAll("rect")                //rect in stack layout
   
 var force = d3.layout.force()                 //create force layout
     .charge(function(d){
-        return d.radius<displayThreshold ? -2 :-10;
+        /*if (d.id in clusterMap){
+            return -200;
+        }*/
+        if (d.radius < displayThreshold){
+            return -5;
+        } else {
+            return -20;
+        }
     })                                        //charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
     .linkDistance(function(d){                //generally the distance between two nodes who are linked by edge
         //return (d.source.group==d.target.group)?10:20;
@@ -166,10 +107,11 @@ var force = d3.layout.force()                 //create force layout
 var forceCluster= d3.layout.force()           //the force-layout for clusters
     .size([width, height])
     .gravity(0.01)
+    .friction(0.7)
     /*.charge(function(d){
         return -(padding+d.size)*50;
     })*/
-    .charge(-800)
+    .charge(-1200)
     .on("tick",tickCluster);
 
 
@@ -180,48 +122,42 @@ setTimeout(transit,1000);                     //start to transition
 
 
 function tick(e) {
-  var k = .1 * e.alpha;                       // Push nodes toward their designated focus.  
-  tmpNodes.forEach(function(o, i) {
-      var plus=0,
-          diffX=(o.group<=K) ? clustersSet[o.group-1].x - o.x : nonGroupPos.x - o.x,
-          diffY=(o.group<=K) ? clustersSet[o.group-1].y - o.y : nonGroupPos.y - o.y,
-          distance=Math.sqrt(diffX*diffX+diffY*diffY),
-          r=(o.group<=K) ? cluster[0][o.group-1].__data__.radius : radius;
-      if(o.radius<displayThreshold){
-          plus=(o.group<=K) ? r : nonDisplayDistance;
-      }
-      else plus=5;
-      if(distance>plus){
-          o.y += (diffY) * k;
-          o.x += (diffX) * k;
-      }
-      if(o.radius==2 && distance<plus*0.9){
-          o.y -= (diffY) * k;
-          o.x -= (diffX) * k;          
-      }
-      /*if(o.radius>2 && distance>plus*0.9){
-          o.y += (diffY) * k;
-          o.x += (diffX) * k;          
-      }*/
-      /*if(o.text){
-          o.text
-              .transition()
-              .attr("x",o.x)
-              .attr("y",o.y);
-      }*/
-  });
+    var k = .1 * e.alpha * 2;                       // Push nodes toward their designated focus. 
+    tmpNodes.forEach(function(o, i) {      
+        var diffX = (o.group <= K) ? clustersSet[o.group - 1].x - o.x : nonGroupPos.x - o.x;
+        var diffY = (o.group <= K) ? clustersSet[o.group - 1].y - o.y : nonGroupPos.y - o.y;
+        var distance = Math.sqrt(diffX * diffX + diffY * diffY);
+      
+        if (distance > o.plus.ed){
+            o.y += (diffY) * k;
+            o.x += (diffX) * k;
+        }
+        if (distance < o.plus.st){
+            tmpK = k;
+            if (o.radius < displayThreshold){
+               tmpK = 4 * k;
+            } 
+            o.y -= (diffY) * tmpK;
+            o.x -= (diffX) * tmpK;                    
+        }
+        if (o.text){                              //if nodes have label with it, label moves with the node
+            o.text
+                .attr("x",o.x + 5)
+                .attr("y",o.y);
+        }
+    });
 
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
 
-  link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
-
-  node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
-      .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+    node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
 }   
 
 function tickCluster(e){
+    var k = .1 * e.alpha;
     cluster.attr("cx", function(d) { return d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)); })
         .attr("cy", function(d) { return d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)); });
 }
@@ -236,7 +172,8 @@ function loadFile(){
         var nodes=new Array();
         var edges=new Array();
         var fileDate="";
-        var maxCount=tmpJson.maxCount;
+        var maxNodeWeight=tmpJson.maxNodeWeight;
+        var maxEdgeWeight = tmpJson.maxEdgeWeight; 
         var countGroup=tmpJson.countGroup;
         nodes=tmpJson.nodes;
         edges=tmpJson.edges;  
@@ -244,23 +181,23 @@ function loadFile(){
         nodesSet.push(nodes);                       //store reading data into array
         edgesSet.push(edges);
         fileDateSet.push(fileDate);
-        maxCountSet.push(maxCount);
+        maxNodeWeightSet.push(maxNodeWeight);
+        maxEdgeWeightSet.push(maxEdgeWeight);
         countGroupSet.push(countGroup);
     }
 }
 
 function transit(){
     getPrePosition();                             //get the previous node's position 
-    preTmpNodes=tmpNodes;
     tmpNodes=nodesSet[count];
     tmpEdges=edgesSet[count];  
     tmpCountGroup=countGroupSet[count];
     var tmpFileDate=fileDateSet[count];
-    var maxCount=maxCountSet[count];
-    rScale.domain([0,Math.log(maxCount)]);
-
+    var maxNodeWeight = maxNodeWeightSet[count];
+    var maxEdgeWeight = maxEdgeWeightSet[count];
+    rScale.domain([0,Math.log(maxNodeWeight)]);
+    linkColorScale.domain([0,Math.floor(Math.log(maxEdgeWeight))]);
     d3.select("#date").text(tmpFileDate);
-
     for(var i=0;i<tmpNodes.length;i++){
         var index=tmpNodes[i].id;
         if(prePosition[index]){
@@ -268,9 +205,10 @@ function transit(){
             tmpNodes[i].y=prePosition[index].y;   //this will avoid freak move of nodes
         }  
     }
-
-    updateCluster();  
+    //alert(Math.floor(Math.sqrt(maxEdgeWeight)));
+    updateCluster(count);  
     setNode(count);  
+    setParameters(count);
 
     force.nodes(tmpNodes)                        //start force layout
         .links(highlightEdge)
@@ -278,7 +216,7 @@ function transit(){
 
     count++;                                     //if more json files are available
     if(count<size)
-        setTimeout(transit,6000);               //go to next transition. 
+        setTimeout(transit, transitionTime);               //go to next transition. 
 }
 
 function setLink(){
@@ -289,8 +227,10 @@ function setLink(){
   link.enter()                                  //for new added edges, assign attribute
       .append("line")
       .attr("class", "link")
-      .attr("stroke-width", 1)
-      .attr("stroke-opacity", 0.5)
+      .attr("stroke", function(d){
+          return linkColorScale(Math.ceil(Math.log(d.value)));
+          //return "red";
+      })
       .each(function(d){
           d3.select(this)
               .moveToBack();
@@ -298,77 +238,156 @@ function setLink(){
    
   link.exit()                                   //remove edges are not appear in json file
       .transition() 
-      .duration(500)
+      .duration(200)
       .attr("stroke-opacity", 0)
       .remove();
 }
 
-function setNode(step){
-  //rScale less then displayThreshold will have 0 radius
-  displayThreshold=10-maxNumberOfNodes/tmpNodes.length*10;
-  //displayThreshold=10-0.3*10;
-  //console.log("displayThreshold: "+displayThreshold);
-  node=node.data(tmpNodes,function(d){          //give new loading data to nodes
-      return d.id;
-  });
+function setNode(num){
+    //rScale less then displayThreshold will have 0 radius
+    displayThreshold=10-maxNumberOfNodes/tmpNodes.length*10;
 
-  node.enter()                                  //for new added node assign attributes
-      .append("circle")
-      .attr("class", "node")
-      .attr("r", 2)
-      .attr("fill", function(d) {             
-          return cScale(d.color); 
-      })
-      .on("mouseover",mouseoverFunc)
-      .on("mouseout",mouseoutFunc)
-      //.call(force.drag);
+    node=node.data(tmpNodes,function(d){          //give new loading data to nodes
+        return d.id;
+    });
 
-  node.each(function(d){
-      if(d.id in clusterMap){
-          d3.select(this).classed("fixed",true);
-      }
-      var r=rScale(Math.log(d.weightN));
-      d.radius=r;
-  });
+    node.enter()                                  //for new added node assign attributes
+        .append("circle")
+        .attr("class", "node")
+        .attr("r", 2)
+        .attr("fill", function(d) {  
+            return cScale(d.color); 
+        })
+        .on("mouseover",mouseoverFunc)
+        .on("mouseout",mouseoutFunc)
+        .call(force.drag);
 
-  node.transition()                             //set transition process, the radius of node from 0 to 5 
-      .duration(1000)
-      /*.each("start", function(d){
-          if(step>0 && d.radius > displayThreshold){
-              if(preTmpNodes[d.indexN] || preTmpNodes[d.indexN].group != d.group){
-              var obj = svg.append("text")
-                  .classed("moveText", true)
-                  .attr("opacity", 0)
-                  .text(d.label)
-                  .attr("x", d.x + 5)
-                  .attr("y", d.y);
-              obj.transition()
-                  .duration(1000)
-                  .attr("opacity", 0.8);
-              d.text = obj.select("text");
-              obj.moveToBack();
-            }
-        }
-      })*/
-      .attr("r", function(d){          
-          return (d.radius > displayThreshold) ? 4 : 2;
-      })  
-      
+    node.transition()                              //set transition process, the radius of node from 0 to 5 
+        .duration(1000)
+        .attr("r", function(d){    
+            var r = rScale(Math.log(d.weightN));      //compute the radius of node
+            d.radius = r;       
+            return (d.radius >= displayThreshold) ? 4 : 2;
+        });
 
-  d3.selectAll(".text")
-      .transition()
-      .duration(500)
-      .attr("opacity",1);
-   
-
-  node.exit()                                 //remove nodes no longer in the json file
-      .transition()
-      .duration(500)
-      .attr("r",0)
-      .remove();
+    node.exit()                                    //remove nodes no longer in the json file
+        .transition()
+        .duration(500)
+        .attr("r",0)
+        .remove();
 }
 
-function getPrePosition(){                    //get the position of nodes in the previous frame
+function setParameters(num){
+    svg.selectAll(".moveText")                    //remove labels created for moving bigger nodes
+        .transition()
+        .duration(200)
+        .attr("opacity", 0)
+        .remove();
+
+    var nodesMap = new Array();                   //nodes map for current nodes set
+
+    for (var i = 0; i < clustersSet.length; i++){
+        traceMapCounter[i] = Array.apply(null, new Array(size + 1)).map(Number.prototype.valueOf, 0);
+    }
+
+    node.each(function(d){
+        if (d.id in clusterMap){                  //check if node is cluster
+            d3.select(this).classed("clusterNode",true);
+        }
+
+        nodesMap[d.id] = d;                       //set node's info into node map
+        if (d.group == d.color){
+            if (nodeTraceMap[d.id]){              //set the number of times the node on its right cluster
+                nodeTraceMap[d.id]++;      
+            } else {
+                nodeTraceMap[d.id] = 1;
+            }
+        } 
+        //traceMapCounter record the number of correct times in different clusters
+        if (d.group == d.color && d.radius >= displayThreshold){
+            traceMapCounter[d.group - 1][nodeTraceMap[d.id]]++;
+            traceMapCounter[d.group - 1][0] ++;  //[d.group - 1][0] is used to count the sum of values from [1] to [size] 
+        }
+        //d.group indicates which group the node in now, num means the data for which day
+        //and d.color means the node's final group
+        if (d.group <= K){
+            clusterNodesHistory[d.group - 1][num][d.color - 1]++;  
+        }           
+    });
+
+    var plusMap = new Array();                      //compute the range for each value, such as value = 8, range [50, 60]
+    for (var i = 0; i < clustersSet.length; i++){
+        plusMap.push(new Array());
+        var clusterRadius = cluster[0][i].__data__.radius;
+        var diff = (clusterRadius - 50) / (num + 1);
+        var pre = 20;
+        var sum = 0;
+        for(var j = num + 1; j > 0; j--){
+            if (traceMapCounter[i][j] != 0){  
+                var fraction = traceMapCounter[i][j] / traceMapCounter[i][0];  
+                var section = Math.floor(fraction * (num + 1)); 
+                if (section == 0){                    
+                    if (sum >= 10){
+                        section = 1;
+                    } else {
+                        plusMap[i][j] = {st: pre, ed: diff + pre}; 
+                        sum++;
+                        continue;
+                    }
+                }
+                plusMap[i][j] = {st: pre, ed: diff * section + pre};
+                pre += diff * section;
+                sum = 0;
+            }
+        }
+    }
+    
+    node.each(function(d){                         //for nodes with bigger radius and will travel between cluster, append the label for the node
+        if(preNodesMap[d.id] && preNodesMap[d.id].group != d.group){
+            var obj = svg.append("text")           
+                .classed("moveText", true)         
+                .attr("opacity", 1)
+                .text(d.label)
+                .attr("x", d.x + 5)
+                .attr("y", d.y);
+            d.text = obj;
+            //obj.moveToBack();
+        }
+
+        
+        var plus = {st : 0, ed : 0};              //plus is the computed distance from node to center of cluster, [st, ed] is range
+        if (d.group > K){
+            d.plus = plus;
+            return;
+        }
+        var r = cluster[0][d.group - 1].__data__.radius;
+        if (d.radius < displayThreshold){         //for nodes with smaller radius, they will appear at the very edge of cluster circle
+            plus.ed = r;
+            plus.st = plus.st * 0.9;
+        } else if (d.id in clusterMap){           //for nodes which are cluster, should be located at the center of cluster circle
+            plus.st = 0;
+            plus.ed = 2;
+        } else {                                  //other nodes' distance to center is based on the correct times of color and group
+            if (d.group == d.color){
+               plus = plusMap[d.group - 1][nodeTraceMap[d.id]];
+            } else {
+                plus.ed = r - 10;
+                plus.st = plus.st * 0.9;
+            }
+        }
+        //console.log(d.id + " " + nodeTraceMap[d.id] + " " + plus);
+        d.plus = plus;
+
+    }); 
+
+    preNodesMap = nodesMap;    
+
+    if (showStackChart != -1){                     //draw bar chart
+        drawNodesHistory(showStackChart);
+    }
+}
+
+function getPrePosition(){                             //get the position of nodes in the previous frame
     prePosition=[];
     for(var i=0;i<node[0].length;i++){
         var index=node[0][i].__data__.id;
@@ -390,11 +409,12 @@ function getCluster(){
     var tmpClusters=tmpJson.clusters;
     clustersSet=tmpClusters;
     for(var i=0;i<tmpClusters.length;i++){
-        clusterMap[tmpClusters[i].id]=tmpClusters[i];
+        clusterMap[tmpClusters[i].id]=tmpClusters[i];      //set the cluster info in the map, the key is node's id
+        clusterNodesHistory.push(new Array());             //initialize clusterNodesHistory
     }
 }
 
-function setCluster(){                       //set the cluster force-layout
+function setCluster(){                                 //set the cluster force-layout
     cluster=cluster.data(clustersSet);
     cluster.enter()
         .append("circle")
@@ -402,86 +422,120 @@ function setCluster(){                       //set the cluster force-layout
         .attr("fill",function(d){
             return cScale(d.group);
         })
-        .attr("stroke-width",function(d){
-            return 2;
-        })    
+        .attr("stroke-width", 0)   
+        .attr("opacity", 0.5)
+        .on("mouseover", function(d){
+            var obj = d3.select(this) 
+                //.transition()
+                //.duration(300)
+                .attr("opacity", 0.8);
+            obj.attr("stroke-width", 5);
+        }) 
+        .on("mouseout", function(d){
+            var obj = d3.select(this)
+                //.transition()
+                //duration(300)
+                .attr("opacity", 0.5);
+            obj.attr("stroke-width", 0);
+        })
+        .on("click", function(d){
+            if (showStackChart == d.group){
+                drawNodesHistory(-1);
+            } else {
+                drawNodesHistory(d.group);
+            }
+        });
+
+    for (var i = 0; i < clustersSet.length; i++){
+        traceMapCounter.push(new Array());
+        traceMapCounter[i] = Array.apply(null, new Array(size)).map(Number.prototype.valueOf, 0);
+    }
 }
 
-function updateCluster(){
+function updateCluster(num){    
     cluster.transition()     
         .duration(1000)   
-        .attr("r",function(d){               //this line compute the radius of cluster
+        .attr("r",function(d){                        //this line compute the radius of cluster
             var r=Math.ceil(Math.sqrt(tmpCountGroup[d.group-1])*10);
-            //alert(r);                    
             d.radius=Math.max(r,nonDisplayDistance);
             return d.radius;
         });
         
     forceCluster.nodes(clustersSet)
         .start();
+
+    for (var i = 0; i < K; i++){
+        clusterNodesHistory[i].push(new Array());
+        for (var j = 0; j < K; j++){
+            clusterNodesHistory[i][num].push(0);
+        }
+    }
 }
 
 function mouseoverFunc(d){
-          d3.select("#tooltip")               //set the tool tip of nodes    
-              .style("left", (width/2-100) + "px")              
-              .style("top",0 + "px");         
-          d3.select("#term1")
-              .text(d.id);
-          d3.select("#term2")
-              .text(d.indexN);
-          d3.select("#term3")
-              .text(d.degree);
-          d3.select("#term4")
-              .text(Math.ceil(d.weightN));
-          d3.select("#term5")
-              .text(d.label);
-          d3.select("#tooltip")
-              .classed("hidden", false);
+    d3.select("#tooltip")               //set the tool tip of nodes    
+        .style("left", 0 + "px")              
+        .style("top",0 + "px");         
+    d3.select("#term1")
+        .text(d.id);
+    d3.select("#term2")
+        .text(d.indexN);
+    d3.select("#term3")
+        .text(nodeTraceMap[d.id]);
+    d3.select("#term4")
+        .text(Math.ceil(d.weightN));
+    d3.select("#term5")
+        .text(d.label);
+    d3.select("#tooltip")
+        .classed("hidden", false);
 
+    svg.selectAll(".moveText")             //remove labels created for moving bigger nodes
+        .transition()
+        .duration(200)
+        .attr("opacity", 0)
+        .remove();
           
-          var highMap=new Array();            //highlight the node, its edges and its neighbors
-          highMap[d.index]=true;
-          for(var i=0;i<tmpEdges.length;i++){
-              var tmp=tmpEdges[i];
-              var src,tar;
-              if(tmp.source.indexN)
-                  src=tmp.source.indexN;
-              else 
-                  src=tmp.source;
-              if(tmp.target.indexN)
-                  tar=tmp.target.indexN;
-              else
-                  tar=tmp.target;
-              if(src==d.index){
-                  //console.log(i+":  "+src+"-----"+tar+"-----"+d.index);
-                  highMap[tar]=true;
-                  highlightEdge.push(tmp);
-              }
-              if(tar==d.index){
-                  //console.log(i+":  "+src+"-----"+tar+"-----"+d.index);
-                  highMap[src]=true;
-                  highlightEdge.push(tmp);
-              }              
-          }
+    var highMap=new Array();            //highlight the node, its edges and its neighbors
+    highMap[d.index]=true;
+    for(var i=0;i<tmpEdges.length;i++){
+        var tmp=tmpEdges[i];
+        var src,tar;
+        if(tmp.source.indexN)
+            src=tmp.source.indexN;
+        else 
+            src=tmp.source;
+        if(tmp.target.indexN)
+            tar=tmp.target.indexN;
+        else
+            tar=tmp.target;
+        if(src==d.index){                  
+            highMap[tar]=true;
+            highlightEdge.push(tmp);
+        }
+        if(tar==d.index){                  
+            highMap[src]=true;
+            highlightEdge.push(tmp);
+        }              
+    }
 
-          console.log(d.indexN);
+    //console.log(d.indexN);
         
-          force.links(highlightEdge)
-              .start();
-          setLink();
+    force.links(highlightEdge)
+        .start();
+    setLink();
 
-          node.each(function(o){
-              if(o.index in highMap){
-                  var obj = svg.append("text")
-                      .classed("text",true)
-                      .text(o.label)
-                      .attr("x",o.x+5)
-                      .attr("y",o.y);
-                  obj.moveToBack();
-                  return;
-              }
-              d3.select(this).classed("inactive",true);                
-          });
+    node.each(function(o){
+        if(o.index in highMap){
+            var obj = svg.append("text")
+                .classed("text",true)
+                .text(o.label)
+                .attr("x",o.x+5)
+                .attr("y",o.y);
+            obj.moveToBack();
+            return;
+        }
+        d3.select(this).classed("inactive",true);                
+    });
 }
 
 function mouseoutFunc(d){                              //remove highlighted components
@@ -498,6 +552,23 @@ function mouseoutFunc(d){                              //remove highlighted comp
         .remove();
 }
 
+function drawNodesHistory(pos){
+    showStackChart = pos; 
+    if (pos == -1){
+        removeNodesHistory();
+        return;
+    }   
+    drawBarChart(pos - 1, clusterNodesHistory[pos - 1]);
+}
+
+function removeNodesHistory(){
+    rect.transition()
+        .duration(200)
+        .attr("opacity", 0)
+        .remove();
+    layer.remove();
+}
+
 d3.selection.prototype.moveToBack = function() { 
     return this.each(function() { 
         var firstChild = this.parentNode.firstChild; 
@@ -512,6 +583,8 @@ d3.selection.prototype.moveToFront = function() {
     this.parentNode.appendChild(this);
   });   //move component to the up of svg
 };
+
+
 </script>
 </body>
 </html>

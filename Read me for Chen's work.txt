@@ -17,4 +17,27 @@ Since the Javascript use XMLRequest, if you open the html file directly on Chrom
 You can install apache server and put all social-Vis file under www file.
 Then you can have access to the html page through localhost.
 
-The html file runs will on Firefox.
+The html file runs well on Firefox.
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Version 07/11
+
+Update:
+1. Bar chart
+Add bar chart to describe the color of nodes in each cluster.
+Click on one of cluster, bar chart will show on the left bottom of web page. Each bar represents statistic of node's color for each day. 
+If you click another cluster, the bar chart of that cluster will be shown.
+If you click the shown cluster again, the bar chart will disappear.
+
+2. Nodes' distribution
+The idea to distribute nodes in the cluster is based on the times that node in its correct cluster, which is the color of node is same to the color of cluster.
+Now nodes with bigger radius will distribute based the above rule, the higher the correct time of node, the closer to the center of cluster.
+
+3. Color of edges
+If you hover on one node, it will show the connected edges and neighbor of that node.
+Now the edge's color is based on the weight of it.
+The color from low to high is
+red, pink, orange, yellow.
+
