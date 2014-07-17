@@ -22,7 +22,26 @@ The html file runs well on Firefox.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-Version 07/11
+Version 07/17/2014
+
+Update:
+1. Nodes
+The figure uses to represent hashtags is changed. 
+When node travels between different clusters, a tail is appended to it and disappears when node reaches its destination.
+During the travel process, node will become bigger.
+
+2. Figure of clusters
+Originally, clusters are represented by a filled circle.
+This version only keep the stroke of circle.
+
+3. Color of edges
+The color of edges is changed.
+It follows the light spectrum.
+The sequence from low weight edge to high weight edge is [red, orange, yellow, green, blue, purple]
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Version 07/11/2014
 
 Update:
 1. Bar chart
