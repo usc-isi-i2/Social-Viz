@@ -22,6 +22,17 @@ The html file runs well on Firefox.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
+Version 07/24/2014
+
+Update:
+Area Chart
+1. Area Chart is added. It shows the fraction of right color nodes in each cluster.
+The X axis is fraction from 0 to 1, the Y axis is date.
+2. When mouse over the area chart, all fractions in that chart will show.
+When mouse over the Y axis, fractions of that tick will display.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
 Version 07/17/2014
 
 Update:

@@ -3,7 +3,7 @@ function drawBarChart(index, data){
     var len = data.length;                                        //stack layout
     var barChartWidth = size * 5;
     var barChartMargin = 20;
-    var barChartHeight = 300;
+    var barChartHeight = 70;
 
     var history = new Array();                                             //reformulate the data in the manner of stack layout
     for (var i = 0; i <= data[0].length; i++){

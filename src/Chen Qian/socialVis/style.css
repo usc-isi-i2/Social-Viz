@@ -1,3 +1,11 @@
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: white;
+}
 
 .link {
     stroke-opacity:0.8;

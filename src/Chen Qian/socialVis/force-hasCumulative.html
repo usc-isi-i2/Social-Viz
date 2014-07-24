@@ -22,10 +22,12 @@
 
 <script type="text/javascript" src="barChart.js">
 </script>
+<script type="text/javascript" src="areaChart.js">
+</script>
 <script type="text/javascript">
-var padding=20; 
-var width=window.innerWidth-padding;           //width and height of scope
-var height=window.innerHeight-padding;
+var padding = 20;
+var width=window.innerWidth - padding;           //width and height of scope
+var height=window.innerHeight - padding;
  
 var maxNodeWeightSet=new Array();              //maxNodeWeight is the largest value of json file
 var maxEdgeWeightSet = new Array();            //the larget weight of edge of json file
@@ -54,6 +56,7 @@ var nodeTraceMap = new Array();                //the trace map indicates how man
 var traceMapCounter = new Array();             //traceMapCounter is used to count number of values in node trace map
 var clusterNodesHistory = new Array();         //history of how many nodes in the manner of different colors in the cluster for each file
 var showStackChart = -1;                       //whether the stack chart is shown, and the chart for which cluster
+var areaChartData = new Array();               //x, y position for chart, x is fraction of correct nodes in clusters and y is date
 
 var rScale=d3.scale.linear()                   //return the radius of node
     .range([0,10]);
@@ -81,13 +84,92 @@ node = svg.selectAll(".node");                //array of all nodes
 cluster = svg.selectAll(".cluster");          //array of all clusters
 text = svg.selectAll(".text");                //array of all texts
 moveText = svg.selectAll(".moveText");        //label generate when nodes moving between clusters
-layer = svg.selectAll(".layer")               //layer of stack layout
-rect = layer.selectAll("rect")                //rect in stack layout
 date = svg.append("text")                     //show date of scene
     .attr("class", "date")
-    .attr("x", 20)
+    .attr("x", 100)
     .attr("y", 20)
     .attr("fill", "white");
+stackChart = svg.append("g")                 //stackChart is place to draw stack chart, the position is decided by the cluster's position
+    .attr("id", "stackChart");
+layer = stackChart.selectAll(".layer")        //layer of stack layout
+rect = layer.selectAll("rect")                //rect in stack layout
+chart = svg.append("g");                      //chart is space to draw line and area chart
+userBar = svg.append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("height", 60)
+    .attr("width", chartWidth * (K + 2))
+    .attr("fill", "black");                   //user bar contains user operation buttons                   //user bar contains user operation button
+userBar.transition()
+    .duration(3000 * 20)
+    .ease("linear")
+    .delay(3000)
+    .attr("y", chartHeight);                         //user bar continuous moves down when chart is drawn
+var yAxis = d3.svg.axis()
+    .scale(axisYScale)
+    .ticks(size)
+    .orient("left");                   //yaxis for chart
+
+var axisG = chart.append("g")                 //svg:g for y axis component
+    .attr("class", "y axis")
+    .attr("transform", "translate(10, 0)"); 
+var avgSlot = chartHeight / size;             //distance between axis ticks
+axisData = d3.range(size).map(function(d){
+    return (chartYScale(d) + avgSlot / 2).toPrecision(K);
+})
+axisData.forEach(function(d, i){
+    axisG.append("rect")
+        .attr("fill", "transparent")
+        .attr("height", avgSlot)
+        .attr("width", 10)
+        .attr("transform", "translate(-10," + d +")")
+        .datum(function(){
+            var tmpD = {};
+            tmpD.index = i;
+            tmpD.val = d;
+            return tmpD;
+        })
+        .on("mouseover", function(e){
+            var obj = d3.select(this)
+                .attr("fill", "steelblue");
+            for (var i = 0; i < K; i++){
+                var tmpD = areaChartData[i][e.index + 1];
+                appendHorizontalComponent(tmpD, i);
+            }
+            chart.append("text")
+                .attr("class", "chosenDate")
+                .attr("x", chartWidth * 5)
+                .attr("y", parseInt(e.val) + avgSlot / 2)
+                .attr("fill", " white")
+                .attr("font-size", 10)
+                .text("March " + (e.index + 1))
+                .attr("opacity", 0)
+                .transition()
+                .duration(500)
+                .attr("opacity", 1);
+        })
+        .on("mouseout", function(e){
+            d3.select(this)
+                .attr("fill", "transparent");
+            chart.selectAll(".lineChartCircleH")
+                .transition()
+                .duration(500)
+                .attr("r", 0)
+                .remove();
+            chart.selectAll(".lineChartTextH")
+                .transition()
+                .duration(500)
+                .attr("opacity", 0)
+                .remove();
+            chart.selectAll(".chosenDate")
+                .transition()
+                .duration(500)
+                .attr("opacity", 0)
+                .remove();
+        });
+})
+axisG.call(yAxis);
 
 var grads = svg.append("defs")
     .selectAll("radialGradient")
@@ -142,9 +224,6 @@ var forceCluster= d3.layout.force()           //the force-layout for clusters
     .size([width, height])
     .gravity(0.01)
     .friction(0.7)
-    /*.charge(function(d){
-        return -(padding+d.size)*50;
-    })*/
     .charge(-1500)
     .on("tick",tickCluster);
 
@@ -239,10 +318,18 @@ function transit(){
             tmpNodes[i].y=prePosition[index].y;   //this will avoid freak move of nodes
         }  
     }
+
+    axisYScale.domain([0, count + 1])                 //update y Axis
+        .range([0, chartHeight / 20 * (count + 1)]);      
+    yAxis.scale(axisYScale)
+        .ticks(count + 1);
+    axisG.call(yAxis);
+
     //alert(Math.floor(Math.sqrt(maxEdgeWeight)));
     updateCluster(count);  
     setNode(count);  
     setParameters(count);
+    drawAreaChart(areaChartData);                  //draw area chart
 
     force.nodes(tmpNodes)                        //start force layout
         .links(highlightEdge)
@@ -354,7 +441,7 @@ function setParameters(num){
         //traceMapCounter record the number of correct times in different clusters
         if (d.group == d.color && d.display >= displayThreshold){
             traceMapCounter[d.group - 1][nodeTraceMap[d.id]]++;
-            traceMapCounter[d.group - 1][0] ++;  //[d.group - 1][0] is used to count the sum of values from [1] to [size] 
+            traceMapCounter[d.group - 1][0] ++;      //[d.group - 1][0] is used to count the sum of values from [1] to [size] 
         }
         //d.group indicates which group the node in now, num means the data for which day
         //and d.color means the node's final group
@@ -363,7 +450,7 @@ function setParameters(num){
         }           
     });
 
-    plusMap = new Array();                      //compute the range for each value, such as value = 8, range [50, 60]
+    plusMap = new Array();                          //compute the range for each value, such as value = 8, range [50, 60]
     for (var i = 0; i < clustersSet.length; i++){
         plusMap.push(new Array());
         var clusterRadius = cluster[0][i].__data__.radius;
@@ -433,11 +520,23 @@ function setParameters(num){
 
     }); 
 
-    preNodesMap = nodesMap;    
+    preNodesMap = nodesMap; 
+
+    for (var i = 0; i < K; i++){                   //set today's value to areaChartData
+        var fraction = clusterNodesHistory[i][num][i] / d3.sum(clusterNodesHistory[i][num]);
+        areaChartData[i].push({
+            fraction : i + fraction,
+            index : num + 1,
+        });
+    }   
 
     if (showStackChart != -1){                     //draw bar chart
+        /*var d = cluster[0][showStackChart].__data__;
+        var xpos = d.x - d.radius - size * 5;
+        var ypos = d.y - d.radius * 1.414 / 2;
+        drawNodesHistory(showStackChart, xpos, ypos);*/
         drawNodesHistory(showStackChart);
-    }
+    }    
 }
 
 function getPrePosition(){                             //get the position of nodes in the previous frame
@@ -472,19 +571,21 @@ function setCluster(){                                 //set the cluster force-l
     cluster.enter()
         .append("circle")
         .attr("class","cluster")
-        .attr("fill", null)
+        .attr("fill", "transparent")
         .attr("stroke", function(d, i){
             return cScale(d.group);
         })
         .attr("stroke-width", 1)   
         .attr("stroke-opacity", 0.8)
-        .attr("opacity", 0.5)
         .on("mouseover", function(d){
             var obj = d3.select(this) 
                 //.transition()
                 //.duration(500)
                 .attr("stroke-opacity", 1)
                 .attr("stroke-width", 2);
+            var xpos = d.x - d.radius - size * 5;
+            var ypos = d.y - d.radius * 1.414 / 2;
+             //drawNodesHistory(d.group, xpos, ypos);
         }) 
         .on("mouseout", function(d){
             var obj = d3.select(this)
@@ -492,6 +593,7 @@ function setCluster(){                                 //set the cluster force-l
                 //.duration(500)
                 .attr("stroke-opacity", 0.8)
                 .attr("stroke-width", 1);
+            //removeNodesHistory();
         })
         .on("click", function(d){
             if (showStackChart == d.group){
@@ -502,9 +604,14 @@ function setCluster(){                                 //set the cluster force-l
         })
         .call(forceCluster.drag);
 
-    for (var i = 0; i < clustersSet.length; i++){
+    //initialize parameters
+    for (var i = 0; i < clustersSet.length; i++){                
         traceMapCounter.push(new Array());
         traceMapCounter[i] = Array.apply(null, new Array(size)).map(Number.prototype.valueOf, 0);
+        areaChartData.push([{
+            fraction : i,
+            index : 0,
+        }]);
     }
 }
 
@@ -618,13 +725,15 @@ function mouseoutFunc(d){                              //remove highlighted comp
         .remove();
 }
 
-function drawNodesHistory(pos){
-    showStackChart = pos; 
-    if (pos == -1){
+function drawNodesHistory(index){
+    showStackChart = index; 
+    if (index == -1){
         removeNodesHistory();
         return;
     }   
-    drawBarChart(pos - 1, clusterNodesHistory[pos - 1]);
+    
+    //console.log(xpos + " " + ypos);
+    drawBarChart(index - 1, clusterNodesHistory[index - 1]);
 }
 
 function removeNodesHistory(){
