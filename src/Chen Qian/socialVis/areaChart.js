@@ -1,5 +1,5 @@
 var chartWidth = 20;
-var chartHeight = window.innerHeight - 100;
+var chartHeight = window.innerHeight - 150;
 var len = 20;
 
 //var dateScale = d3.scale.linear
@@ -140,3 +140,7 @@ function appendHorizontalComponent(tmp, i){
         .attr("opacity", 1);
 }
 
+
+
+
+    

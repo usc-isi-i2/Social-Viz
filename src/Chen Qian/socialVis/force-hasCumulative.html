@@ -52,18 +52,25 @@ var displayThreshold=0                         //whether or not display the node
 var nonDisplayDistance=60;                    //the distance for nodes that are not displayed to their cluster
 var tmpNodes=new Array();                      //tmpNodes store all nodes info for current file
 var preNodesMap = new Array();                 //The map of previous node, the key is node's id
+var nodesMap = new Array();                   //nodes map for current nodes set
 var nodeTraceMap = new Array();                //the trace map indicates how many times the node on its right cluster during the whole process.
 var traceMapCounter = new Array();             //traceMapCounter is used to count number of values in node trace map
 var clusterNodesHistory = new Array();         //history of how many nodes in the manner of different colors in the cluster for each file
 var showStackChart = -1;                       //whether the stack chart is shown, and the chart for which cluster
 var areaChartData = new Array();               //x, y position for chart, x is fraction of correct nodes in clusters and y is date
+var hashtags = new Array();                    //hashtags of all nodes
+var matchTrace = new Array();                  //matching items' id
+var maxMatchingItems = 10;                     //max number of showing matching items
+var highlightSearchNode = new Array();         //nodes that are chosen from matching items
+var inputStrLength = "";                       //the length of string in the search box
+var nodeHistory = new Array();                 //history of nodes that which cluster the node in
 
 var rScale=d3.scale.linear()                   //return the radius of node
     .range([0,10]);
 
 var cScale = d3.scale.category20();            //return color of node
 
-var linkColorScale = d3.scale.linear()       //return color of edge
+var linkColorScale = d3.scale.linear()         //return color of edge
     .range([0, 1]);
 
 var plusScale = d3.scale.ordinal();             //plusScale is used to compute the distance from nodes to cetner of cluster circle
@@ -82,30 +89,84 @@ svg=d3.select("body")                         //create svg
 link = svg.selectAll(".link");                //array of all edges
 node = svg.selectAll(".node");                //array of all nodes
 cluster = svg.selectAll(".cluster");          //array of all clusters
-text = svg.selectAll(".text");                //array of all texts
-moveText = svg.selectAll(".moveText");        //label generate when nodes moving between clusters
 date = svg.append("text")                     //show date of scene
     .attr("class", "date")
-    .attr("x", 100)
+    .attr("x", 150)
     .attr("y", 20)
     .attr("fill", "white");
 stackChart = svg.append("g")                 //stackChart is place to draw stack chart, the position is decided by the cluster's position
     .attr("id", "stackChart");
 layer = stackChart.selectAll(".layer")        //layer of stack layout
 rect = layer.selectAll("rect")                //rect in stack layout
-chart = svg.append("g");                      //chart is space to draw line and area chart
-userBar = svg.append("g")
-    .append("rect")
+chart = svg.append("g");                      //chart is space to draw line and area chart                      
+
+userBar = svg.append("g");                    //user bar continuous moves down when chart is drawn
+cover = userBar.append("rect")
     .attr("x", 0)
     .attr("y", 0)
     .attr("height", 60)
     .attr("width", chartWidth * (K + 2))
-    .attr("fill", "black");                   //user bar contains user operation buttons                   //user bar contains user operation button
-userBar.transition()
+    .attr("fill", "black");
+cover.transition()
     .duration(3000 * 20)
     .ease("linear")
-    .delay(3000)
-    .attr("y", chartHeight);                         //user bar continuous moves down when chart is drawn
+    .delay(3500)
+    .attr("y", chartHeight);
+
+searchArea = svg.append("g");                 //item are matching items set
+var item = searchArea.selectAll(".matchItemText");
+
+searchButton = userBar.append("circle")      //search button is kind of configuration button, click on it, the search box will be shown
+    .attr("fill", d3.rgb(0, 0, 150))
+    .attr("r", 5)
+    .attr("cx", 10)
+    .attr("cy", height - 20)
+    .attr("id", "searchButton")
+    .datum(function(){
+        var d = {};
+        d.show = false;
+        return d;
+    })
+    .on("click", function(d){
+        if (!d.show){
+            d3.select(this)
+                .transition()
+                .duration(500)
+                .attr("r", 4)
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 2);
+            d3.select("#inputText")
+                .classed("hidden", false);
+            d.show = true;
+        } else {
+            d3.select(this)
+                .transition()
+                .duration(500)
+                .attr("stroke-width", 0)
+                .attr("r", 5);
+            d3.select("#inputText")
+                .classed("hidden", true);
+            document.getElementById("inputText").value = "";
+            d.show = false;
+            resetSearchBox();               
+        }
+    })     
+
+htmlArea= userBar.append("foreignObject")
+    .attr("x", 15)
+    .attr("y", height - 30)
+    .attr("height", 20)
+    .attr("width", chartWidth * 4);  //insert html component into svg
+htmlBody = htmlArea.append("xhtml:body")
+    .style("margin",0)
+    .style("padding",0);
+inputText = htmlBody.append("input")
+    .attr("id", "inputText")
+    .classed("hidden", true)
+    .attr("type", "text")
+    .attr("placeholder", "hashtag")
+    .attr("onkeyup", "matchHashtag()");       //introduce search box
+
 var yAxis = d3.svg.axis()
     .scale(axisYScale)
     .ticks(size)
@@ -170,6 +231,17 @@ axisData.forEach(function(d, i){
         });
 })
 axisG.call(yAxis);
+ 
+var pieRadius = 30;                          //the raduis of pie chart
+var pie = d3.layout.pie()                    //pie layout
+    .sort(null)
+    .value(function(d){
+        return 1;
+    });
+var arc = d3.svg.arc()
+    .outerRadius(pieRadius)
+    .innerRadius(pieRadius * 0.8);
+var pieChart = svg.append("g")
 
 var grads = svg.append("defs")
     .selectAll("radialGradient")
@@ -227,7 +299,7 @@ var forceCluster= d3.layout.force()           //the force-layout for clusters
     .charge(-1500)
     .on("tick",tickCluster);
 
-
+loadHashtags();
 loadFile();
 getCluster();
 setCluster();
@@ -367,6 +439,7 @@ function setLink(){
 function setNode(num){
     //rScale less then displayThreshold will have 0 radius
     displayThreshold=10-maxNumberOfNodes/tmpNodes.length*10;
+    var shownSeachedNodes = [];                        //searched nodes is shown on the screen
 
     node = node.data(tmpNodes,function(d){             //give new loading data to nodes
         return d.id;    
@@ -387,13 +460,23 @@ function setNode(num){
 
     node.transition()                              //set transition process, the radius of node from 0 to 5 
         .duration(500)
-        .attr("r", function(d){    
+        .attr("r", function(d){  
             var r = rScale(Math.log(d.weightN));      //compute the radius of node
             d.display = r;
             if (d.display >= displayThreshold){
                 d.radius = nodeRadius;
             } else {
                 d.radius = nodeRadius / 4;
+            }  
+            if (d.id in highlightSearchNode){
+                shownSeachedNodes[d.id] = 1;
+                d.highlighted = true;
+                d.text = highlightSearchNode[d.id];
+                d.text
+                    .attr("opacity", 1);
+                /*d3.select(this)
+                    .classed("highlightedNode", true);*/
+                return nodeRadius * 2;
             }
             return d.radius;
         });
@@ -401,8 +484,17 @@ function setNode(num){
     node.exit()                                           //remove nodes no longer in the json file
         .transition()
         .duration(500)
-        .attr("opacity",0)
+        .attr("opacity", 0)
         .remove();
+    highlightSearchNode.forEach(function(d){
+        var index = d.datum();
+        if (index in shownSeachedNodes){
+            
+        } else {
+            d.attr("opacity", 0);            
+            //console.log(d.datum());
+        }
+    })
 }
 
 function setParameters(num){
@@ -419,7 +511,7 @@ function setParameters(num){
             return d.radius;
         });
 
-    var nodesMap = new Array();                   //nodes map for current nodes set
+    nodesMap = [];
 
     for (var i = 0; i < clustersSet.length; i++){
         traceMapCounter[i] = Array.apply(null, new Array(size + 1)).map(Number.prototype.valueOf, 0);
@@ -447,7 +539,13 @@ function setParameters(num){
         //and d.color means the node's final group
         if (d.group <= K){
             clusterNodesHistory[d.group - 1][num][d.color - 1]++;  
-        }           
+        }     
+
+        //if node is not in the nodeHistory, create an array with size of given size, and all elements are -1, which means it does not exist in any cluster.
+        if (!(d.id in nodeHistory)){
+            nodeHistory[d.id] = Array.apply(null, new Array(size)).map(Number.prototype.valueOf, -1);
+        }
+        nodeHistory[d.id][num] = d.group;
     });
 
     plusMap = new Array();                          //compute the range for each value, such as value = 8, range [50, 60]
@@ -478,7 +576,7 @@ function setParameters(num){
     }
     
     node.each(function(d){                         //for nodes will travel between cluster, append the label to the node
-        if(preNodesMap[d.id] && preNodesMap[d.id].group != d.group){
+        if(preNodesMap[d.id] && preNodesMap[d.id].group != d.group && !d.highlighted){
             var obj = svg.append("text")           
                 .classed("moveText", true)         
                 .attr("fill", "white")
@@ -697,9 +795,9 @@ function mouseoverFunc(d){
     setLink();
 
     node.each(function(o){
-        if(o.index in highMap){
+        if(o.index in highMap && !o.highlighted){
             var obj = svg.append("text")
-                .classed("text",true)
+                .classed("linkText",true)
                 .attr("fill", "white")
                 .text(o.label)
                 .attr("x",o.x+5)
@@ -709,6 +807,38 @@ function mouseoverFunc(d){
         }
         d3.select(this).classed("inactive",true);                
     });
+
+    var pos = d3.mouse(this);
+    var tmpData = nodeHistory[d.id];
+    var path = pieChart.attr("transform", "translate(" + pos[0] + "," + pos[1] + ")")
+        .selectAll(".pieChart") 
+        .data(pie(tmpData))
+        .enter()
+        .append("path")
+        .attr("class", "pieChart")
+        .attr("fill", function(d){
+            if (d.data == -1 || d.data > K){
+                return "black";
+            }
+            return cScale(d.data);
+        })
+        .attr("d", arc)
+        .each(function(){
+            this._current = {
+                startAngle : 0,
+                endAngle : 0
+            }
+        })
+        .transition()
+        .duration(1000)
+        .attrTween('d', function(d){
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t){
+                return arc(interpolate(t));
+            }
+        })
+    pieChart.moveToFront();
 }
 
 function mouseoutFunc(d){                              //remove highlighted components
@@ -721,7 +851,12 @@ function mouseoutFunc(d){                              //remove highlighted comp
 
     d3.selectAll(".node.inactive")
         .classed("inactive",false);
-    d3.selectAll(".text")
+    d3.selectAll(".linkText")
+        .remove();
+    d3.selectAll(".pieChart")
+        .transition()
+        .duration(500)
+        .attr("opacity", 0)
         .remove();
 }
 
@@ -744,6 +879,123 @@ function removeNodesHistory(){
     layer.remove();
 }
 
+function matchHashtag(){                               //compute the matching items and show them on the screen
+    var obj = document.getElementById("inputText");
+    var val = obj.value;
+    if (val.length > inputStrLength){                  //when letter taped, recompute the matching items
+        inputStrLength = val.length;
+        var last = matchTrace[matchTrace.length - 1];
+        var matched = [];
+        var matchedMid = [];
+        last.forEach(function(d){
+            var str = hashtags[d];
+            if (str.substring(0, val.length).toLowerCase() == val.toLowerCase()){
+                matched.push(d);
+            } else if (str.indexOf(val) != -1){
+                matchedMid.push(d);
+            }
+        });
+        matchTrace.push(matched.concat(matchedMid));
+    } else {                                          //when letters deleted, recompute the matching items
+        var diff = inputStrLength - val.length;
+        for (var i = 0; i < diff; i++){
+            matchTrace.pop();
+        }
+        inputStrLength = val.length;
+    }
+
+    if (matchTrace.length == 1){                      //when no letter in the search box, no item should be shown
+        item = item.data([]);
+        item.exit()
+            .remove();
+    } else {
+        var last = matchTrace[matchTrace.length - 1];
+        var tmpData = last.slice(0, Math.min(maxMatchingItems, last.length));
+        item = searchArea.selectAll(".matchItemText").data(tmpData);
+        item.enter()                                  //append top max matching items text on the screen
+            .append("text")
+            .attr("class", "matchItemText")
+            .attr("x", 20 + chartWidth * 4)
+            .attr("y", function(d, i){
+                return height - i * 20 - 15;
+            })
+            .attr("fill", "white")
+            .text(function(d){
+                return hashtags[d];
+            })
+            .on("mouseover", function(d, i){
+                var obj = searchArea.append("rect")
+                    .attr("x", 20 + chartWidth * 4)
+                    .attr("y", height - i * 20 - 30)
+                    .attr("width", 0)
+                    .attr("height", 20)
+                    .attr("fill", "steelblue");
+                obj.moveToBack();
+                obj.transition()
+                    .duration(500)
+                    .attr("width", 80);
+            })
+            .on("mouseout", function(){
+                searchArea.selectAll("rect")
+                    .transition()
+                    .duration(500)
+                    .attr("opacity", 0)
+                    .remove();
+            })
+            .on("click", function(d){   
+                node.each(function(e){
+                    if (e.id == d){
+                        var obj = svg.append("text")
+                            .attr("class", "highlightedText")
+                            .text(e.label)
+                            .attr("x", e.x + 5)
+                            .attr("y", e.y)
+                            .datum(d);
+                        obj.moveToBack();
+                        e.text = obj;
+                        highlightSearchNode[d] = obj;
+                        d3.select(this)
+                            .classed("highlightedNode", true)
+                            .attr("r", nodeRadius * 2);
+                    }
+                })
+
+                resetSearchBox();
+                console.log(hashtags[d]);
+            });
+        item.text(function(d){
+            return hashtags[d];
+        });
+        item.exit()
+            .remove();
+    }
+}
+
+function resetSearchBox(){                             //reset parameters of search box 
+    document.getElementById("inputText").value = "";
+    matchTrace = matchTrace.slice(0, 1);
+    inputStrLength = 0;
+    searchArea.selectAll("rect")
+        .transition()
+        .duration(500)
+        .attr("opacity", 0)
+        .remove();
+    searchArea.selectAll("text")
+        .remove();
+}
+
+function loadHashtags(){
+    d3.csv("hashtags.csv", function(data){
+        data.forEach(function(d){
+            hashtags.push(d.tag);
+        });
+        var tmp = d3.range(hashtags.length).map(function(d){
+            return d;
+        });
+    matchTrace.push(tmp);
+});
+}
+
 d3.selection.prototype.moveToBack = function() { 
     return this.each(function() { 
         var firstChild = this.parentNode.firstChild; 
@@ -760,7 +1012,7 @@ d3.selection.prototype.moveToFront = function() {
 };
 
 d3.timer(function(){
-    d3.selectAll(".comet")
+    d3.selectAll(".comet, .highlightedNode")
         .each(function(d){
             if (!d.preX){
                 d.preX = d.x;

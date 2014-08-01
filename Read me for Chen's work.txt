@@ -22,6 +22,22 @@ The html file runs well on Firefox.
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
+Version 08/01/2014
+
+Update:
+1. Search Box
+A search box is added at the left bottom of the web page. You can click on the blue circle to show the search box, and click the circle again to hide the box.
+You can type the letters in the search box, and choose one of the matching hashtags computed by auto-complete.
+The chosen hashtag will be highlighted, it has bigger radius and red label besides it.
+
+2. History of nodes.
+History of nodes indicates the history of which cluster the node in since the beginning day.
+You can just mouse your mouse on the node, and a circle will show around it. 
+The sequence of nodes history is clockwise.
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
 Version 07/24/2014
 
 Update:

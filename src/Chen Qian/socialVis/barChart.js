@@ -84,7 +84,7 @@ function drawBarChart(index, data){
             return i * 10; 
         })
         .attr("y", function(d){ 
-            return yScale(d.y0 + d.y) + window.innerHeight - barChartHeight; 
+            return yScale(d.y0 + d.y) + window.innerHeight - 60 - barChartHeight; 
         })
         .attr("height", function(d){ 
             return yScale(d.y0) - yScale(d.y0 + d.y); 

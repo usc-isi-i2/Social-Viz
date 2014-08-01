@@ -1,10 +1,30 @@
+.matchItemText{
+}
+
+.matchItem{
+    x: 110;
+    height: 20;
+    width: 80;
+    fill: steelblue;
+}
+
+#coverChart{
+    left : 0px;
+    top : 0px;
+    height: 60px;
+    width: 100px;
+    color: black;
+}
+#inputText{
+}
+
 .axis {
-  shape-rendering: crispEdges;
+    shape-rendering: crispEdges;
 }
 
 .y.axis line, .y.axis path {
-  fill: none;
-  stroke: white;
+    fill: none;
+    stroke: white;
 }
 
 .link {
@@ -28,7 +48,13 @@
     opacity: 0.3;
 }
 
-.text{
+.highlightedText{
+    font-size: 10px;
+    font-family: arial;
+    fill: red;
+}
+
+.linkText{
     font-size: 10px;
     font-family: arial;
     fill: white;
@@ -61,7 +87,7 @@
     pointer-events: none;
 }
       
-#tooltip.hidden {
+.hidden {
     display: none;
 }
       
