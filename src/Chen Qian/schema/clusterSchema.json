@@ -1,0 +1,9 @@
+{"clusters":[
+	{"id":326,                    //the id of cluster node
+	"degree":486,                 //the degree of cluster node
+	"indexN":0,                   //the index of cluster node
+	"label":"health",             //the label of cluster node
+	"weightN":3757.2106208557825, //the weight of cluster node
+	"group":1,                    //the group of cluster node
+	"size":548                    //the size of cluster
+}
