@@ -1,30 +1,44 @@
-{"y_axis_range":[0,836],                             
-	"countGroup":[129,50,44,9],            //how many nodes in each group
-	"y_axis_label":"Hashtags",
-	"x_axis_range":[0,836],
-	"Type":"Cumulative Cooccurence",
-	"intensity_range":[0,1567],            //the range of intensity of two hashtags
-	"date":"March 01",
-	"maxEdgeWeight":17.52141546793523,
-	"maxNodeWeight":131.2510733522781,
-	"title":"hashtag_vs_hashtag",
-	"Date":"2013-03-01",
-	"x_axis_label":"Hashtags",
-	"edges":[
-		{"sid":262,                       //the id of source of edge
-		"source":5,                       //the index of source of edge
-		"indexE":0,                       //the index of edge
-		"value":17.52141546793523,        //the weight of edge
-		"target":0,                       //the id of target of edge
-		"tid":326}                        //the id of target of edge
+{
+	"dailyData" :[
+		{                          
+			"countGroup":[129,50,44,9],            //how many nodes in each group
+			"Type":"Cumulative Cooccurence",       //json file represent what format
+			"intensity_range":[0,1567],            //the range of intensity of two hashtags
+			"date":"March 01",
+			"maxEdgeWeight":17.52141546793523,
+			"maxNodeWeight":131.2510733522781,
+			"Date":"2013-03-01",
+			"edges":[
+				{"sid":262,                       //the id of source of edge
+				"source":5,                       //the index of source of edge
+				"indexE":0,                       //the index of edge
+				"value":17.52141546793523,        //the weight of edge
+				"target":0,                       //the id of target of edge
+				"tid":326}                        //the id of target of edge
+			],
+			"nodes":[
+				{"id":326,                        //the id of node
+				"degree":71,                      //the degree of node
+				"color":1,                        //the index of color of node
+				"indexN":0,                       //the index of node
+				"label":"health",                 //the lable of node
+				"weightN":131.2510733522781,      //the weight of node
+				"group":1}                        //the group of node
+			]
+		}
 	],
-	"nodes":[
-		{"id":326,                        //the id of node
-		"degree":71,                      //the degree of node
-		"color":1,                        //the index of color of node
-		"indexN":0,                       //the index of node
-		"label":"health",                 //the lable of node
-		"weightN":131.2510733522781,      //the weight of node
-		"group":1}                        //the group of node
+	"clusters":[                      //one or more clusters
+		{"id":326,                    //the id of cluster node
+		"degree":486,                 //the degree of cluster node
+		"indexN":0,                   //the index of cluster node
+		"label":"health",             //the label of cluster node
+		"weightN":3757.2106208557825, //the weight of cluster node
+		"group":1,                    //the group of cluster node
+		"size":548 }                  //the size of cluster
+	],
+	"hashtags" : [                    //hashtags are the same as label of nodes
+		{"health"},
+		{"nurse"},
+		{"doctor"}
 	]
 }
