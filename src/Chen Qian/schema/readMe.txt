@@ -27,7 +27,7 @@ edge      Co-occurrence
 2 - 3         1
 
 
-Now we start to compute the cluster of this 4 nodes.
+Now we start to compute the cluster of these 4 nodes.
 Suppose we choose K equals 2, then 2 clusters are chosen.
 At first, we compute the degree of these 4 nodes base on all 3 days co-occurrence.
 Node         degree
@@ -37,7 +37,7 @@ Node         degree
 4            4 + 4 + 17 = 25
 Note: In the real example I log the degree of nodes. You may figure out a better way.
 
-Suppose we choose 1 and 3 as clusters. I do not choose since it has two many links to 1 and 1 is already the cluster.
+Suppose we choose 1 and 3 as clusters. I do not choose 2 since it has too many links to 1 and 1 is already the cluster.
 
 Now we can get the cluster(represented as color) for all the nodes.
 Node         color
@@ -56,7 +56,7 @@ node       cluster 1       cluster 3
 2             10              5
 4             2               0
 
-We do not consider node 1 and 3 here cause they are also clusters. But they should also appear in the nodes json array.
+We do not consider node 1 and 3 here cause they are already clusters. But they should also appear in the nodes json array.
 
 
 Then we can conclude that
@@ -94,3 +94,4 @@ Node        group
 2             1
 3             3
 4             3
+The last day's group day is same as the cluster day.
