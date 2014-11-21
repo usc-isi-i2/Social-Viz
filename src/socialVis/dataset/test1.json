@@ -241,12 +241,12 @@
    "clusters":[  
       {  
          "id":0,
-         "label":"Los Angeles",
+         "label":"SEATTLE",
          "group":0
       },
       {  
          "id":1,
-         "label":"San Diego",
+         "label":"ATLANTA",
          "group":1
       }
    ]

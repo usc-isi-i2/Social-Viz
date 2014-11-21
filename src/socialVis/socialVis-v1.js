@@ -1,9 +1,10 @@
 SocialVis = function(){
 	windowWidth = null; 
 	windowHeight = null;
+	nodeRadius = null;
 	minClusterRadius = null;
 	cScale = null;
-	svg = null;
+	//svg = null;
 	gradNode = null;
 	colorData = null;
 	clusterData = null;
@@ -13,6 +14,7 @@ SocialVis = function(){
 	forceCluster = null;
 	cluster = null;
 	node = null;
+	pos = null;
 	var Map = function(){
 		var data = [];
 		this.entry = data;
@@ -33,13 +35,15 @@ SocialVis = function(){
 		}
 	}
 	prePosition = null;
+	worldMapInstance = null;
 	
 
 	//initialize variables
 	function initialize(){
 		windowWidth = window.innerWidth;
 		windowHeight = window.innerHeight;
-		minClusterRadius = 100;
+		minClusterRadius = 20;
+		nodeRadius = 4;
 
 		//decide color of node
 		cScale = d3.scale.category20();
@@ -52,7 +56,14 @@ SocialVis = function(){
 		svg = d3.select("#mainContainer")                          							
 		    .append("svg")
 		    .attr("width",windowWidth)
-		    .attr("height",windowHeight);
+		    .attr("height",windowHeight)
+		    .attr("preserveAspectRatio", "xMidYMid")      //for map
+		    .on("mousemove", mousemove);
+
+		//place to show mouse coordinate
+		pos = svg.append("text")
+			.attr("fill", "gold")
+			.attr("font-size", 10);
 
 		//the RGB of colors will be used to paint
 		colorData = d3.range(20).map(function(d, i){  
@@ -109,14 +120,14 @@ SocialVis = function(){
 		    .size([windowWidth, windowHeight])
 		    //.theta(0)
 		    .on("tick",tick);
-
+		/*
 		forceCluster= d3.layout.force()           			//the force-layout for clusters
 		    .size([windowWidth, windowHeight])
 		    .gravity(0.01)
 		    .friction(0.7)
 		    .charge(-1500)
 		    .on("tick",tickCluster);
-	
+		*/
 		linkData = [];
 		nodeData = [];
 		prePosition = new Map();
@@ -133,8 +144,8 @@ SocialVis = function(){
 			.links(linkData)
 			.start();
 
-		forceCluster.nodes(clusterData)
-			.start();
+		/*forceCluster.nodes(clusterData)
+			.start();*/
 
 		if (++index < dailyData.length){
 			setTimeout(function(){
@@ -200,7 +211,7 @@ SocialVis = function(){
 	        .call(force.drag);
 
 	    node.each(function(d){
-	    	d.radius = 16;
+	    	d.radius = nodeRadius;
 	    	if (prePosition.has(d.id)){
 	    		d.x = prePosition.get(d.id).x;
 	    		d.y = prePosition.get(d.id).y;
@@ -227,7 +238,7 @@ SocialVis = function(){
 	function setCluster(index){
 		var count = dailyData[index].groupCount;
 		cluster.each(function(d, i){
-			var r = Math.ceil(Math.sqrt(count[i])*12);
+			var r = Math.ceil(Math.sqrt(count[i]) * 5);
 			d.radius = Math.max(minClusterRadius, r);
 			d3.select(this)
 				.attr("r", d.radius);
@@ -258,12 +269,27 @@ SocialVis = function(){
 	                .attr("stroke-opacity", 0.8)
 	                .attr("stroke-width", 1);
 	        })
-	        .call(forceCluster.drag);
+	        //.call(forceCluster.drag);
 	    cluster.exit()
 	    	.transition()
 	    	.duration(500)
 	    	.attr("opacity", 0)
 	    	.remove();
+
+	    //set the coordinate of cluster, get from world map's function getClusterCoordinates
+	    cluster.each(function(d){
+	    	var coord = worldMapInstance.getClusterCoordinates(d.label);
+	    	console.log(d.label + " coordinate is " + coord[0] + " " + coord[1]);
+
+	    	coord[0] = Math.random() * windowWidth;
+	    	coord[1] = Math.random() * windowHeight;
+
+	    	d.x = coord[0];
+	    	d.y = coord[1];
+	    	d3.select(this)
+	    		.attr("cx", d.x)
+	    		.attr("cy", d.y)
+	    })
 	}
 
 	//tick function for nodes
@@ -354,8 +380,30 @@ SocialVis = function(){
 		dailyData = data.dailyData;
 
 		initialize();
-		initializeCluster();
-		transit(0);
+
+		createMap();
+		worldMapInstance.generateMap();
+
+		setTimeout(function(d){
+			pos.moveToFront();
+			//initializeCluster();
+			//transit(0)
+		}, 1000);
+	}
+
+	//create wolrdMap class and draw map
+	function createMap(){
+		worldMapInstance = new WorldMap(svg);
+	}
+
+	//when move over show the coordinate
+	function mousemove(){
+		var ary = d3.mouse(this);
+		pos.attr("x", ary[0] + 2)
+			.attr("y", ary[1] + 2)
+			//.attr("x", 100)
+			//.attr("y", 100)
+			.text(Math.round(ary[0]) + ", " + Math.round(ary[1]))
 	}
 
 	//******************** public method below *************************
