@@ -22,12 +22,12 @@ WorldMap = function(svgInstance){
 
 	function initialize(){
 		cities = new Array();
-		width = 1460;
-       	height = 500;
+		height = window.innerHeight; //100;
+        width = window.innerWidth; //50;
 
         projection = d3.geo.equirectangular()
-            .center([0, 5])
-            .scale(200)
+            .center([-100,50])
+            .scale(300)
             .rotate([0, 0]);
 
         svg.attr("id", "mapsvg");
@@ -37,8 +37,7 @@ WorldMap = function(svgInstance){
 
         g = svg.append("g");
 
-        height = window.innerHeight; //100;
-        width = window.innerWidth; //50;
+       
 
         x = d3.scale.ordinal()
             .rangeBands([0, 20], 0.1);
@@ -104,7 +103,7 @@ WorldMap = function(svgInstance){
                     .attr("class", "graph")
                     .append("g");
                 // .attr("transform", "translate(" + 20 + "," + 45 + ")");
-
+                /*
                 var counter = 0;
                 var timerId = setInterval(function() {
 
@@ -162,6 +161,7 @@ WorldMap = function(svgInstance){
                         counter++;
                     }
                 }, events[counter].key * 2000);
+				*/
             });
 
             g.selectAll(".countryPath")
@@ -177,11 +177,16 @@ WorldMap = function(svgInstance){
         zoom = d3.behavior.zoom()
             .scaleExtent([0.2, 8])
             .on("zoom", function() {
-                g.attr("transform", "translate(" +
-                    d3.event.translate.join(",") + ")scale(" + d3.event.scale + ")");
+            	//console.log(zoom.event.translate);
+            	//console.log(zoom.event.scale)
+            	//projection = d3.geo.equirectangular()
+                	//.translate(d3.event.translate)
+                	//.scale(d3.event.scale * 150);
+
+                g.attr("transform", "translate(" + d3.event.translate.join(",") + ")scale(" + d3.event.scale + ")");
                 g.selectAll("path")
                     .attr("d", path.projection(projection));
-          
+
           		if(zoom.scale() < 1){
           			if(zoomLevel == 1){
           			var aggregateArr = new Array();
@@ -342,23 +347,17 @@ WorldMap = function(svgInstance){
                     })
                     .attr("width", x.rangeBand()/(d3.event.scale))
                     .attr("x", function(d) {
-                                return projection([d.long, d.lat])[0] + x(d.series) / d3.event.scale;
-                            });
+                        return projection([d.long, d.lat])[0] + x(d.series) / d3.event.scale;
+                    });
             });
 
         svg.call(zoom);
 	}
 
-	
 
-		function getCoordinates(name) {
-            var coord = [];
-            for (var i = 0; i < cities.length; i++) {
-                if (cities[i].key == name) {
-                    coord = projection(cities[i].values[0].lat, cities[i].values[0].long);
-                    break;
-                }
-            }
+
+		function getCoordinates(geoCode) {
+            var coord = projection([geoCode.long, geoCode.lat]);
             return coord;
         }
 
@@ -399,7 +398,12 @@ WorldMap = function(svgInstance){
 		initialize();
 	}
 
-	this.getClusterCoordinates = function(name){
-		return getCoordinates(name);
+	this.getClusterCoordinates = function(geo){
+		return getCoordinates(geo);
 	}
 }
+
+
+
+
+

@@ -109,7 +109,7 @@ SocialVis = function(){
 		node = svg.selectAll(".node");                		//set of all nodes 
 
 		force = d3.layout.force()                 			//create force layout
-		    .charge(40)                                        		//charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
+		    .charge(10)                                        		//charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
 		    .linkDistance(function(d){                		//generally the distance between two nodes who are linked by edge
 		        //return (d.source.group==d.target.group)?10:20;
 		        return 50;                            		//no group option, the link distance is same 
@@ -131,6 +131,8 @@ SocialVis = function(){
 		linkData = [];
 		nodeData = [];
 		prePosition = new Map();
+
+		document.getElementById("mainContainer").onwheel = mouseScroll;
 	}
 
 	//draw component and deal with trasition process
@@ -276,13 +278,21 @@ SocialVis = function(){
 	    	.attr("opacity", 0)
 	    	.remove();
 
-	    //set the coordinate of cluster, get from world map's function getClusterCoordinates
+	    updateCluster();
+	}
+
+	//update the coordinate of cluster due to the operation of zoom
+	function updateCluster(){
+		//set the coordinate of cluster, get from world map's function getClusterCoordinates
 	    cluster.each(function(d){
-	    	var coord = worldMapInstance.getClusterCoordinates(d.label);
+	    	var coord = worldMapInstance.getClusterCoordinates({
+	    		"lat" : d.lat,
+	    		"long" : d.long
+	    	});
 	    	console.log(d.label + " coordinate is " + coord[0] + " " + coord[1]);
 
-	    	coord[0] = Math.random() * windowWidth;
-	    	coord[1] = Math.random() * windowHeight;
+	    	//coord[0] = Math.random() * windowWidth;
+	    	//coord[1] = Math.random() * windowHeight;
 
 	    	d.x = coord[0];
 	    	d.y = coord[1];
@@ -348,6 +358,11 @@ SocialVis = function(){
 	  	});   //move component to the up of svg
 	};
 
+	//mouse wheel scroll handler
+	function mouseScroll(){
+		updateCluster();
+	}
+
 	//add tail when node moves, the less the second parameter of timer, the smoother the tail
 	d3.timer(function(){
 	    d3.selectAll(".comet")
@@ -386,8 +401,8 @@ SocialVis = function(){
 
 		setTimeout(function(d){
 			pos.moveToFront();
-			//initializeCluster();
-			//transit(0)
+			initializeCluster();
+			transit(0)
 		}, 1000);
 	}
 
