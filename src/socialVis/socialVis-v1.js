@@ -3,6 +3,8 @@ SocialVis = function(){
 	windowHeight = null;
 	nodeRadius = null;
 	minClusterRadius = null;
+	cometRemoveThreshold = null;
+	chargeForceFactor = null;
 	cScale = null;
 	//svg = null;
 	gradNode = null;
@@ -43,8 +45,10 @@ SocialVis = function(){
 		windowWidth = window.innerWidth;
 		windowHeight = window.innerHeight;
 		minClusterRadius = 20;
-		nodeRadius = 4;
-
+		nodeRadius = 2;
+		cometRemoveThreshold = 5;                         	//then the distance of comet and its distination less than threshold, remove comet effect
+		chargeForceFactor = -1;   									//the charge value of force layout
+	
 		//decide color of node
 		cScale = d3.scale.category20();
 
@@ -104,46 +108,30 @@ SocialVis = function(){
 		    .attr("stop-opacity", 0);
 			
 		
-		cluster = svg.selectAll(".cluster");    			//set of all clusters
+		//cluster = svg.selectAll(".cluster");    			//set of all clusters
 		link = svg.selectAll(".link");                		//set of all edges
 		node = svg.selectAll(".node");                		//set of all nodes 
 
 		force = d3.layout.force()                 			//create force layout
-		    .charge(10)                                        		//charge>0 nodes attract, charge<0 nodes repel, value is the threshold of apply the force
-		    .linkDistance(function(d){                		//generally the distance between two nodes who are linked by edge
-		        //return (d.source.group==d.target.group)?10:20;
-		        return 50;                            		//no group option, the link distance is same 
-		    })
-		    .friction(0.9)                            		//[0,1] default 0.9, velocity decay after tick
-		    .linkStrength(0)                          		//[0,1]  default 1
+		    .charge(chargeForceFactor)     
+		    .friction(0.9)                           		//[0,1]  default 1
 		    .gravity(0)                            			//the force to drag nodes to the enter
 		    .size([windowWidth, windowHeight])
-		    //.theta(0)
 		    .on("tick",tick);
-		/*
-		forceCluster= d3.layout.force()           			//the force-layout for clusters
-		    .size([windowWidth, windowHeight])
-		    .gravity(0.01)
-		    .friction(0.7)
-		    .charge(-1500)
-		    .on("tick",tickCluster);
-		*/
 		linkData = [];
 		nodeData = [];
 		prePosition = new Map();
-
-		document.getElementById("mainContainer").onwheel = mouseScroll;
 	}
 
 	//draw component and deal with trasition process
 	//index indicate which day's data is used to execute transition
 	function transit(index){
-		setCluster(index);
+		console.log(index);
 		setNode(index);
 		setLink();
 
 		force.nodes(nodeData)
-			.links(linkData)
+			//.links(linkData)
 			.start();
 
 		/*forceCluster.nodes(clusterData)
@@ -153,7 +141,7 @@ SocialVis = function(){
 			setTimeout(function(){
 				resetData();
 				transit(index);
-			}, 3000);
+			}, 5000);
 		}
 	}
 
@@ -164,6 +152,7 @@ SocialVis = function(){
 			prePosition.set(d.id, {
 				x : d.x,
 				y : d.y,
+				cluster : d.cluster
 			})
 		})
 	}
@@ -198,14 +187,13 @@ SocialVis = function(){
 		node = node.data(nodeData,function(d){            	//give new loading data to nodes
 	        return d.id;    
 	    });
-
 	    node.enter()                                       	//for new added node assign attributes
 	        .append("circle")
 	        .attr("class", "node")
-	        .attr("class","comet")
+	        .classed("comet", false)
 	        .attr("fill", function(d, i){
-	        	//return cScale(i);
-	            return "url(#grad" + i + ")";
+	        	return cScale(d.color);
+	            //return "url(#grad" + i + ")";
 	        })
 	        .attr("r", function(d){
 	            return 1;
@@ -214,13 +202,17 @@ SocialVis = function(){
 
 	    node.each(function(d){
 	    	d.radius = nodeRadius;
+	    	d.isComet = false;
 	    	if (prePosition.has(d.id)){
 	    		d.x = prePosition.get(d.id).x;
 	    		d.y = prePosition.get(d.id).y;
+	    		//console.log(d.cluster + " " + prePosition.get(d.id).cluster)
+	    		if (d.cluster != prePosition.get(d.id).cluster){
+	    			d3.select(this)
+	        			.classed("comet", true);
+	        		d.isComet = true;
+	    		}
 	    	}
-	    	/*d3.select(this)
-	    		.attr("cx",windowWidth / 2)
-	    		.attr("cy", windowHeight / 2);*/
 	    });
 
 	    node.transition()                              		//set transition process, the radius of node from 0 to 5 
@@ -236,16 +228,6 @@ SocialVis = function(){
 	        .remove();		
 	}
 
-	//set parameter of cluster
-	function setCluster(index){
-		var count = dailyData[index].groupCount;
-		cluster.each(function(d, i){
-			var r = Math.ceil(Math.sqrt(count[i]) * 5);
-			d.radius = Math.max(minClusterRadius, r);
-			d3.select(this)
-				.attr("r", d.radius);
-		})
-	}
 
 	//draw clusters
 	function initializeCluster(){
@@ -278,41 +260,40 @@ SocialVis = function(){
 	    	.attr("opacity", 0)
 	    	.remove();
 
-	    updateCluster();
+	    updateCluster(1);
 	}
 
 	//update the coordinate of cluster due to the operation of zoom
-	function updateCluster(){
+	function updateCluster(zoomScale){
 		//set the coordinate of cluster, get from world map's function getClusterCoordinates
-	    cluster.each(function(d){
+	    clusterData.forEach(function(d){
 	    	var coord = worldMapInstance.getClusterCoordinates({
 	    		"lat" : d.lat,
 	    		"long" : d.long
 	    	});
-	    	console.log(d.label + " coordinate is " + coord[0] + " " + coord[1]);
-
-	    	//coord[0] = Math.random() * windowWidth;
-	    	//coord[1] = Math.random() * windowHeight;
-
 	    	d.x = coord[0];
 	    	d.y = coord[1];
-	    	d3.select(this)
-	    		.attr("cx", d.x)
-	    		.attr("cy", d.y)
 	    })
+	    //force.charge(zoomScale * chargeForceFactor)
+	    force.start();
+	    node.moveToFront();
 	}
 
 	//tick function for nodes
 	function tick(e) {
-	    var k = .1 * e.alpha;                      			// Push nodes toward their designated focus. 
-	    nodeData.forEach(function(d, i) {  
+	    var k = .08 * e.alpha;                      			// Push nodes toward their designated focus. 
+	    node.each(function(d, i) {  
 	    	var diffx = clusterData[d.cluster].x - d.x;
 	    	var diffy = clusterData[d.cluster].y - d.y;    
 	        var distance = Math.sqrt(diffx * diffx + diffy * diffy);
-	        
+	        if (d.isComet && distance < cometRemoveThreshold){
+	        	d3.select(this)
+	        		.classed("comet", false);
+	        	d.isComet = false;
+	        }
 	        d.x += diffx * k;
 	        d.y += diffy * k;	       
-	    });
+	    }); 
 
 	    link.attr("x1", function(d) { return d.source.x; })
 	        .attr("y1", function(d) { return d.source.y; })
@@ -328,18 +309,6 @@ SocialVis = function(){
 	        	return d.y;
 	        });
 	}   
-	
-	//tick function for cluster
-	function tickCluster(e){
-	    cluster.attr("cx", function(d) { 
-		    	d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x))
-		    	return d.x; 
-	    	})
-	        .attr("cy", function(d) { 
-	        	d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y));
-	        	return d.y; 
-	       	});
-	}
 
 	//move element to the back of its parent's children
 	d3.selection.prototype.moveToBack = function() { 
@@ -358,10 +327,7 @@ SocialVis = function(){
 	  	});   //move component to the up of svg
 	};
 
-	//mouse wheel scroll handler
-	function mouseScroll(){
-		updateCluster();
-	}
+	
 
 	//add tail when node moves, the less the second parameter of timer, the smoother the tail
 	d3.timer(function(){
@@ -373,7 +339,7 @@ SocialVis = function(){
 	            }
 	            svg.append("line")
 	                .attr("stroke-width", 2)
-	                .attr("stroke", cScale(i/*d.color*/))
+	                .attr("stroke", cScale(d.color))
 	                .attr("stroke-opacity", 1)
 	                .attr("x1", d.preX)
 	                .attr("y1", d.preY)
@@ -399,10 +365,10 @@ SocialVis = function(){
 		createMap();
 		worldMapInstance.generateMap();
 
-		setTimeout(function(d){
+		setTimeout(function(){
 			pos.moveToFront();
-			initializeCluster();
-			transit(0)
+			transit(0);
+			//updateCluster();
 		}, 1000);
 	}
 
@@ -428,5 +394,9 @@ SocialVis = function(){
 		    console.log(path + " loaded");
 		    generateLayout(data);
 		});
+	}
+
+	this.mapScaleChange = function(zoomScale){
+		updateCluster(zoomScale);
 	}
 };

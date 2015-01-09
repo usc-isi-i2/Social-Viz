@@ -1,6 +1,3 @@
-body{
-	background-color: black;
-}
 
 .bar:hover {
     fill: white;
@@ -9,8 +6,26 @@ body{
 .statespath {}
 
 
+
+svg {
+  background-color: black;
+  border: 1px solid #777;
+}
+
 path {
-    stroke: black;
-    stroke-width: 0.25px;
-    fill: grey;
+  fill: #444;
+  stroke: #888;
+  stroke-width: .5px;
+}
+
+path.state {
+  fill: #444;
+  stroke: #bbb;
+  stroke-width: .5px;
+}
+
+path.county {
+  fill: #444;
+  stroke: #eee;
+  stroke-width: .5px;
 }

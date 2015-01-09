@@ -1,0 +1,8301 @@
+{
+  "dailyData": [
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "0",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "1",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "2",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "3",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "4",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "5",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "6",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "7",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "8",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "9",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "10",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "11",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "12",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "13",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "14",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "15",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "16",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "17",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "18",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "49"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        12,
+        13,
+        16,
+        4,
+        5
+      ],
+      "edges": [],
+      "Date": "19",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        },
+        {
+          "id": 10,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "10"
+        },
+        {
+          "id": 11,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "11"
+        },
+        {
+          "id": 12,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "12"
+        },
+        {
+          "id": 13,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "13"
+        },
+        {
+          "id": 14,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "14"
+        },
+        {
+          "id": 15,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "15"
+        },
+        {
+          "id": 16,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "16"
+        },
+        {
+          "id": 17,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "17"
+        },
+        {
+          "id": 18,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "18"
+        },
+        {
+          "id": 19,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "19"
+        },
+        {
+          "id": 20,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "20"
+        },
+        {
+          "id": 21,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "21"
+        },
+        {
+          "id": 22,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "22"
+        },
+        {
+          "id": 23,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "23"
+        },
+        {
+          "id": 24,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "24"
+        },
+        {
+          "id": 25,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "25"
+        },
+        {
+          "id": 26,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "26"
+        },
+        {
+          "id": 27,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "27"
+        },
+        {
+          "id": 28,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "28"
+        },
+        {
+          "id": 29,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "29"
+        },
+        {
+          "id": 30,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "30"
+        },
+        {
+          "id": 31,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "31"
+        },
+        {
+          "id": 32,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "32"
+        },
+        {
+          "id": 33,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "33"
+        },
+        {
+          "id": 34,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "34"
+        },
+        {
+          "id": 35,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "35"
+        },
+        {
+          "id": 36,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "36"
+        },
+        {
+          "id": 37,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "37"
+        },
+        {
+          "id": 38,
+          "degree": 0,
+          "color": 4,
+          "nodeWeight": 1,
+          "cluster": 4,
+          "label": "38"
+        },
+        {
+          "id": 39,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "39"
+        },
+        {
+          "id": 40,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "40"
+        },
+        {
+          "id": 41,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "41"
+        },
+        {
+          "id": 42,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "42"
+        },
+        {
+          "id": 43,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "43"
+        },
+        {
+          "id": 44,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "44"
+        },
+        {
+          "id": 45,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "45"
+        },
+        {
+          "id": 46,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "46"
+        },
+        {
+          "id": 47,
+          "degree": 0,
+          "color": 3,
+          "nodeWeight": 1,
+          "cluster": 3,
+          "label": "47"
+        },
+        {
+          "id": 48,
+          "degree": 0,
+          "color": 2,
+          "nodeWeight": 1,
+          "cluster": 2,
+          "label": "48"
+        },
+        {
+          "id": 49,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "49"
+        }
+      ]
+    }
+  ],
+  "clusters": [
+    {
+      "id": 0,
+      "label": "Rhode Island",
+      "long": -71.414117,
+      "group": 0,
+      "lat": 41.82125
+    },
+    {
+      "id": 1,
+      "label": "South Carolina",
+      "long": -81.033355,
+      "group": 1,
+      "lat": 34.009577
+    },
+    {
+      "id": 2,
+      "label": "New Mexico",
+      "long": -103.419191,
+      "group": 2,
+      "lat": 34.184636
+    },
+    {
+      "id": 3,
+      "label": "Florida",
+      "long": -82.799465,
+      "group": 3,
+      "lat": 27.966674
+    },
+    {
+      "id": 4,
+      "label": "Alabama",
+      "long": -86.81076,
+      "group": 4,
+      "lat": 33.516853
+    }
+  ]
+}

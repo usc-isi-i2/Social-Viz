@@ -1,5 +1,11 @@
 Path of workspace
 
+New social vis path is src/socialVis
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
 My work is located at "src\Chen Qian\".
 There are to folders under it.
 1) socialVis 

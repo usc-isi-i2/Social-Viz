@@ -1,0 +1,1820 @@
+{
+  "dailyData": [
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "0",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "1",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "2",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "3",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "4",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "5",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "6",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "7",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "8",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "9",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "10",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "11",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "12",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "13",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "14",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "15",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "16",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "17",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "18",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "9"
+        }
+      ]
+    },
+    {
+      "groupCount": [
+        4,
+        6
+      ],
+      "edges": [],
+      "Date": "19",
+      "nodes": [
+        {
+          "id": 0,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "0"
+        },
+        {
+          "id": 1,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "1"
+        },
+        {
+          "id": 2,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "2"
+        },
+        {
+          "id": 3,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "3"
+        },
+        {
+          "id": 4,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "4"
+        },
+        {
+          "id": 5,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "5"
+        },
+        {
+          "id": 6,
+          "degree": 0,
+          "color": 0,
+          "nodeWeight": 1,
+          "cluster": 0,
+          "label": "6"
+        },
+        {
+          "id": 7,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "7"
+        },
+        {
+          "id": 8,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "8"
+        },
+        {
+          "id": 9,
+          "degree": 0,
+          "color": 1,
+          "nodeWeight": 1,
+          "cluster": 1,
+          "label": "9"
+        }
+      ]
+    }
+  ],
+  "clusters": [
+    {
+      "id": 0,
+      "label": "Rhode Island",
+      "long": -71.414117,
+      "group": 0,
+      "lat": 41.82125
+    },
+    {
+      "id": 1,
+      "label": "South Carolina",
+      "long": -81.033355,
+      "group": 1,
+      "lat": 34.009577
+    }
+  ]
+}
