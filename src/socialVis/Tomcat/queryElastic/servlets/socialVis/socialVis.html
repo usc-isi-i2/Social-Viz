@@ -1,0 +1,67 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="lib/jquery.js"></script>
+<script type="text/javascript" src="lib/d3.js" charset="utf-8"></script>
+<script type="text/javascript" src="socialVis-v1.js"></script>
+<script type="text/javascript" src="lib/topojson.v1.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="mainContainer">
+</div>
+
+<script type="text/javascript" src="map.js"></script>
+
+<script type="text/javascript">
+var socialVisInstance = new SocialVis();
+//socialVisInstance.generateSocialVis("dataset/real0.json");
+var req = false;
+	//excute when search button in the form is clicked
+	function executeQuery(){
+		var stDate = document.getElementById("startDate").value;
+		var edDate = document.getElementById("endDate").value;
+		var phoneNumbers = document.getElementById("pNumbers").value;
+		var maxNode = document.getElementById("maxNode").value;
+		//console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode);
+		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
+		req = new XMLHttpRequest();
+		req.onreadystatechange = mycallback;
+		req.open("GET", url, true);
+		req.send(null);
+	}
+
+	function mycallback(){	
+		if (req.readyState == 4) {
+			//console.log(req.status);
+			if (req.status == 200) {			
+				// console.log(req.responseText)
+				doc = eval('(' + req.responseText + ')');	
+				console.log(doc);	
+				socialVisInstance.generateSocialVis(doc);			
+			}
+		} 
+	}
+</script>
+
+<div id = "nodeToolTip" class="hidden">
+	<p><strong>Properties</strong></p>
+	<p>Id: <span id="term1"></span></p>
+	<p>Cluster: <span id="term2"></span></p>
+	<p>Label: <span id="term3"></span></p>
+</div>
+<div id = "queryForm" class="hidden">
+<form>
+	<p>Start date: <input type="text" id="startDate" placeholder="2014-07-01" ></p>
+	<p>End date: <input type="text" id="endDate" placeholder= "2014-07-20" ></p>
+	<p>Phone numbers: <input type = "text" id = "pNumbers" placeholder = "Numbers split by |" ></p>
+	<p>Max node: <input type = "text", id = "maxNode" placeholder = "number of shown node" ></p>
+	<input type="button" value = "Search" onclick="executeQuery()">
+</form>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,102 @@
+{
+   "took": 16120,
+   "timed_out": false,
+   "_shards": {
+      "total": 14,
+      "successful": 14,
+      "failed": 0
+   },
+   "hits": {
+      "total": 142759,
+      "max_score": 0,
+      "hits": []
+   },
+   "aggregations": {
+      "popular_phones": {
+         "doc_count_error_upper_bound": 56,
+         "sum_other_doc_count": 294773,
+         "buckets": [
+            {
+               "key": "+1-2067740601",
+               "doc_count": 205
+            },
+            {
+               "key": "2067740601",
+               "doc_count": 205
+            },
+            {
+               "key": "+1-4156833245",
+               "doc_count": 189
+            },
+            {
+               "key": "4156833245",
+               "doc_count": 189
+            },
+            {
+               "key": "+1-7577856264",
+               "doc_count": 176
+            },
+            {
+               "key": "7577856264",
+               "doc_count": 176
+            },
+            {
+               "key": "+1-2067740892",
+               "doc_count": 160
+            },
+            {
+               "key": "2067740892",
+               "doc_count": 160
+            },
+            {
+               "key": "+1-4089077677",
+               "doc_count": 146
+            },
+            {
+               "key": "+1-7023890459",
+               "doc_count": 146
+            },
+            {
+               "key": "4089077677",
+               "doc_count": 146
+            },
+            {
+               "key": "7023890459",
+               "doc_count": 146
+            },
+            {
+               "key": "+1-2067740664",
+               "doc_count": 144
+            },
+            {
+               "key": "2067740664",
+               "doc_count": 144
+            },
+            {
+               "key": "+1-7144773585",
+               "doc_count": 141
+            },
+            {
+               "key": "7144773585",
+               "doc_count": 141
+            },
+            {
+               "key": "+1-4089075683",
+               "doc_count": 132
+            },
+            {
+               "key": "4089075683",
+               "doc_count": 132
+            },
+            {
+               "key": "+1-9724972145",
+               "doc_count": 127
+            },
+            {
+               "key": "9724972145",
+               "doc_count": 127
+            }
+         ]
+      }
+   }
+}

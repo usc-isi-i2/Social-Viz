@@ -1,0 +1,331 @@
+[
+  {
+    "key": "1",
+    "values": [
+      {
+        "city": "ATLANTA",
+        "country": "United States",
+        "lat": "33.45",
+        "long": "-84.23",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "city": "ATLANTA",
+        "country": "United States",
+        "lat": "33.45",
+        "long": "-84.23",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "city": "ATLANTA",
+        "country": "United States",
+        "lat": "33.45",
+        "long": "-84.23",
+        "series": "C",
+        "value": "10"
+      },
+      {
+        "city": "ATLANTA",
+        "country": "United States",
+        "lat": "33.45",
+        "long": "-84.23",
+        "series": "D",
+        "value": "10"
+      },
+       {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "A",
+        "value": "10"
+      },
+       {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "B",
+        "value": "30"
+      },
+       {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "C",
+        "value": "50"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "A",
+        "value": "20"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "B",
+        "value": "35"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "C",
+        "value": "30"
+      }
+    ]
+  },
+  {
+    "key": "2",
+    "values": [
+      {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "A",
+        "value": "50"
+      },
+       {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "B",
+        "value": "10"
+      },
+       {
+        "city": "BUFFALO",
+        "country": "United States",
+        "lat": "42.88",
+        "long": "-78.87",
+        "series": "C",
+        "value": "30"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "A",
+        "value": "45"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "B",
+        "value": "15"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "C",
+        "value": "70"
+      },
+      {
+        "city": "TUSCON",
+        "country": "United States",
+        "lat": "32.22",
+        "long": "-110.92",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "city": "SAN FRANCISCO",
+        "country": "United States",
+        "lat": "37.77",
+        "long": "-122.41",
+        "series": "A",
+        "value": "40"
+      },
+      {
+        "city": "SAN FRANCISCO",
+        "country": "United States",
+        "lat": "37.77",
+        "long": "-122.41",
+        "series": "C",
+        "value": "60"
+      },
+      {
+        "city": "SAN FRANCISCO",
+        "country": "United States",
+        "lat": "37.77",
+        "long": "-122.41",
+        "series": "D",
+        "value": "20"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "A",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "key": "3",
+    "values": [
+    {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "B",
+        "value": "50"
+      },
+      {
+        "city": "CINCINNATI",
+        "country": "United States",
+        "lat": "39.10",
+        "long": "-84.51",
+        "series": "C",
+        "value": "20"
+      },
+      {
+        "city": "TUSCON",
+        "country": "United States",
+        "lat": "32.22",
+        "long": "-110.92",
+        "series": "B",
+        "value": "55"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "B",
+        "value": "20"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "C",
+        "value": "30"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "D",
+        "value": "40"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "E",
+        "value": "25"
+      }
+    ]
+  },
+  {
+    "key": "4",
+    "values": [
+    {
+        "city": "TUSCON",
+        "country": "United States",
+        "lat": "32.22",
+        "long": "-110.92",
+        "series": "C",
+        "value": "45"
+      },
+      {
+        "city": "SAN FRANCISCO",
+        "country": "United States",
+        "lat": "37.77",
+        "long": "-122.41",
+        "series": "A",
+        "value": "30"
+      },
+      {
+        "city": "SAN FRANCISCO",
+        "country": "United States",
+        "lat": "37.77",
+        "long": "-122.41",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "D",
+        "value": "10"
+      },
+    {
+        "city": "MINNEAPOLIS",
+        "country": "United States",
+        "lat": "44.98",
+        "long": "-93.26",
+        "series": "E",
+        "value": "50"
+      },
+      {
+        "city": "SEATTLE",
+        "country": "United States",
+        "lat": "47.61",
+        "long": "-122.33",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "city": "SEATTLE",
+        "country": "United States",
+        "lat": "47.61",
+        "long": "-122.33",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "city": "SEATTLE",
+        "country": "United States",
+        "lat": "47.61",
+        "long": "-122.33",
+        "series": "C",
+        "value": "30"
+      }
+    ]
+  },
+  {
+    "key": "5",
+    "values": [
+      {
+        "city": "SEATTLE",
+        "country": "United States",
+        "lat": "47.61",
+        "long": "-122.33",
+        "series": "D",
+        "value": "20"
+      },
+      {
+        "city": "SEATTLE",
+        "country": "United States",
+        "lat": "47.61",
+        "long": "-122.33",
+        "series": "E",
+        "value": "60"
+      }
+    ]
+  }
+]

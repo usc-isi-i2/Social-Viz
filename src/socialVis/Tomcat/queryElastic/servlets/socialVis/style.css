@@ -1,0 +1,77 @@
+
+.bar:hover {
+    fill: white;
+}
+.graph {} 
+.statespath {}
+
+#queryForm {
+    position: absolute;
+    width: 180px;
+    height: auto;
+    padding: 10px;
+    background-color: #ddd;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#queryForm p{
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#nodeToolTip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: #ddd;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}
+      
+#nodeToolTip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+svg {
+  background-color: black;
+  border: 1px solid #777;
+}
+
+path {
+  fill: #444;
+  stroke: #888;
+  stroke-width: .5px;
+}
+
+path.state {
+  fill: #444;
+  stroke: #bbb;
+  stroke-width: .5px;
+}
+
+path.county {
+  fill: #444;
+  stroke: #eee;
+  stroke-width: .5px;
+}

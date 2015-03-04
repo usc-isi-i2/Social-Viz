@@ -2,6 +2,7 @@ SocialVis = function(){
 	windowWidth = null; 
 	windowHeight = null;
 	nodeRadius = null;
+	originRadius = null;
 	minClusterRadius = null;
 	cometRemoveThreshold = null;
 	chargeForceFactor = null;
@@ -45,7 +46,8 @@ SocialVis = function(){
 		windowWidth = window.innerWidth;
 		windowHeight = window.innerHeight;
 		minClusterRadius = 20;
-		nodeRadius = 2;
+		originRadius = 3;
+		nodeRadius = originRadius;
 		cometRemoveThreshold = 5;                         	//then the distance of comet and its distination less than threshold, remove comet effect
 		chargeForceFactor = -1;   									//the charge value of force layout
 	
@@ -118,15 +120,19 @@ SocialVis = function(){
 		    .gravity(0)                            			//the force to drag nodes to the enter
 		    .size([windowWidth, windowHeight])
 		    .on("tick",tick);
-		linkData = [];
-		nodeData = [];
-		prePosition = new Map();
+		linkData = [];										//data for all links
+		nodeData = [];										//data for all nodes
+		prePosition = new Map();							//record position of node in previous transition
+
+		d3.select("#queryForm")								//set position of query form
+			.style("left", 5 + "px")              
+			.style("top", (windowHeight - 220) + "px")
 	}
 
 	//draw component and deal with trasition process
 	//index indicate which day's data is used to execute transition
 	function transit(index){
-		console.log(index);
+		console.log("iteration: " + index);
 		setNode(index);
 		setLink();
 
@@ -193,12 +199,34 @@ SocialVis = function(){
 	        .classed("comet", false)
 	        .attr("fill", function(d, i){
 	        	return cScale(d.color);
-	            //return "url(#grad" + i + ")";
+	            //return "url(#grad" + d.color + ")";
 	        })
 	        .attr("r", function(d){
 	            return 1;
 	        })
-	        .call(force.drag);
+	        .call(force.drag)
+	        .on("mouseover", function(d){
+	        	//console.log("mouseover")
+	        	ary = d3.mouse(this);
+			 	d3.select("#nodeToolTip")               //set the tool tip for nodes    
+			        .style("left", (ary[0] + 10) + "px")              
+			        .style("top",(ary[1] + 10) + "px")
+			        .moveToFront();         
+			    d3.select("#term1")
+			        .text(d.id);
+			    d3.select("#term2")
+			        .text(clusterData[d.cluster].label);
+			    d3.select("#term3")
+			        .text(d.label);
+			    d3.select("#nodeToolTip")
+			        .classed("hidden", false);
+			})
+			.on("mouseout", function(d){
+				//console.log("mouseout")
+				d3.select("#nodeToolTip")               //hide the tool tip for nodes 
+			        .classed("hidden", true)
+			        .moveToBack();
+			});
 
 	    node.each(function(d){
 	    	d.radius = nodeRadius;
@@ -266,6 +294,8 @@ SocialVis = function(){
 	//update the coordinate of cluster due to the operation of zoom
 	function updateCluster(zoomScale){
 		//set the coordinate of cluster, get from world map's function getClusterCoordinates
+		if (clusterData == null)
+			return;
 	    clusterData.forEach(function(d){
 	    	var coord = worldMapInstance.getClusterCoordinates({
 	    		"lat" : d.lat,
@@ -277,6 +307,13 @@ SocialVis = function(){
 	    //force.charge(zoomScale * chargeForceFactor)
 	    force.start();
 	    node.moveToFront();
+	    
+	    if (zoomScale <= 1)
+	    	nodeRadius = originRadius;
+	    else if (zoomScale < 4)
+	    	nodeRadius = originRadius * Math.sqrt(zoomScale)
+	    else nodeRadius = originRadius * 2
+	    console.log(nodeRadius)
 	}
 
 	//tick function for nodes
@@ -354,17 +391,11 @@ SocialVis = function(){
 	                .attr("stroke-width", 0)
 	                .remove();
 	        })
-	}, 300);
+	}, 500);
 
 	function generateLayout(data){
 		clusterData = data.clusters;
 		dailyData = data.dailyData;
-
-		initialize();
-
-		createMap();
-		worldMapInstance.generateMap();
-
 		setTimeout(function(){
 			pos.moveToFront();
 			transit(0);
@@ -380,12 +411,34 @@ SocialVis = function(){
 	//when move over show the coordinate
 	function mousemove(){
 		var ary = d3.mouse(this);
-		pos.attr("x", ary[0] + 2)
-			.attr("y", ary[1] + 2)
-			//.attr("x", 100)
-			//.attr("y", 100)
+		pos//.attr("x", ary[0] + 10)
+			//.attr("y", ary[1] + 10)
+			.attr("x", 20)
+			.attr("y", 20)
 			.text(Math.round(ary[0]) + ", " + Math.round(ary[1]))
 	}
+
+	//check if 
+	window.onkeyup = function(e) {
+	   if (e.keyCode == 81){
+	   		if ($('#queryForm').hasClass('hidden')){
+			   	d3.select("#queryForm")
+					.moveToFront()
+					.classed("hidden", false);
+	   		} else {
+	   			d3.select("#queryForm")
+					.moveToFront()
+					.classed("hidden", true);
+	   		}
+	   }
+	   //console.log(e)
+	}
+
+	$(document).ready(function() {
+		initialize();
+		createMap();
+		worldMapInstance.generateMap();		
+	});
 
 	//******************** public method below *************************
 	this.generateSocialVis = function(path){

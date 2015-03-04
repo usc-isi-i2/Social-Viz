@@ -1,0 +1,39 @@
+{
+	//one or more days
+	"dailyData" :[
+		{                          
+			"groupCount":[10,20],            			//how many nodes in each cluster
+			"Date":"2013-03-01",
+			//one or more edges
+			"edges":[
+				{
+					"sid":0,                       		//the source node's id
+					"source":5,                       	//source node's index in nodes json array
+					"weightEdge":1.8,				    //the weight of edge
+					"target":0,                       	//target node's index in nodes json array
+					"tid":1								//the target node's id
+				}                        
+			],
+			//one or more nodes
+			"nodes":[
+				{
+					"id":0,                  			//the id of node, in phone list
+					"degree":5,                      	//the degree of node, how many node conector to it
+					"color":1,                        	//the index of color for node, depend on node in which cluster in the last day
+					"label":"Diego Costa",              //the lable of node
+					"nodeWeight":1.8,     				//the weight of node, calculated by the weight on each edge that connect to node
+					"cluster":1 						//which cluster the node belongs to
+				}                       
+			]
+		}
+	],
+	//one or more clusters
+	"clusters":[                      
+		{
+			"id":0,                    				//the id of cluster, in the city list
+			"label":"los angeles",             			//the label of cluster, the city name
+			"degree":10,                 				//the degree of cluster, how many node in it.
+			"group":0,                    				//the group of cluster
+		}                  
+	]
+}
