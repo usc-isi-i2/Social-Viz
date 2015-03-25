@@ -211,15 +211,16 @@ SocialVis = function(){
 
 				if (!d.isAppear){
 					d.isAppear = true;
+				} else {
+					obj.classed("comet", true)
 				}
 				d.radius = rScale(d.changeTimes[index]);
-				// obj.classed("comet", true)
-					obj.transition()
-						.duration(500)
-						.attr("r", d.radius);
+				obj.transition()
+					.duration(500)
+					.attr("r", d.radius);
 			}
 			else {				
-				// obj.classed("comet", false);
+				obj.classed("comet", false);
 				d.changeTimes[index] = (index == 0) ? 0 : d.changeTimes[index - 1];
 			}
 			d.curChangeTime = d.changeTimes[index];
@@ -378,7 +379,7 @@ SocialVis = function(){
 	                d.preX = d.x;
 	                d.preY = d.y;
 	            }
-	            linksG.append("line")
+	            svg.append("line")
 	            	.attr("class", "cometTrail")
 	                .attr("stroke-width", 2)
 	                .attr("stroke", cScale(d.color))
@@ -396,7 +397,7 @@ SocialVis = function(){
 	                .attr("stroke-width", 0)
 	                .remove();
 	        })
-	}, 500);
+	}, 200);
 
 
 	//create wolrdMap class and draw map
