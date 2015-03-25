@@ -1,0 +1,622 @@
+{
+   "took": 3329,
+   "timed_out": false,
+   "_shards": {
+      "total": 236,
+      "successful": 236,
+      "failed": 0
+   },
+   "hits": {
+      "total": 6599409,
+      "max_score": 0,
+      "hits": []
+   },
+   "aggregations": {
+      "popular_phones": {
+         "doc_count_error_upper_bound": 0,
+         "sum_other_doc_count": 2938667,
+         "buckets": [
+            {
+               "key": "California",
+               "doc_count": 1058552,
+               "place": {
+                  "doc_count_error_upper_bound": 1477,
+                  "sum_other_doc_count": 1033208,
+                  "buckets": [
+                     {
+                        "key": 1387008000000,
+                        "key_as_string": "2013-12-14T08:00:00.000Z",
+                        "doc_count": 3328
+                     },
+                     {
+                        "key": 1386921600000,
+                        "key_as_string": "2013-12-13T08:00:00.000Z",
+                        "doc_count": 3232
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 2750
+                     },
+                     {
+                        "key": 1387094400000,
+                        "key_as_string": "2013-12-15T08:00:00.000Z",
+                        "doc_count": 2496
+                     },
+                     {
+                        "key": 1387699200000,
+                        "key_as_string": "2013-12-22T08:00:00.000Z",
+                        "doc_count": 2352
+                     },
+                     {
+                        "key": 1387180800000,
+                        "key_as_string": "2013-12-16T08:00:00.000Z",
+                        "doc_count": 2335
+                     },
+                     {
+                        "key": 1386662400000,
+                        "key_as_string": "2013-12-10T08:00:00.000Z",
+                        "doc_count": 2315
+                     },
+                     {
+                        "key": 1387526400000,
+                        "key_as_string": "2013-12-20T08:00:00.000Z",
+                        "doc_count": 2217
+                     },
+                     {
+                        "key": 1386835200000,
+                        "key_as_string": "2013-12-12T08:00:00.000Z",
+                        "doc_count": 2162
+                     },
+                     {
+                        "key": 1387612800000,
+                        "key_as_string": "2013-12-21T08:00:00.000Z",
+                        "doc_count": 2157
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Texas",
+               "doc_count": 502674,
+               "place": {
+                  "doc_count_error_upper_bound": 579,
+                  "sum_other_doc_count": 484023,
+                  "buckets": [
+                     {
+                        "key": 1383811200000,
+                        "key_as_string": "2013-11-07T08:00:00.000Z",
+                        "doc_count": 12788
+                     },
+                     {
+                        "key": 1401523200000,
+                        "key_as_string": "2014-05-31T08:00:00.000Z",
+                        "doc_count": 809
+                     },
+                     {
+                        "key": 1385020800000,
+                        "key_as_string": "2013-11-21T08:00:00.000Z",
+                        "doc_count": 668
+                     },
+                     {
+                        "key": 1401264000000,
+                        "key_as_string": "2014-05-28T08:00:00.000Z",
+                        "doc_count": 644
+                     },
+                     {
+                        "key": 1401436800000,
+                        "key_as_string": "2014-05-30T08:00:00.000Z",
+                        "doc_count": 641
+                     },
+                     {
+                        "key": 1385107200000,
+                        "key_as_string": "2013-11-22T08:00:00.000Z",
+                        "doc_count": 635
+                     },
+                     {
+                        "key": 1393574400000,
+                        "key_as_string": "2014-02-28T08:00:00.000Z",
+                        "doc_count": 631
+                     },
+                     {
+                        "key": 1401609600000,
+                        "key_as_string": "2014-06-01T08:00:00.000Z",
+                        "doc_count": 630
+                     },
+                     {
+                        "key": 1391155200000,
+                        "key_as_string": "2014-01-31T08:00:00.000Z",
+                        "doc_count": 616
+                     },
+                     {
+                        "key": 1386921600000,
+                        "key_as_string": "2013-12-13T08:00:00.000Z",
+                        "doc_count": 589
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Florida",
+               "doc_count": 476210,
+               "place": {
+                  "doc_count_error_upper_bound": 587,
+                  "sum_other_doc_count": 469289,
+                  "buckets": [
+                     {
+                        "key": 1388736000000,
+                        "key_as_string": "2014-01-03T08:00:00.000Z",
+                        "doc_count": 885
+                     },
+                     {
+                        "key": 1386748800000,
+                        "key_as_string": "2013-12-11T08:00:00.000Z",
+                        "doc_count": 769
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 750
+                     },
+                     {
+                        "key": 1384070400000,
+                        "key_as_string": "2013-11-10T08:00:00.000Z",
+                        "doc_count": 699
+                     },
+                     {
+                        "key": 1386835200000,
+                        "key_as_string": "2013-12-12T08:00:00.000Z",
+                        "doc_count": 663
+                     },
+                     {
+                        "key": 1401436800000,
+                        "key_as_string": "2014-05-30T08:00:00.000Z",
+                        "doc_count": 644
+                     },
+                     {
+                        "key": 1385193600000,
+                        "key_as_string": "2013-11-23T08:00:00.000Z",
+                        "doc_count": 642
+                     },
+                     {
+                        "key": 1390032000000,
+                        "key_as_string": "2014-01-18T08:00:00.000Z",
+                        "doc_count": 639
+                     },
+                     {
+                        "key": 1392451200000,
+                        "key_as_string": "2014-02-15T08:00:00.000Z",
+                        "doc_count": 620
+                     },
+                     {
+                        "key": 1386403200000,
+                        "key_as_string": "2013-12-07T08:00:00.000Z",
+                        "doc_count": 610
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "New York",
+               "doc_count": 411520,
+               "place": {
+                  "doc_count_error_upper_bound": 515,
+                  "sum_other_doc_count": 404952,
+                  "buckets": [
+                     {
+                        "key": 1383897600000,
+                        "key_as_string": "2013-11-08T08:00:00.000Z",
+                        "doc_count": 752
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 701
+                     },
+                     {
+                        "key": 1387526400000,
+                        "key_as_string": "2013-12-20T08:00:00.000Z",
+                        "doc_count": 699
+                     },
+                     {
+                        "key": 1386230400000,
+                        "key_as_string": "2013-12-05T08:00:00.000Z",
+                        "doc_count": 688
+                     },
+                     {
+                        "key": 1386489600000,
+                        "key_as_string": "2013-12-08T08:00:00.000Z",
+                        "doc_count": 663
+                     },
+                     {
+                        "key": 1384416000000,
+                        "key_as_string": "2013-11-14T08:00:00.000Z",
+                        "doc_count": 661
+                     },
+                     {
+                        "key": 1384156800000,
+                        "key_as_string": "2013-11-11T08:00:00.000Z",
+                        "doc_count": 610
+                     },
+                     {
+                        "key": 1385107200000,
+                        "key_as_string": "2013-11-22T08:00:00.000Z",
+                        "doc_count": 607
+                     },
+                     {
+                        "key": 1391155200000,
+                        "key_as_string": "2014-01-31T08:00:00.000Z",
+                        "doc_count": 595
+                     },
+                     {
+                        "key": 1388390400000,
+                        "key_as_string": "2013-12-30T08:00:00.000Z",
+                        "doc_count": 592
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Ontario",
+               "doc_count": 345544,
+               "place": {
+                  "doc_count_error_upper_bound": 502,
+                  "sum_other_doc_count": 336796,
+                  "buckets": [
+                     {
+                        "key": 1384156800000,
+                        "key_as_string": "2013-11-11T08:00:00.000Z",
+                        "doc_count": 1522
+                     },
+                     {
+                        "key": 1384243200000,
+                        "key_as_string": "2013-11-12T08:00:00.000Z",
+                        "doc_count": 1237
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 887
+                     },
+                     {
+                        "key": 1384329600000,
+                        "key_as_string": "2013-11-13T08:00:00.000Z",
+                        "doc_count": 858
+                     },
+                     {
+                        "key": 1401436800000,
+                        "key_as_string": "2014-05-30T08:00:00.000Z",
+                        "doc_count": 771
+                     },
+                     {
+                        "key": 1385107200000,
+                        "key_as_string": "2013-11-22T08:00:00.000Z",
+                        "doc_count": 744
+                     },
+                     {
+                        "key": 1384588800000,
+                        "key_as_string": "2013-11-16T08:00:00.000Z",
+                        "doc_count": 714
+                     },
+                     {
+                        "key": 1401523200000,
+                        "key_as_string": "2014-05-31T08:00:00.000Z",
+                        "doc_count": 699
+                     },
+                     {
+                        "key": 1384416000000,
+                        "key_as_string": "2013-11-14T08:00:00.000Z",
+                        "doc_count": 672
+                     },
+                     {
+                        "key": 1386316800000,
+                        "key_as_string": "2013-12-06T08:00:00.000Z",
+                        "doc_count": 645
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "North Carolina",
+               "doc_count": 198814,
+               "place": {
+                  "doc_count_error_upper_bound": 251,
+                  "sum_other_doc_count": 195083,
+                  "buckets": [
+                     {
+                        "key": 1384329600000,
+                        "key_as_string": "2013-11-13T08:00:00.000Z",
+                        "doc_count": 647
+                     },
+                     {
+                        "key": 1401523200000,
+                        "key_as_string": "2014-05-31T08:00:00.000Z",
+                        "doc_count": 444
+                     },
+                     {
+                        "key": 1387353600000,
+                        "key_as_string": "2013-12-18T08:00:00.000Z",
+                        "doc_count": 369
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 342
+                     },
+                     {
+                        "key": 1406707200000,
+                        "key_as_string": "2014-07-30T08:00:00.000Z",
+                        "doc_count": 337
+                     },
+                     {
+                        "key": 1385193600000,
+                        "key_as_string": "2013-11-23T08:00:00.000Z",
+                        "doc_count": 336
+                     },
+                     {
+                        "key": 1393574400000,
+                        "key_as_string": "2014-02-28T08:00:00.000Z",
+                        "doc_count": 323
+                     },
+                     {
+                        "key": 1375430400000,
+                        "key_as_string": "2013-08-02T08:00:00.000Z",
+                        "doc_count": 322
+                     },
+                     {
+                        "key": 1385107200000,
+                        "key_as_string": "2013-11-22T08:00:00.000Z",
+                        "doc_count": 318
+                     },
+                     {
+                        "key": 1386230400000,
+                        "key_as_string": "2013-12-05T08:00:00.000Z",
+                        "doc_count": 293
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Arizona",
+               "doc_count": 171358,
+               "place": {
+                  "doc_count_error_upper_bound": 299,
+                  "sum_other_doc_count": 166753,
+                  "buckets": [
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 578
+                     },
+                     {
+                        "key": 1387612800000,
+                        "key_as_string": "2013-12-21T08:00:00.000Z",
+                        "doc_count": 529
+                     },
+                     {
+                        "key": 1386835200000,
+                        "key_as_string": "2013-12-12T08:00:00.000Z",
+                        "doc_count": 493
+                     },
+                     {
+                        "key": 1390636800000,
+                        "key_as_string": "2014-01-25T08:00:00.000Z",
+                        "doc_count": 467
+                     },
+                     {
+                        "key": 1386921600000,
+                        "key_as_string": "2013-12-13T08:00:00.000Z",
+                        "doc_count": 456
+                     },
+                     {
+                        "key": 1387526400000,
+                        "key_as_string": "2013-12-20T08:00:00.000Z",
+                        "doc_count": 450
+                     },
+                     {
+                        "key": 1390291200000,
+                        "key_as_string": "2014-01-21T08:00:00.000Z",
+                        "doc_count": 450
+                     },
+                     {
+                        "key": 1379491200000,
+                        "key_as_string": "2013-09-18T08:00:00.000Z",
+                        "doc_count": 399
+                     },
+                     {
+                        "key": 1390550400000,
+                        "key_as_string": "2014-01-24T08:00:00.000Z",
+                        "doc_count": 392
+                     },
+                     {
+                        "key": 1386144000000,
+                        "key_as_string": "2013-12-04T08:00:00.000Z",
+                        "doc_count": 391
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Illinois",
+               "doc_count": 168581,
+               "place": {
+                  "doc_count_error_upper_bound": 242,
+                  "sum_other_doc_count": 165426,
+                  "buckets": [
+                     {
+                        "key": 1384416000000,
+                        "key_as_string": "2013-11-14T08:00:00.000Z",
+                        "doc_count": 699
+                     },
+                     {
+                        "key": 1386057600000,
+                        "key_as_string": "2013-12-03T08:00:00.000Z",
+                        "doc_count": 309
+                     },
+                     {
+                        "key": 1390636800000,
+                        "key_as_string": "2014-01-25T08:00:00.000Z",
+                        "doc_count": 289
+                     },
+                     {
+                        "key": 1385193600000,
+                        "key_as_string": "2013-11-23T08:00:00.000Z",
+                        "doc_count": 281
+                     },
+                     {
+                        "key": 1393401600000,
+                        "key_as_string": "2014-02-26T08:00:00.000Z",
+                        "doc_count": 275
+                     },
+                     {
+                        "key": 1382774400000,
+                        "key_as_string": "2013-10-26T08:00:00.000Z",
+                        "doc_count": 271
+                     },
+                     {
+                        "key": 1385884800000,
+                        "key_as_string": "2013-12-01T08:00:00.000Z",
+                        "doc_count": 263
+                     },
+                     {
+                        "key": 1388822400000,
+                        "key_as_string": "2014-01-04T08:00:00.000Z",
+                        "doc_count": 260
+                     },
+                     {
+                        "key": 1382601600000,
+                        "key_as_string": "2013-10-24T08:00:00.000Z",
+                        "doc_count": 254
+                     },
+                     {
+                        "key": 1382688000000,
+                        "key_as_string": "2013-10-25T08:00:00.000Z",
+                        "doc_count": 254
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Pennsylvania",
+               "doc_count": 166293,
+               "place": {
+                  "doc_count_error_upper_bound": 194,
+                  "sum_other_doc_count": 160384,
+                  "buckets": [
+                     {
+                        "key": 1383897600000,
+                        "key_as_string": "2013-11-08T08:00:00.000Z",
+                        "doc_count": 3646
+                     },
+                     {
+                        "key": 1389945600000,
+                        "key_as_string": "2014-01-17T08:00:00.000Z",
+                        "doc_count": 292
+                     },
+                     {
+                        "key": 1405670400000,
+                        "key_as_string": "2014-07-18T08:00:00.000Z",
+                        "doc_count": 288
+                     },
+                     {
+                        "key": 1401436800000,
+                        "key_as_string": "2014-05-30T08:00:00.000Z",
+                        "doc_count": 251
+                     },
+                     {
+                        "key": 1386230400000,
+                        "key_as_string": "2013-12-05T08:00:00.000Z",
+                        "doc_count": 246
+                     },
+                     {
+                        "key": 1386921600000,
+                        "key_as_string": "2013-12-13T08:00:00.000Z",
+                        "doc_count": 245
+                     },
+                     {
+                        "key": 1401523200000,
+                        "key_as_string": "2014-05-31T08:00:00.000Z",
+                        "doc_count": 241
+                     },
+                     {
+                        "key": 1399104000000,
+                        "key_as_string": "2014-05-03T08:00:00.000Z",
+                        "doc_count": 237
+                     },
+                     {
+                        "key": 1387440000000,
+                        "key_as_string": "2013-12-19T08:00:00.000Z",
+                        "doc_count": 232
+                     },
+                     {
+                        "key": 1400745600000,
+                        "key_as_string": "2014-05-22T08:00:00.000Z",
+                        "doc_count": 231
+                     }
+                  ]
+               }
+            },
+            {
+               "key": "Georgia",
+               "doc_count": 161196,
+               "place": {
+                  "doc_count_error_upper_bound": 204,
+                  "sum_other_doc_count": 158979,
+                  "buckets": [
+                     {
+                        "key": 1401523200000,
+                        "key_as_string": "2014-05-31T08:00:00.000Z",
+                        "doc_count": 282
+                     },
+                     {
+                        "key": 1404802800000,
+                        "key_as_string": "2014-07-08T07:00:00.000Z",
+                        "doc_count": 225
+                     },
+                     {
+                        "key": 1387094400000,
+                        "key_as_string": "2013-12-15T08:00:00.000Z",
+                        "doc_count": 222
+                     },
+                     {
+                        "key": 1404889200000,
+                        "key_as_string": "2014-07-09T07:00:00.000Z",
+                        "doc_count": 222
+                     },
+                     {
+                        "key": 1399017600000,
+                        "key_as_string": "2014-05-02T08:00:00.000Z",
+                        "doc_count": 218
+                     },
+                     {
+                        "key": 1390464000000,
+                        "key_as_string": "2014-01-23T08:00:00.000Z",
+                        "doc_count": 215
+                     },
+                     {
+                        "key": 1401177600000,
+                        "key_as_string": "2014-05-27T08:00:00.000Z",
+                        "doc_count": 212
+                     },
+                     {
+                        "key": 1387008000000,
+                        "key_as_string": "2013-12-14T08:00:00.000Z",
+                        "doc_count": 211
+                     },
+                     {
+                        "key": 1388736000000,
+                        "key_as_string": "2014-01-03T08:00:00.000Z",
+                        "doc_count": 206
+                     },
+                     {
+                        "key": 1384502400000,
+                        "key_as_string": "2013-11-15T08:00:00.000Z",
+                        "doc_count": 204
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   }
+}

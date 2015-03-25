@@ -1,0 +1,47 @@
+{
+    "places": {
+        "ATLANTA": {
+            "lat": "33.45",
+            "long": "-84.23"
+        },
+        "BUFFALO": {
+            "lat": "42.88",
+            "long": "-78.87"
+        },
+        "CINCINNATI": {
+            "lat": "39.10",
+            "long": "-84.51"
+        },
+        "MINNEAPOLIS": {
+            "lat": "44.98",
+            "long": "-93.26"
+        },
+        "SAN FRANCISCO": {
+            "lat": "37.77",
+            "long": "-122.41"
+        },
+        "SEATTLE": {
+            "lat": "47.61",
+            "long": "-122.33"
+        },
+        "TUSCON": {
+            "lat": "32.22",
+            "long": "-110.92"
+        }
+    },
+    "states": {
+        "United States": {
+            "places":[
+                "ATLANTA",
+                "BUFFALO",
+                "CINCINNATI",
+                "MINNEAPOLIS",
+                "SAN FRANCISCO",
+                "SEATTLE",
+                "TUSCON"
+            ],
+            "lat": "37.09",
+            "long": "-95.72"
+        }
+    }
+}
