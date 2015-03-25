@@ -1,3 +1,24 @@
+#nodeHistory {
+    height: 400px;
+    float: left;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+#dateText {
+  font-size: 40px;
+  font-family: sans-serif;
+}
+
+#leftPanel {
+  float: left;
+  width: 13%;
+}
+
+#rightPanel {
+  float: left;
+  width: 87%;
+}
 
 .bar:hover {
     fill: white;
@@ -5,7 +26,7 @@
 .graph {} 
 .statespath {}
 
-#queryForm {
+/*#queryForm {
     position: absolute;
     width: 180px;
     height: auto;
@@ -18,7 +39,7 @@
     -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
     pointer-events: none;
-}
+}*/
 
 #queryForm p{
     margin: 0;
@@ -29,9 +50,24 @@
 
 #nodeToolTip {
     position: absolute;
-    width: 200px;
+    width: auto;
     height: auto;
-    padding: 10px;
+    padding: 3px;
+    background-color: #ddd;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#clusterToolTip {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 3px;
     background-color: #ddd;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

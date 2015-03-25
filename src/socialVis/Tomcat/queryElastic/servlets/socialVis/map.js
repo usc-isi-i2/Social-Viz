@@ -171,7 +171,7 @@ WorldMap = function(svgInstance){
 	}
 
 	function getCoordinates(geoCode) {
-        return projection([geoCode.long, geoCode.lat]);
+        return projection([geoCode.lon, geoCode.lat]);
     }
 
     //move element to the back of its parent's children

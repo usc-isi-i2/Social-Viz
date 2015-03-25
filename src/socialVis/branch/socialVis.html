@@ -15,7 +15,7 @@
 <script type="text/javascript">	
 	var req = false;
 	var socialVisInstance = new SocialVis();
-	// socialVisInstance.generateSocialVis("testElastic/eclipseOutput.json");
+	socialVisInstance.generateSocialVis("testElastic/output.json");
 
 	//excute when search button in the form is clicked
 	function executeQuery(){
@@ -43,7 +43,6 @@
 		} 
 	}
 
-	//useless
 	//invoke functio nof socialVis to show the chosen node's history path
 	function showNodePathInvoker(){
 		var parameter = $("#nodePathText").val();
@@ -51,7 +50,6 @@
 		socialVisInstance.showNodePath(parameter);
 	}
 
-	//useless
 	//quit the highlight node path
 	function quitShowPathInvoker(){
 		console.log("Quit show path");
@@ -92,10 +90,18 @@
 		<table>
 			<tr><td>Start date: </td><td><input type="text" id="startDate" placeholder="2014-07-01" ></td></tr>
 			<tr><td>End date: </td><td><input type="text" id="endDate" placeholder="2014-07-20" ></td></tr>
-			<tr><td>Numbers: </td><td><input type = "text" id = "pNumbers" placeholder = "Numbers split by /" ></td></tr>
+			<tr><td>Numbers: </td><td><input type = "text" id = "pNumbers" placeholder = "Numbers split by |" ></td></tr>
 			<tr><td>Max node: </td><td><input type = "text", id = "maxNode" placeholder = "number of shown node"></td></tr>
 		</table>
 		<input type="button" value = "Search" onclick="executeQuery()">
+	</div>
+	<br>
+
+	<div id = "nodePathForm">
+		<table>
+			<tr><td>Number: </td><td><input type="text" id="nodePathText" placeholder="number or nodeId" ></td></tr>
+			<tr><td><input type="button" value = "Show Path" onclick="showNodePathInvoker()"></td><td><input type="button" value = "Quit View" onclick="quitShowPathInvoker()"></td></tr>
+		</table>		
 	</div>
 	<br>
 
@@ -127,9 +133,10 @@
 
 
 <div id = "nodeToolTip" class="hidden">
-</div>
-
-<div id = "clusterToolTip" class="hidden">
+	<p><strong>Properties</strong></p>
+	<p>Id: <span id="term1"></span></p>
+	<p>Cluster: <span id="term2"></span></p>
+	<p>Label: <span id="term3"></span></p>
 </div>
 
 </body>

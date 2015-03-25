@@ -5,19 +5,17 @@
 <script type="text/javascript" src="lib/d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="socialVis-v1.js"></script>
 <script type="text/javascript" src="lib/topojson.v1.min.js"></script>
+<script type="text/javascript" src="map.js"></script>
 
 </head>
 
-<body>
+<body> 
 
-<div id="mainContainer">
-</div>
 
-<script type="text/javascript" src="map.js"></script>
-
-<script type="text/javascript">
-var socialVisInstance = new SocialVis();
-socialVisInstance.generateSocialVis("testElastic/output.json");
+<script type="text/javascript">	
+	var req = false;
+	var socialVisInstance = new SocialVis();
+	socialVisInstance.generateSocialVis("testElastic/eclipseOutput.json");
 
 	//excute when search button in the form is clicked
 	function executeQuery(){
@@ -25,40 +23,115 @@ socialVisInstance.generateSocialVis("testElastic/output.json");
 		var edDate = document.getElementById("endDate").value;
 		var phoneNumbers = document.getElementById("pNumbers").value;
 		var maxNode = document.getElementById("maxNode").value;
-		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode);
-		var url = "?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
-		var req = new XMLHttpRequest();
+		//console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode);
+		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
+		req = new XMLHttpRequest();
 		req.onreadystatechange = mycallback;
 		req.open("GET", url, true);
 		req.send(null);
 	}
 
 	function mycallback(){	
-	if (req.readyState == 4) {
-		//console.log(req.status);
-		if (req.status == 200) {
-			doc = eval('(' + req.responseText + ')');	
-			console.log(doc);				
-		}
-	} 
-}
+		if (req.readyState == 4) {
+			//console.log(req.status);
+			if (req.status == 200) {			
+				// console.log(req.responseText)
+				doc = eval('(' + req.responseText + ')');	
+				console.log(doc);	
+				socialVisInstance.generateSocialVisFromServlet(doc);			
+			}
+		} 
+	}
+
+	//useless
+	//invoke functio nof socialVis to show the chosen node's history path
+	function showNodePathInvoker(){
+		var parameter = $("#nodePathText").val();
+		console.log("Start show node path");
+		socialVisInstance.showNodePath(parameter);
+	}
+
+	//useless
+	//quit the highlight node path
+	function quitShowPathInvoker(){
+		console.log("Quit show path");
+		socialVisInstance.quitShowPath();
+	}
+
+	//stop the transition process
+	function stopTransitionInvoker(){
+		socialVisInstance.stopTransition();
+	}
+
+	//resume the transition process
+	function resumeTransitionInvoker(){
+		socialVisInstance.resumeTransition();
+	}
+
+	//jump transition to the day user choose
+	function jumpTransitionInvoker(){
+		var parameter = $("#chooseTransitionText").val();
+		socialVisInstance.jumpTransition(parameter);
+	}
+
+
+
 </script>
 
+
+
+<div id="mainContainer">
+
+<div id = "leftPanel">
+	<div id = "dateText">
+		&nbsp;
+	</div>
+	<br>
+
+	<div id = "queryForm">
+		<table>
+			<tr><td>Start date: </td><td><input type="text" id="startDate" placeholder="2014-07-01" ></td></tr>
+			<tr><td>End date: </td><td><input type="text" id="endDate" placeholder="2014-07-20" ></td></tr>
+			<tr><td>Numbers: </td><td><input type = "text" id = "pNumbers" placeholder = "Numbers split by /" ></td></tr>
+			<tr><td>Max node: </td><td><input type = "text", id = "maxNode" placeholder = "number of shown node"></td></tr>
+		</table>
+		<input type="button" value = "Search" onclick="executeQuery()">
+	</div>
+	<br>
+
+	<div id = "chooseTransitionDayForm">
+		<table>
+			<tr>
+				<td><input type="text" id="chooseTransitionText" placeholder="transition No." ></td>
+				<td><input type="button" value = "Jump" onclick="jumpTransitionInvoker()"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id = "pauseTransitionForm">
+		<table>
+			<tr><td><input type="button" value = "Stop" onclick="stopTransitionInvoker()"></td><td><input type="button" value = "Resume" onclick="resumeTransitionInvoker()"></td></tr>
+		</table>
+	</div>
+	<br><hr><br>
+
+	<div id = "nodeHistory">
+	</div>
+
+</div>
+
+<div id = "rightPanel">
+</div>
+
+</div>
+
+
 <div id = "nodeToolTip" class="hidden">
-	<p><strong>Properties</strong></p>
-	<p>Id: <span id="term1"></span></p>
-	<p>Cluster: <span id="term2"></span></p>
-	<p>Label: <span id="term3"></span></p>
 </div>
-<div id = "queryForm" class="hidden">
-<form>
-	<p>Start date: <input type="text" id="startDate" placeholder="07/01/2014" ></p>
-	<p>End date: <input type="text" id="endDate" placeholder="07/20/2014" ></p>
-	<p>Phone numbers: <input type = "text" id = "pNumbers" placeholder = "Numbers split by |" ></p>
-	<p>Max node: <input type = "text", id = "maxNode" placeholder = "number of shown node" ></p>
-	<input type="button" value = "Search" onclick="executeQuery()">
-</form>
+
+<div id = "clusterToolTip" class="hidden">
 </div>
+
 </body>
 </html>
 

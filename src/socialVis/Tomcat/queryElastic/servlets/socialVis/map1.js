@@ -15,16 +15,25 @@ WorldMap = function(svgInstance){
 	var scaleExtent = null;
 	var tlast = null;
 	var slast = null;
-	var counties = null;
+	var stateG = null;
+	var countyG = null;
+	var nationG = null;
+	var mapSvg = null;
 	var states = null;
+	var counties = null;
 
 	function initialize(){
 		width = window.innerWidth;
 	    height = window.innerHeight;
 	    rotate = 60,        // so that [-60, 0] becomes initial center of projection
 	    maxlat = 83;        // clip northern and southern poles (infinite in mercator)
-		counties = false;
-        states = false;
+	    states = false;
+	    counties = false;
+	    mapSvg = svg.append("svg")
+        stateG = mapSvg.append("g")
+        countyG = mapSvg.append("g")
+        nationG = mapSvg.append("g")
+
 		projection = d3.geo.mercator()
 		    .rotate([rotate,0])
 		    .scale(1)           
@@ -47,16 +56,44 @@ WorldMap = function(svgInstance){
 		path = d3.geo.path()
 		    .projection(projection);
 
-		svg.call(zoom);
-
-		d3.json("map/world-110m2.json", function ready(error, world) {
-
-		    svg.selectAll('path')
+  		mapSvg.call(zoom);
+		
+		d3.json("map/world-110m2.json", function(error, world) {
+		    nationG.attr("id", "map")
+		    	.selectAll('path')
 		        .data(topojson.feature(world, world.objects.countries).features)
-		      	.enter().append('path')
-		    
-		    redraw();       // update path data
+		      	.enter()
+		      	.append('path')
+		      	.attr("d", path);
 		});
+
+		d3.json("map/states_" + "usa" + ".topo.json", function(error, us) {
+            stateG.attr("id", "states")
+            	// .attr("opacity", 0)
+		        .selectAll(".statespath")
+		        .data(topojson.feature(us, us.objects.states).features)
+		        .enter()
+		        .append("path")
+		        .attr("id", function(d) {
+		            return d.id;
+		        })
+		        .attr("class", "statespath")
+		        .attr("d", path);
+	    });
+
+	    d3.json("map/counties_" + "usa" + ".topo.json", function(error, us) {
+         	countyG.attr("id", "counties")
+         		// .attr("opacity", 0)
+	          	.selectAll(".countiespath")
+	          	.data(topojson.feature(us, us.objects.counties).features)
+	           	.enter()
+	           	.append("path")
+	          	.attr("id", function(d) {
+	              	return d.id;
+	           	})
+	          	.attr("class", "countiespath")
+	          	.attr("d", path);
+	    });
 
 		// track last translation and scale event we processed
 		tlast = [0,0];
@@ -64,6 +101,7 @@ WorldMap = function(svgInstance){
 	}
 
 	function redraw() {
+		console.log("redraw")
 	    if (d3.event) { 
 	        var scale = d3.event.scale,
 	            t = d3.event.translate;                
@@ -95,67 +133,53 @@ WorldMap = function(svgInstance){
 	    var zoomScale = zoom.scale() / 300;
 
 	    if (zoomScale > 2 && zoomScale < 4) {
-            if (!states) {
-                d3.json("map/states_" + "usa" + ".topo.json", function(error, us) {
-                    svg.append("g")
-	                   	.attr("id", "states")
-	                   	.selectAll(".statespath")
-	                   	.data(topojson.feature(us, us.objects.states).features)
-	                   	.enter()
-	                   	.append("path")
-	                  	.attr("id", function(d) {
-	                  		return d.id;
-	                	})
-	                   	.attr("class", "state")
-	                  	.attr("d", path);
-                 	states = true;
-                  	svg.selectAll(".graph, #states").sort(function(a,b){
-						if(a != undefined && b==undefined) //a:state,b:graph
-							return 1;
-						else 
-							return -1;
-					});
-                });
-            }
-            if(counties){
-          		svg.selectAll(["#counties"])
-          			.remove();
-             	counties = false;
-          	}
+	    	if (!states){
+	            stateG.moveToFront()
+	            	.transition()
+	            	.duration(500)
+	            	.attr("opacity", 1)
+	            states = true;
+	        }
+	        if (counties){
+		    	countyG.transition()
+		    		.duration(300)
+		    		.attr("opacity", 0)
+		    	counties = false;
+	        }
 		} 
-        else if (zoomScale < 2 && states) {
-          	svg.selectAll(["#states"])
-          		.remove();
-          	states = false;
+        else if (zoomScale < 2) {
+        	if (states){
+        		stateG.transition()
+	            	.duration(300)
+	            	.attr("opacity", 0)
+	            states = false;
+            }
+            if (counties){
+	        	countyG.transition()
+		    		.duration(300)
+		    		.attr("opacity", 0)
+		    	counties = false;
+		    }            
       	} 
        	else if (zoomScale > 4) {
-           	if(!counties){
-              	d3.json("map/counties_" + "usa" + ".topo.json", function(error, us) {
-                   	svg.append("g")
-	                   	.attr("id", "counties")
-	                    .selectAll(".countiespath")
-	                   	.data(topojson.feature(us, us.objects.counties).features)
-	                  	.enter()
-	                  	.append("path")
-	                   	.attr("id", function(d) {
-	                        return d.id;
-	                   	})
-	                 	.attr("class", "county")
-	                   	.attr("d", path);
-                  	counties = true;
-                  	svg.selectAll(".graph, #states, #counties").sort(function(a,b){
-						if(a != undefined && b==undefined) //a:state,b:graph
-							return 1;
-						else 
-							return -1;
-					});    
-               	});
-           	}
+       		if (states){
+	            stateG.transition()
+	            	.duration(300)
+	            	.attr("opacity", 0)
+	            states = false;
+	        }
+            if (!counties){
+	           	countyG.moveToFront()
+	           		.transition()
+		    		.duration(500)
+		    		.attr("opacity", 1)
+		    	counties = true;
+		    }
+	    		
        	}
-	    
-	    svg.selectAll('path')       // re-project path data
-	        .attr('d', path);
-
+	   
+       	mapSvg.selectAll("path")
+       		.attr("d", path);
 	    //notify force layout to change coordination
 	    socialVisInstance.mapScaleChange(zoomScale);
 	}
@@ -171,7 +195,7 @@ WorldMap = function(svgInstance){
 	}
 
 	function getCoordinates(geoCode) {
-        return projection([geoCode.lon, geoCode.lat]);
+        return projection([geoCode.long, geoCode.lat]);
     }
 
     //move element to the back of its parent's children
@@ -184,6 +208,12 @@ WorldMap = function(svgInstance){
 	    });    //move component to the down of svg
 	};
 
+	//move element to the top of its parent's children
+	d3.selection.prototype.moveToFront = function() {
+	  	return this.each(function(){
+	    	this.parentNode.appendChild(this);
+	  	});   //move component to the up of svg
+	};
 
 
 	//================================================================================================================
