@@ -1,0 +1,498 @@
+{
+   "took": 226,
+   "timed_out": false,
+   "_shards": {
+      "total": 105,
+      "successful": 105,
+      "failed": 0
+   },
+   "hits": {
+      "total": 5626818,
+      "max_score": 0,
+      "hits": []
+   },
+   "aggregations": {
+      "popular_phones": {
+         "doc_count_error_upper_bound": 0,
+         "sum_other_doc_count": 0,
+         "buckets": [
+            {
+               "key": "California",
+               "doc_count": 886489
+            },
+            {
+               "key": "Texas",
+               "doc_count": 429081
+            },
+            {
+               "key": "Florida",
+               "doc_count": 403238
+            },
+            {
+               "key": "New York",
+               "doc_count": 344233
+            },
+            {
+               "key": "Ontario",
+               "doc_count": 298140
+            },
+            {
+               "key": "North Carolina",
+               "doc_count": 171204
+            },
+            {
+               "key": "Illinois",
+               "doc_count": 145373
+            },
+            {
+               "key": "Pennsylvania",
+               "doc_count": 145084
+            },
+            {
+               "key": "Arizona",
+               "doc_count": 144330
+            },
+            {
+               "key": "New Jersey",
+               "doc_count": 141546
+            },
+            {
+               "key": "Georgia",
+               "doc_count": 138581
+            },
+            {
+               "key": "Washington",
+               "doc_count": 131042
+            },
+            {
+               "key": "Massachusetts",
+               "doc_count": 130963
+            },
+            {
+               "key": "Ohio",
+               "doc_count": 124598
+            },
+            {
+               "key": "Colorado",
+               "doc_count": 116347
+            },
+            {
+               "key": "District Of Columbia",
+               "doc_count": 115550
+            },
+            {
+               "key": "Alberta",
+               "doc_count": 115429
+            },
+            {
+               "key": "Michigan",
+               "doc_count": 109174
+            },
+            {
+               "key": "Virginia",
+               "doc_count": 102394
+            },
+            {
+               "key": "Tennessee",
+               "doc_count": 89195
+            },
+            {
+               "key": "Louisiana",
+               "doc_count": 88800
+            },
+            {
+               "key": "Missouri",
+               "doc_count": 87733
+            },
+            {
+               "key": "Alabama",
+               "doc_count": 85710
+            },
+            {
+               "key": "South Carolina",
+               "doc_count": 73166
+            },
+            {
+               "key": "Wisconsin",
+               "doc_count": 72684
+            },
+            {
+               "key": "Maryland",
+               "doc_count": 71341
+            },
+            {
+               "key": "Connecticut",
+               "doc_count": 70796
+            },
+            {
+               "key": "Oregon",
+               "doc_count": 62388
+            },
+            {
+               "key": "Indiana",
+               "doc_count": 56553
+            },
+            {
+               "key": "Nevada",
+               "doc_count": 53958
+            },
+            {
+               "key": "Minnesota",
+               "doc_count": 50166
+            },
+            {
+               "key": "Mississippi",
+               "doc_count": 47706
+            },
+            {
+               "key": "Quebec",
+               "doc_count": 45113
+            },
+            {
+               "key": "Iowa",
+               "doc_count": 42425
+            },
+            {
+               "key": "British Columbia",
+               "doc_count": 41574
+            },
+            {
+               "key": "Kentucky",
+               "doc_count": 40690
+            },
+            {
+               "key": "Arkansas",
+               "doc_count": 39874
+            },
+            {
+               "key": "Oklahoma",
+               "doc_count": 38805
+            },
+            {
+               "key": "Utah",
+               "doc_count": 33322
+            },
+            {
+               "key": "New Mexico",
+               "doc_count": 29998
+            },
+            {
+               "key": "Kansas",
+               "doc_count": 25184
+            },
+            {
+               "key": "Saskatchewan",
+               "doc_count": 23583
+            },
+            {
+               "key": "S",
+               "doc_count": 17894
+            },
+            {
+               "key": "North Dakota",
+               "doc_count": 17873
+            },
+            {
+               "key": "Idaho",
+               "doc_count": 17173
+            },
+            {
+               "key": "Hawaii",
+               "doc_count": 17117
+            },
+            {
+               "key": "West Virginia",
+               "doc_count": 16426
+            },
+            {
+               "key": "Nebraska",
+               "doc_count": 16105
+            },
+            {
+               "key": "New Hampshire",
+               "doc_count": 12080
+            },
+            {
+               "key": "Maine",
+               "doc_count": 9997
+            },
+            {
+               "key": "Alaska",
+               "doc_count": 9630
+            },
+            {
+               "key": "Manitoba",
+               "doc_count": 7975
+            },
+            {
+               "key": "Rhode Island",
+               "doc_count": 5132
+            },
+            {
+               "key": "Puerto Rico",
+               "doc_count": 2814
+            },
+            {
+               "key": "Delaware",
+               "doc_count": 2113
+            },
+            {
+               "key": "Nova Scotia",
+               "doc_count": 2022
+            },
+            {
+               "key": "Vermont",
+               "doc_count": 2012
+            },
+            {
+               "key": "Australia",
+               "doc_count": 1604
+            },
+            {
+               "key": "New Brunswick",
+               "doc_count": 1303
+            },
+            {
+               "key": "Montana",
+               "doc_count": 1285
+            },
+            {
+               "key": "UK",
+               "doc_count": 991
+            },
+            {
+               "key": "South Dakota",
+               "doc_count": 633
+            },
+            {
+               "key": "Wyoming",
+               "doc_count": 619
+            },
+            {
+               "key": "Maharashtra",
+               "doc_count": 67
+            },
+            {
+               "key": "Mexico",
+               "doc_count": 55
+            },
+            {
+               "key": "Hong Kong",
+               "doc_count": 24
+            },
+            {
+               "key": "Chandigarh",
+               "doc_count": 19
+            },
+            {
+               "key": "National Capital Region",
+               "doc_count": 18
+            },
+            {
+               "key": "Federal District",
+               "doc_count": 15
+            },
+            {
+               "key": "Karnataka",
+               "doc_count": 13
+            },
+            {
+               "key": "ES",
+               "doc_count": 10
+            },
+            {
+               "key": "Gujarat",
+               "doc_count": 10
+            },
+            {
+               "key": "Oslo",
+               "doc_count": 10
+            },
+            {
+               "key": "West Bengal",
+               "doc_count": 10
+            },
+            {
+               "key": "Barcelona",
+               "doc_count": 9
+            },
+            {
+               "key": "DU",
+               "doc_count": 8
+            },
+            {
+               "key": "Delhi",
+               "doc_count": 8
+            },
+            {
+               "key": "Kamataka",
+               "doc_count": 8
+            },
+            {
+               "key": "Mnl",
+               "doc_count": 8
+            },
+            {
+               "key": "Baja California",
+               "doc_count": 7
+            },
+            {
+               "key": "Buenos Aires",
+               "doc_count": 7
+            },
+            {
+               "key": "New South Wales",
+               "doc_count": 7
+            },
+            {
+               "key": "Santiago Metropolitan Region",
+               "doc_count": 7
+            },
+            {
+               "key": "Tamil Nadu",
+               "doc_count": 7
+            },
+            {
+               "key": "Western Cape",
+               "doc_count": 7
+            },
+            {
+               "key": "LI",
+               "doc_count": 6
+            },
+            {
+               "key": "Madrid",
+               "doc_count": 6
+            },
+            {
+               "key": "Kwazulu Natal",
+               "doc_count": 5
+            },
+            {
+               "key": "M Laga",
+               "doc_count": 5
+            },
+            {
+               "key": "Queensland",
+               "doc_count": 5
+            },
+            {
+               "key": "Andhra Pradesh",
+               "doc_count": 4
+            },
+            {
+               "key": "Australian Capital Territory",
+               "doc_count": 4
+            },
+            {
+               "key": "Bahia",
+               "doc_count": 4
+            },
+            {
+               "key": "Bfs",
+               "doc_count": 4
+            },
+            {
+               "key": "Gauteng",
+               "doc_count": 4
+            },
+            {
+               "key": "Jalisco",
+               "doc_count": 4
+            },
+            {
+               "key": "KA",
+               "doc_count": 4
+            },
+            {
+               "key": "Lnd",
+               "doc_count": 4
+            },
+            {
+               "key": "Madhya Pradesh",
+               "doc_count": 4
+            },
+            {
+               "key": "Munster",
+               "doc_count": 4
+            },
+            {
+               "key": "North Holland",
+               "doc_count": 4
+            },
+            {
+               "key": "Northern Ireland",
+               "doc_count": 4
+            },
+            {
+               "key": "Pernambuco",
+               "doc_count": 4
+            },
+            {
+               "key": "Porto",
+               "doc_count": 4
+            },
+            {
+               "key": "Rajasthan",
+               "doc_count": 4
+            },
+            {
+               "key": "Rio De Janeiro",
+               "doc_count": 4
+            },
+            {
+               "key": "Rio Grande Do Sul",
+               "doc_count": 4
+            },
+            {
+               "key": "S Dermanland Uppland",
+               "doc_count": 4
+            },
+            {
+               "key": "S O Paulo",
+               "doc_count": 4
+            },
+            {
+               "key": "Victoria",
+               "doc_count": 4
+            },
+            {
+               "key": "Newfoundland And Labrador",
+               "doc_count": 3
+            },
+            {
+               "key": "BE",
+               "doc_count": 2
+            },
+            {
+               "key": "J75",
+               "doc_count": 2
+            },
+            {
+               "key": "KV",
+               "doc_count": 2
+            },
+            {
+               "key": "Lisbon",
+               "doc_count": 2
+            },
+            {
+               "key": "OL",
+               "doc_count": 2
+            },
+            {
+               "key": "Okinawa",
+               "doc_count": 2
+            },
+            {
+               "key": "PO",
+               "doc_count": 2
+            },
+            {
+               "key": "ZH",
+               "doc_count": 2
+            }
+         ]
+      }
+   }
+}

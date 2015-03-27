@@ -1,0 +1,49 @@
+body{
+	background-color: black;
+}
+
+path:hover {
+}
+
+.graph {} 
+.statespath {}
+
+
+path {
+    stroke: #2a2a2a;
+    stroke-width: 0.25px;
+    fill: #333;
+}
+
+.d3-tip {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:70%;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+#queryForm {
+    background-color: grey;
+    border-radius: 3px;
+    bottom: 0;
+    color: white;
+    height: 270px;
+    left: 0;
+    position: absolute;
+    padding: 5px;
+}

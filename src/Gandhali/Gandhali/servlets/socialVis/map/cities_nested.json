@@ -1,0 +1,217 @@
+[
+  {
+    "key": "1",
+    "values": [
+      {
+        "place": "ATLANTA",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "place": "ATLANTA",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "place": "ATLANTA",
+        "series": "C",
+        "value": "10"
+      },
+      {
+        "place": "ATLANTA",
+        "series": "D",
+        "value": "10"
+      },
+       {
+        "place": "BUFFALO",
+        "series": "A",
+        "value": "10"
+      },
+       {
+        "place": "BUFFALO",
+        "series": "B",
+        "value": "30"
+      },
+       {
+        "place": "BUFFALO",
+        "series": "C",
+        "value": "50"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "A",
+        "value": "20"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "B",
+        "value": "35"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "C",
+        "value": "30"
+      }
+    ]
+  },
+  {
+    "key": "2",
+    "values": [
+      {
+        "place": "BUFFALO",
+        "series": "A",
+        "value": "50"
+      },
+       {
+        "place": "BUFFALO",
+        "series": "B",
+        "value": "10"
+      },
+       {
+        "place": "BUFFALO",
+        "series": "C",
+        "value": "30"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "A",
+        "value": "45"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "B",
+        "value": "15"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "C",
+        "value": "70"
+      },
+      {
+        "place": "TUSCON",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "place": "SAN FRANCISCO",
+        "series": "A",
+        "value": "40"
+      },
+      {
+        "place": "SAN FRANCISCO",
+        "series": "C",
+        "value": "60"
+      },
+      {
+        "place": "SAN FRANCISCO",
+        "series": "D",
+        "value": "20"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "A",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "key": "3",
+    "values": [
+    {
+        "place": "CINCINNATI",
+        "series": "B",
+        "value": "50"
+      },
+      {
+        "place": "CINCINNATI",
+        "series": "C",
+        "value": "20"
+      },
+      {
+        "place": "TUSCON",
+        "series": "B",
+        "value": "55"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "B",
+        "value": "20"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "C",
+        "value": "30"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "D",
+        "value": "40"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "E",
+        "value": "25"
+      }
+    ]
+  },
+  {
+    "key": "4",
+    "values": [
+    {
+        "place": "TUSCON",
+        "series": "C",
+        "value": "45"
+      },
+      {
+        "place": "SAN FRANCISCO",
+        "series": "A",
+        "value": "30"
+      },
+      {
+        "place": "SAN FRANCISCO",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "place": "MINNEAPOLIS",
+        "series": "D",
+        "value": "10"
+      },
+    {
+        "place": "MINNEAPOLIS",
+        "series": "E",
+        "value": "50"
+      },
+      {
+        "place": "SEATTLE",
+        "series": "A",
+        "value": "10"
+      },
+      {
+        "place": "SEATTLE",
+        "series": "B",
+        "value": "10"
+      },
+      {
+        "place": "SEATTLE",
+        "series": "C",
+        "value": "30"
+      }
+    ]
+  },
+  {
+    "key": "5",
+    "values": [
+      {
+        "place": "SEATTLE",
+        "series": "D",
+        "value": "20"
+      },
+      {
+        "place": "SEATTLE",
+        "series": "E",
+        "value": "60"
+      }
+    ]
+  }
+]
