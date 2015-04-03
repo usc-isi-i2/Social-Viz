@@ -19,6 +19,10 @@
 
 	//excute when search button in the form is clicked
 	function executeQuery(){
+		resetTransitionInvoker();
+		// setTimeout(function(){
+		// 	socialVisInstance.generateSocialVis("testElastic/eclipseOutput.json");
+		// }, 3000)
 		var stDate = document.getElementById("startDate").value;
 		var edDate = document.getElementById("endDate").value;
 		var phoneNumbers = document.getElementById("pNumbers").value;
@@ -31,6 +35,7 @@
 		req.send(null);
 	}
 
+	//call back function of AJAX
 	function mycallback(){	
 		if (req.readyState == 4) {
 			//console.log(req.status);
@@ -41,6 +46,11 @@
 				socialVisInstance.generateSocialVisFromServlet(doc);			
 			}
 		} 
+	}
+
+	//reset transition
+	function resetTransitionInvoker(){
+		socialVisInstance.resetTransition();
 	}
 
 	//useless

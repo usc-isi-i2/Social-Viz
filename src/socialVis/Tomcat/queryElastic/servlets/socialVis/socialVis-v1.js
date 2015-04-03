@@ -12,7 +12,6 @@ SocialVis = function(){
 	colorData = null;
 	clustersData = null;
 	datesData = null;
-	forceNodesData = null;
 
 	linksData = null;
 	nodesG = null;
@@ -26,6 +25,7 @@ SocialVis = function(){
 	linkColorScale = null;
 	cScale = null;
 	rScale = null;
+	oScale = null;
 	chargeForceScale = null;
 
 	svg = null;
@@ -37,6 +37,8 @@ SocialVis = function(){
 
 	stopTransitFlag = null;
 	stopTransitBreakIndex = null;
+	initializedFlag = null;
+	resetTransitionFlag = null;
 	currentDateIdx = null;
 	
 
@@ -52,6 +54,8 @@ SocialVis = function(){
 		chargeForceFactor = -15;   							//the charge value of force layout
 		stopTransitFlag = true;								//if transition process need to stop
 		stopTransitBreakIndex = -1;							//record the stop break point
+		initializedFlag = false;							//whether or not the transition is initialized
+		resetTransitionFlag = false;						//whether or not reset the transition
 		currentDateIdx = 0;									//count the times of transition process
 		transitionGapTime = 1500;							//time for each transition
 
@@ -61,6 +65,10 @@ SocialVis = function(){
 		//decide the raduis of node
 		rScale = d3.scale.linear()
 			.range([1,nodeRadius]);
+
+		//decide the opacity of node
+		oScale = d3.scale.linear()
+			.range([0.3, 1]);
 
 		//decide the charge force of ndoe
 		chargeForceScale = d3.scale.linear()
@@ -98,24 +106,25 @@ SocialVis = function(){
 		node = nodesG.selectAll(".node");                		//set of all nodes 
 		comet = nodesG.selectAll(".comet");						//set of all comet
 
-
-		linksData = [];										//data for all links
-		nodesData = [];										//data for all nodes
-		clustersData = [];									//data for clusters
-		datesData = []; 									//data for dates
-		forceNodesData = [];								//data for nodes change their info
-
-
 		force = d3.layout.force()                 			//create force layout
 		    .friction(0.9)                           		//[0,1]  default 1
 		    .gravity(0)                            			//the force to drag nodes to the enter
 		    .size([windowWidth, windowHeight])
 		    .on("tick",tick);
+
+		linksData = [];										//data for all links
+		nodesData = [];										//data for all nodes
+		clustersData = [];									//data for clusters
+		datesData = []; 									//data for dates
 	}
+
 
 
 	//tick function for nodes
 	function tick(e) {
+		if (resetTransitionFlag){
+			return;
+		}
 	    var k = .08 * e.alpha;                      			// Push nodes toward their designated focus. 
 	    node.each(function(d) {  
 	    	if (d.isAppear){
@@ -145,11 +154,9 @@ SocialVis = function(){
 	//draw component and deal with trasition process
 	//index indicate which day's data is used to execute transition
 	function transit(){
-		// if (currentDateIdx >= 5)
-		// 	return;
 		//stop transition, and record break point
 		var idx;
-		if (currentDateIdx == datesData.length || stopTransitFlag){
+		if (currentDateIdx == datesData.length){
 			stopTransitFlag = true;
 			return;
 		}
@@ -174,6 +181,11 @@ SocialVis = function(){
 			setTimeout(function(){
 				transit();
 			}, transitionGapTime);		
+		} 
+		else {
+			if (resetTransitionFlag){
+				resetData();
+			}
 		}
 	}
 
@@ -203,27 +215,54 @@ SocialVis = function(){
 	//draw nodes
 	function setNode(index){
 		node.each(function(d){
+			if (resetTransitionFlag){
+				return;
+			}
 			var obj = d3.select(this)
 			var clusterIdx = d.appear[index];
-			if (clusterIdx != -1 && clusterIdx != d.cluster){
-				d.cluster = clusterIdx;
-				d.changeTimes[index] = ((index == 0) ? 0 : d.changeTimes[index - 1]) + 1;
-
+			if (clusterIdx != d.cluster){
+				//set comet
 				if (!d.isAppear){
 					d.isAppear = true;
 				} else {
-					obj.classed("comet", true)
+					if (d.cluster != -1)
+						obj.classed("comet", true)
 				}
+
+				//set radius based on change times
 				d.radius = rScale(d.changeTimes[index]);
 				obj.transition()
 					.duration(500)
 					.attr("r", d.radius);
+
+				//set coming and leaving of cluster
+				if (d.cluster != -1){
+					var tmpMap = clustersData[d.cluster].leaving;
+					if (!tmpMap.has(clusterIdx)){
+						tmpMap.set(clusterIdx, 0);
+					}
+					tmpMap.set(clusterIdx, tmpMap.get(clusterIdx) + 1);
+					tmpMap = clustersData[clusterIdx].coming;
+					if (!tmpMap.has(d.cluster)){
+						tmpMap.set(d.cluster, 0);
+					}
+					tmpMap.set(d.cluster, tmpMap.get(d.cluster) + 1);
+				}
 			}
 			else {				
 				obj.classed("comet", false);
-				d.changeTimes[index] = (index == 0) ? 0 : d.changeTimes[index - 1];
 			}
+			d.cluster = clusterIdx;
 			d.curChangeTime = d.changeTimes[index];
+
+			//set opacity based on appear times
+			// if (index == 0)
+			// 	d.curPostCount = d.appearTimes[index];
+			// else 
+			// 	d.curPostCount = d.appearTimes[index] - d.appearTimes[index - 1];
+			d.curPostCount = d.appearTimes[index];
+			// obj.attr("opacity", oScale(Math.ceil(Math.log(d.appearTimes[index]))));
+			obj.attr("opacity", oScale(d.curPostCount));
 			// console.log("cluster idx " + d.cluster)
 		})
 	}
@@ -242,7 +281,8 @@ SocialVis = function(){
 	        })
 	        .attr("fill", function(d, i){
 	        	d.cluster = -1;
-	        	d.changeTimes = [];
+	        	d.curPostCount = 0;
+	        	// d.changeTimes = [];
 	        	d.isAppear = false;
 	        	return cScale(d.color);
 	            // return "url(#grad" + d.color + ")";
@@ -263,7 +303,7 @@ SocialVis = function(){
 			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();         
-			    var content = "Id: " + d.id + "<br>City: " + clustersData[d.cluster].city + "<br>Phone: " + d.label;
+			    var content = "Id: " + d.id + "<br>City: " + clustersData[d.cluster].city + "<br>Phone: " + d.label + "<br>postTimes: " + d.curPostCount;
 			    $("#nodeToolTip").html(content);
 			    highlightNodePath(d.id);
 			})
@@ -275,7 +315,6 @@ SocialVis = function(){
 			});
 	}
 
-
 	//draw clusters
 	function initializeClusters(){
 		cluster = cluster.data(clustersData, function(d){
@@ -284,19 +323,21 @@ SocialVis = function(){
 		cluster.enter()
 			.append("circle")
 			.attr("class","cluster")
+			.attr("id", function(d){
+				return "cluster" + d.id;
+			})
 	        .attr("fill", "transparent")
 	        .attr("stroke", function(d, i){
+		    	d.coming = new Map();
+		    	d.leaving = new Map();
 	            return cScale(d.group);
 	        })
 	        .attr("r", clusterRadius)
 	        .attr("stroke-width", 2)   
 	        .attr("stroke-opacity", 0)
 		    .on("mouseover", function(d){
-		    	d.coming = [];
-		    	d.leaving = [];
-
-	            ary = d3.mouse(this);
-			 	//set the tool tip for nodes    
+			 	//set the tool tip for nodes 
+	            ary = d3.mouse(this);   
 			    d3.select("#clusterToolTip")
 			    	.style("left", (ary[0] + 10) + "px")              
 			        .style("top",(ary[1] + 10) + "px")
@@ -304,17 +345,45 @@ SocialVis = function(){
 			        .moveToFront();  
 			    var content = "Id: " + d.id + "<br>State: " + d.state + "<br>City: " + d.city;
 			    $("#clusterToolTip").html(content);
-
 			    d3.select(this)
 			    	.attr("stroke-opacity", 0.8)
+
+				//hightlight coming and leaving path
+				d.coming.forEach(function(value, key){
+					linksG.append("line")
+						.attr("class", "clusterPath")
+						.attr("stroke-width", 2)
+			            .attr("stroke", "red")
+			            .attr("stroke-opacity", 0.8)
+			            .attr("x1", clustersData[key].x)
+			            .attr("y1", clustersData[key].y)
+			            .attr("x2", d.x)
+			            .attr("y2", d.y)
+				});
+				d.leaving.forEach(function(value, key){
+					linksG.append("line")
+						.attr("class", "clusterPath")
+						.attr("stroke-width", 2)
+			            .attr("stroke", "blue")
+			            .attr("stroke-opacity", 0.8)
+			            .attr("x1", clustersData[key].x + 2)
+			            .attr("y1", clustersData[key].y + 2)
+			            .attr("x2", d.x + 2)
+			            .attr("y2", d.y + 2)
+				});
+		        linksG.moveToFront();
 	        }) 
 	        .on("mouseout", function(d){
-	          	d3.select("#clusterToolTip")               //hide the tool tip for nodes 
+	        	//hide the tool tip for nodes
+	          	d3.select("#clusterToolTip")                
 			        .classed("hidden", true)
 			        .moveToBack();
-
 			    d3.select(this)
 			    	.attr("stroke-opacity", 0)
+
+			    //delete coming and leaving highlighted path
+			    d3.selectAll(".clusterPath")
+					.remove();
 	        })
 	        //.call(forceCluster.drag);
 	    cluster.exit()
@@ -415,6 +484,35 @@ SocialVis = function(){
 			.text(Math.round(ary[0]) + ", " + Math.round(ary[1]))
 	}
 
+	//reset variables for new query.
+	function resetTransit(){
+		if (!initializedFlag){
+			return;
+		}
+		console.log("Reset transition");
+		if (stopTransitFlag){
+			resetData();
+		} else {
+			stopTransitFlag = true;
+			resetTransitionFlag = true;
+		}
+	}
+
+	//reset data for next query
+	function resetData(){
+		force.stop();
+		node.transition()
+			.duration(300)
+			.attr("opacity", 0)
+			.remove();
+		node = node.data([]);
+		cluster.remove();
+		cluster = cluster.data([]);
+		initializedFlag = false;
+		resetTransitionFlag = false;
+		console.log("Reset data");
+	}
+
 	//stop transition
 	function stopTransit(){
 		if (stopTransitFlag){
@@ -437,7 +535,7 @@ SocialVis = function(){
 	//also stop transition
 	function highlightNodePath(id){
 		var nodeId = id;
-		console.log("Highlight node path " + nodeId);
+		// console.log("Highlight node path " + nodeId);
 		//retrieve node's path from former data
 		var historyText = "";
 		var edIdx = Math.min(currentDateIdx, datesData.length - 1);
@@ -452,7 +550,6 @@ SocialVis = function(){
 				historyText += "<span>" + datesData[i] + " : to " + clustersData[cltIdx].city + "</span><br>";
 				linksG.append("line")
 					.attr("class", "nodePath")
-					.attr("class", "line")
 					.attr("stroke-width", 2)
 		            .attr("stroke", cScale(nodesData[nodeId].color))
 		            .attr("stroke-opacity", 0.8)
@@ -470,10 +567,10 @@ SocialVis = function(){
 	//quit highlight node path and resume transition
 	function quithighlightNodePath(id){
 		$("#nodeHistory").html("");
-		console.log("Delete highlight node path " + id);
+		// console.log("Delete highlight node path " + id);
 
-		d3.selectAll("line")
-			.attr("opacity", 0)
+		d3.selectAll(".nodePath")
+			// .attr("opacity", 0)
 			.remove();
 	}
 
@@ -513,12 +610,16 @@ SocialVis = function(){
 		initializeClusters();
 		updateClusters(1);
 		initializeNodes();
+		// oScale.domain([1, Math.ceil(Math.log(datesData.length))]);
+		oScale.domain([1, datesData.length * 3]);
 		rScale.domain([0, datesData.length / 2 + 1]);
 		chargeForceScale.domain([0, datesData.length / 2 + 1]);
+		currentDateIdx = 0;
 
 		setTimeout(function(){
 			pos.moveToFront();	
-			stopTransitFlag = false;		
+			stopTransitFlag = false;	
+			initializedFlag = true;	
 			transit();
 		}, 1000);
 	}
@@ -561,5 +662,9 @@ SocialVis = function(){
 
 	this.jumpTransition = function(val){
 		jumpTransit(val);
+	}
+
+	this.resetTransition = function(){
+		resetTransit();
 	}
 };

@@ -262,6 +262,8 @@ public class queryServlet extends HttpServlet {
 	}
 	
 	
+	
+
 	public class ElasticToSchema1{
 		private String queryRes, geoPath;
 		private JSONObject result = new JSONObject();
@@ -333,12 +335,29 @@ public class queryServlet extends HttpServlet {
 					nodeObj.put("id", node.id);
 					nodeObj.put("color", node.color);
 					JSONArray appearAry = new JSONArray();
+					JSONArray changeTimes = new JSONArray();
+					JSONArray appearTimes = new JSONArray();
+					int pre = -1, count = 0, preTime = 0;
 					for (int i = 0; i < sortDate.size(); i++){
 						if (node.appear.containsKey(sortDate.get(i)))
 							appearAry.put(node.appear.get(sortDate.get(i)));
-						else appearAry.put(-1);
+						else appearAry.put(pre);
+						
+						int last = appearAry.getInt(appearAry.length() - 1);
+						if (last != pre && last != -1){
+							pre = last;
+							count++;
+						}
+						changeTimes.put(count);
+						
+						if (node.appearTimes.containsKey(sortDate.get(i))){
+							preTime += node.appearTimes.get(sortDate.get(i));
+						}
+						appearTimes.put(preTime);
 					}
+					nodeObj.put("changeTimes", changeTimes);
 					nodeObj.put("appear", appearAry);
+					nodeObj.put("appearTimes", appearTimes);
 					nodeAry.put(nodeObj);
 				}
 				this.result.put("nodes", nodeAry);
@@ -379,8 +398,12 @@ public class queryServlet extends HttpServlet {
 						this.nodeMap.put(phone, node);
 					}
 					Node node = this.nodeMap.get(phone);
-					if (!node.appear.containsKey(date))
+					if (!node.appear.containsKey(date)){
 						node.appear.put(date, cltId);
+						node.appearTimes.put(date, 1);
+					} else {
+						node.appearTimes.put(date, node.appearTimes.get(date) + 1);
+					}
 				}
 			} catch (Exception e){
 				e.printStackTrace();
@@ -421,6 +444,7 @@ public class queryServlet extends HttpServlet {
 			int id, color;
 			String label;
 			Map<String, Integer> appear = new HashMap<String, Integer>();
+			Map<String, Integer> appearTimes = new HashMap<String, Integer>();
 			Node(String l, int i, int c){
 				label = l;
 				id = i;
