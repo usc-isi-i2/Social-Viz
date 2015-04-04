@@ -130,21 +130,15 @@ SocialVis = function(){
 	    	if (d.isAppear){
 		    	var diffx = clustersData[d.cluster].x - d.x;
 		    	var diffy = clustersData[d.cluster].y - d.y;  
-		        // var distance = Math.sqrt(diffx * diffx + diffy * diffy);
-		        // if (d.isComet && distance < cometRemoveThreshold){
-		        // 	d3.select(this)
-		        // 		.classed("comet", false);
-		        // 	d.isComet = false;
-		        // }
 		        d.x += diffx * k;
 		        d.y += diffy * k;
 		        d3.select(this)	 
 			        .attr("cx", function(d) { 
-				    	d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
+				    	// d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
 				    	return d.x;
 				    })
 				    .attr("cy", function(d) { 
-				        d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
+				        // d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
 				        return d.y;
 				    });  
 		    }    
@@ -220,13 +214,14 @@ SocialVis = function(){
 			}
 			var obj = d3.select(this)
 			var clusterIdx = d.appear[index];
-			if (clusterIdx != d.cluster){
+			// if (clusterIdx == - 1)
+			// 	console.log(index + " " + d.id)
+			if (clusterIdx != -1 && clusterIdx != d.cluster){
 				//set comet
 				if (!d.isAppear){
 					d.isAppear = true;
 				} else {
-					if (d.cluster != -1)
-						obj.classed("comet", true)
+					obj.classed("comet", true)
 				}
 
 				//set radius based on change times
@@ -235,8 +230,8 @@ SocialVis = function(){
 					.duration(500)
 					.attr("r", d.radius);
 
-				//set coming and leaving of cluster
-				if (d.cluster != -1){
+				//set coming and leaving of cluste
+				if (clusterIdx != -1 && d.cluster != -1){
 					var tmpMap = clustersData[d.cluster].leaving;
 					if (!tmpMap.has(clusterIdx)){
 						tmpMap.set(clusterIdx, 0);
@@ -415,6 +410,19 @@ SocialVis = function(){
 	    		return d.y;
 	    	});
 
+	    // node.each(function(d){
+	    // 	if (!d.isAppear){
+	    // 		d.x = clustersData[d.color].x;
+	    // 		d.y = clustersData[d.color].y;
+	    // 	} else {
+	    // 		d.x = clustersData[d.cluster].x;
+	    // 		d.y = clustersData[d.cluster].y;
+	    // 	}
+	    // 	d3.select(this)
+	    // 		.attr("cx", d.x)
+	    // 		.attr("cy", d.y);
+	    // })
+
 	    force.start();
 	    clustersG.moveToFront();
 	    nodesG.moveToFront();
@@ -581,18 +589,32 @@ SocialVis = function(){
 			console.log("Invalid jump date");
 			return;
 		}
-		node.transition()
-			.duration(500)
-			.attr("r", function(d){
-				var times = d.changeTimes[dateIdx];
-				if (times == 0)
-					return 0;
-				return rScale(times);
-			})
-		currentDateIdx = dateIdx;
-		stopTransitFlag = false;
-		console.log("Jump transition");
-		transit();
+		// node.transition()
+		// 	.duration(500)
+		// 	.attr("r", function(d){
+		// 		var times = d.changeTimes[dateIdx];
+		// 		if (times == 0)
+		// 			return 0;
+		// 		return rScale(times);
+		// 	})
+		// currentDateIdx = dateIdx;
+		// stopTransitFlag = false;
+		// console.log("Jump transition");
+		// transit();
+		resetTransit();
+		setTimeout(function(d){
+			initializeClusters();
+			updateClusters(1);
+			initializeNodes();
+			currentDateIdx = dateIdx;
+			setTimeout(function(){
+				stopTransitFlag = false;	
+				initializedFlag = true;	
+				transit();
+			}, 1000);
+		}, transitionGapTime);
+		
+
 	}
 
 	//execute once the document loaded
