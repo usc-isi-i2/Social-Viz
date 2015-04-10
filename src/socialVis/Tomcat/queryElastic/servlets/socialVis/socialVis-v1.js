@@ -4,8 +4,8 @@ SocialVis = function(){
 	nodeRadius = null;
 	originRadius = null;
 	clusterRadius = null;
-	cometRemoveThreshold = null;
 	chargeForceFactor = null;
+	tickSpeedFactor = null;
 	transitionGapTime = null;
 	gradNode = null;
 
@@ -27,6 +27,7 @@ SocialVis = function(){
 	rScale = null;
 	oScale = null;
 	chargeForceScale = null;
+	tickSpeedScale = null;
 
 	svg = null;
 	force = null;
@@ -50,8 +51,8 @@ SocialVis = function(){
 		originRadius = 4;									//default node's raduis
 		nodeRadius = 10;									//the node's raduis
 		clusterRadius = 20;									//initial radius of cluster
-		cometRemoveThreshold = 5;                         	//then the distance of comet and its distination less than threshold, remove comet effect
 		chargeForceFactor = -15;   							//the charge value of force layout
+		tickSpeedFactor = 0;								//factor for how faster a node move
 		stopTransitFlag = true;								//if transition process need to stop
 		stopTransitBreakIndex = -1;							//record the stop break point
 		initializedFlag = false;							//whether or not the transition is initialized
@@ -77,6 +78,12 @@ SocialVis = function(){
 		//return color of edge
 		linkColorScale = d3.scale.linear()         
     		.range([originRadius, originRadius * 2.5]);
+
+    	//set the speed for node when tick
+    	tickSpeedScale = d3.scale.linear()
+    		.domain([500, 5000])
+    		.range([0.25, 0.05]);
+    	tickSpeedFactor = tickSpeedScale(transitionGapTime);
 
 		//create svg
 		svg = d3.select("#rightPanel")                          							
@@ -130,15 +137,21 @@ SocialVis = function(){
 	    	if (d.isAppear){
 		    	var diffx = clustersData[d.cluster].x - d.x;
 		    	var diffy = clustersData[d.cluster].y - d.y;  
+		        // var distance = Math.sqrt(diffx * diffx + diffy * diffy);
+		        // if (d.isComet && distance < cometRemoveThreshold){
+		        // 	d3.select(this)
+		        // 		.classed("comet", false);
+		        // 	d.isComet = false;
+		        // }
 		        d.x += diffx * k;
 		        d.y += diffy * k;
 		        d3.select(this)	 
 			        .attr("cx", function(d) { 
-				    	// d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
+				    	d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
 				    	return d.x;
 				    })
 				    .attr("cy", function(d) { 
-				        // d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
+				        d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
 				        return d.y;
 				    });  
 		    }    
@@ -214,7 +227,10 @@ SocialVis = function(){
 			}
 			var obj = d3.select(this)
 			var clusterIdx = d.appear[index];
-			// if (clusterIdx == - 1)
+			
+			//set cumulative distance
+			d.distanceAry[index] = index == 0 ? 0 : d.distanceAry[index - 1];
+
 			// 	console.log(index + " " + d.id)
 			if (clusterIdx != -1 && clusterIdx != d.cluster){
 				//set comet
@@ -222,6 +238,11 @@ SocialVis = function(){
 					d.isAppear = true;
 				} else {
 					obj.classed("comet", true)
+
+					//update cumulative distance
+					var pre = clustersData[d.appear[index - 1]];
+					var cur = clustersData[d.appear[index]];
+					d.distanceAry[index] += getDistanceFromLatLonInKm(pre.lat, pre.lon, cur.lat, cur.lon);
 				}
 
 				//set radius based on change times
@@ -247,16 +268,11 @@ SocialVis = function(){
 			else {				
 				obj.classed("comet", false);
 			}
+
 			d.cluster = clusterIdx;
 			d.curChangeTime = d.changeTimes[index];
-
-			//set opacity based on appear times
-			// if (index == 0)
-			// 	d.curPostCount = d.appearTimes[index];
-			// else 
-			// 	d.curPostCount = d.appearTimes[index] - d.appearTimes[index - 1];
+			d.distance = d.distanceAry[index];			
 			d.curPostCount = d.appearTimes[index];
-			// obj.attr("opacity", oScale(Math.ceil(Math.log(d.appearTimes[index]))));
 			obj.attr("opacity", oScale(d.curPostCount));
 			// console.log("cluster idx " + d.cluster)
 		})
@@ -277,6 +293,8 @@ SocialVis = function(){
 	        .attr("fill", function(d, i){
 	        	d.cluster = -1;
 	        	d.curPostCount = 0;
+	        	d.distanceAry = [];
+	        	d.distance = 0;
 	        	// d.changeTimes = [];
 	        	d.isAppear = false;
 	        	return cScale(d.color);
@@ -298,7 +316,7 @@ SocialVis = function(){
 			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();         
-			    var content = "Id: " + d.id + "<br>City: " + clustersData[d.cluster].city + "<br>Phone: " + d.label + "<br>postTimes: " + d.curPostCount;
+			    var content = "Id: " + d.id + "<br>City: " + clustersData[d.cluster].city + "<br>Phone: " + d.label + "<br>postTimes: " + d.curPostCount + "<br>Distance: " + Math.ceil(d.distance);
 			    $("#nodeToolTip").html(content);
 			    highlightNodePath(d.id);
 			})
@@ -410,19 +428,6 @@ SocialVis = function(){
 	    		return d.y;
 	    	});
 
-	    // node.each(function(d){
-	    // 	if (!d.isAppear){
-	    // 		d.x = clustersData[d.color].x;
-	    // 		d.y = clustersData[d.color].y;
-	    // 	} else {
-	    // 		d.x = clustersData[d.cluster].x;
-	    // 		d.y = clustersData[d.cluster].y;
-	    // 	}
-	    // 	d3.select(this)
-	    // 		.attr("cx", d.x)
-	    // 		.attr("cy", d.y);
-	    // })
-
 	    force.start();
 	    clustersG.moveToFront();
 	    nodesG.moveToFront();
@@ -446,7 +451,20 @@ SocialVis = function(){
 	  	});   //move component to the up of svg
 	};
 
-	
+	//Calculate distance of two geo locations
+	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+	  var R = 6371; // Radius of the earth in km
+	  var dLat = (Math.PI/180) * (lat2-lat1); 
+	  var dLon = (Math.PI/180) * (lon2-lon1); 
+	  var a = 
+	    Math.sin(dLat/2) * Math.sin(dLat/2) +
+	    Math.cos((Math.PI/180) * (lat1)) * Math.cos((Math.PI/180) * (lat2)) * 
+	    Math.sin(dLon/2) * Math.sin(dLon/2)
+	    ; 
+	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  var d = R * c; // Distance in km
+	  return d;
+	}
 
 	//add tail when node moves, the less the second parameter of timer, the smoother the tail
 	d3.timer(function(){
@@ -548,6 +566,7 @@ SocialVis = function(){
 		var historyText = "";
 		var edIdx = Math.min(currentDateIdx, datesData.length - 1);
 		var pre = -1;
+		var dashgapCount = 2;
 		for (var i = 0; i <= edIdx; i++){
 			var cltIdx = nodesData[nodeId].appear[i];
 			if(pre == -1 && cltIdx != -1){
@@ -559,12 +578,14 @@ SocialVis = function(){
 				linksG.append("line")
 					.attr("class", "nodePath")
 					.attr("stroke-width", 2)
+					.attr("stroke-dasharray", dashgapCount + " " + 4)
 		            .attr("stroke", cScale(nodesData[nodeId].color))
 		            .attr("stroke-opacity", 0.8)
 		            .attr("x1", clustersData[pre].x)
 		            .attr("y1", clustersData[pre].y)
 		            .attr("x2", clustersData[cltIdx].x)
 		            .attr("y2", clustersData[cltIdx].y)
+		        dashgapCount += 2;
 		        linksG.moveToFront();
 				pre = cltIdx;
 			}
@@ -589,32 +610,18 @@ SocialVis = function(){
 			console.log("Invalid jump date");
 			return;
 		}
-		// node.transition()
-		// 	.duration(500)
-		// 	.attr("r", function(d){
-		// 		var times = d.changeTimes[dateIdx];
-		// 		if (times == 0)
-		// 			return 0;
-		// 		return rScale(times);
-		// 	})
-		// currentDateIdx = dateIdx;
-		// stopTransitFlag = false;
-		// console.log("Jump transition");
-		// transit();
-		resetTransit();
-		setTimeout(function(d){
-			initializeClusters();
-			updateClusters(1);
-			initializeNodes();
-			currentDateIdx = dateIdx;
-			setTimeout(function(){
-				stopTransitFlag = false;	
-				initializedFlag = true;	
-				transit();
-			}, 1000);
-		}, transitionGapTime);
-		
-
+		node.transition()
+			.duration(500)
+			.attr("r", function(d){
+				var times = d.changeTimes[dateIdx];
+				if (times == 0)
+					return 0;
+				return rScale(times);
+			})
+		currentDateIdx = dateIdx;
+		stopTransitFlag = false;
+		console.log("Jump transition");
+		transit();
 	}
 
 	//execute once the document loaded
@@ -688,5 +695,15 @@ SocialVis = function(){
 
 	this.resetTransition = function(){
 		resetTransit();
+	}
+
+	this.setTransitionGap = function(val){
+		console.log("Set transition gap time : " + val);
+		transitionGapTime = val;
+		if (val < 5000){
+			tickSpeedFactor = 0.6;
+		} else {
+			tickSpeedFactor = tickSpeedScale(val);
+		}
 	}
 };
