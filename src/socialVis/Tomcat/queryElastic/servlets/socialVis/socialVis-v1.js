@@ -69,7 +69,7 @@ SocialVis = function(){
 
 		//decide the opacity of node
 		oScale = d3.scale.linear()
-			.range([0.3, 1]);
+			.range([0.5, 1.2]);
 
 		//decide the charge force of ndoe
 		chargeForceScale = d3.scale.linear()
@@ -132,26 +132,20 @@ SocialVis = function(){
 		if (resetTransitionFlag){
 			return;
 		}
-	    var k = .08 * e.alpha;                      			// Push nodes toward their designated focus. 
+	    var k = tickSpeedFactor * e.alpha;                      			// Push nodes toward their designated focus. 
 	    node.each(function(d) {  
 	    	if (d.isAppear){
 		    	var diffx = clustersData[d.cluster].x - d.x;
 		    	var diffy = clustersData[d.cluster].y - d.y;  
-		        // var distance = Math.sqrt(diffx * diffx + diffy * diffy);
-		        // if (d.isComet && distance < cometRemoveThreshold){
-		        // 	d3.select(this)
-		        // 		.classed("comet", false);
-		        // 	d.isComet = false;
-		        // }
 		        d.x += diffx * k;
 		        d.y += diffy * k;
 		        d3.select(this)	 
 			        .attr("cx", function(d) { 
-				    	d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
+				    	// d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
 				    	return d.x;
 				    })
 				    .attr("cy", function(d) { 
-				        d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
+				        // d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
 				        return d.y;
 				    });  
 		    }    
@@ -312,7 +306,7 @@ SocialVis = function(){
 	        .on("mouseover", function(d){
 	        	ary = d3.mouse(this);
 			 	d3.select("#nodeToolTip")               //set the tool tip for nodes    
-			        .style("left", (ary[0] + 10) + "px")              
+			        .style("left", (ary[0] + (window.innerWidth - windowWidth) + 10) + "px")              
 			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();         
@@ -352,7 +346,7 @@ SocialVis = function(){
 			 	//set the tool tip for nodes 
 	            ary = d3.mouse(this);   
 			    d3.select("#clusterToolTip")
-			    	.style("left", (ary[0] + 10) + "px")              
+			    	.style("left", (ary[0] + (window.innerWidth - windowWidth) + 10) + "px")              
 			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();  
@@ -427,6 +421,19 @@ SocialVis = function(){
 	    	.attr("cy", function(d){
 	    		return d.y;
 	    	});
+
+	    // node.each(function(d){
+	    // 	if (!d.isAppear){
+	    // 		d.x = clustersData[d.color].x;
+	    // 		d.y = clustersData[d.color].y;
+	    // 	} else {
+	    // 		d.x = clustersData[d.cluster].x;
+	    // 		d.y = clustersData[d.cluster].y;
+	    // 	}
+	    // 	d3.select(this)
+	    // 		.attr("cx", d.x)
+	    // 		.attr("cy", d.y);
+	    // })
 
 	    force.start();
 	    clustersG.moveToFront();
@@ -610,18 +617,20 @@ SocialVis = function(){
 			console.log("Invalid jump date");
 			return;
 		}
-		node.transition()
-			.duration(500)
-			.attr("r", function(d){
-				var times = d.changeTimes[dateIdx];
-				if (times == 0)
-					return 0;
-				return rScale(times);
-			})
-		currentDateIdx = dateIdx;
-		stopTransitFlag = false;
-		console.log("Jump transition");
-		transit();
+		resetTransit();
+		setTimeout(function(d){
+			initializeClusters();
+			updateClusters(1);
+			initializeNodes();
+			currentDateIdx = dateIdx;
+			setTimeout(function(){
+				stopTransitFlag = false;	
+				initializedFlag = true;	
+				transit();
+			}, 1000);
+		}, transitionGapTime);
+		
+
 	}
 
 	//execute once the document loaded

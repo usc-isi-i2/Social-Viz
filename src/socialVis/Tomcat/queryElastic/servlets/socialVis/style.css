@@ -1,3 +1,30 @@
+path {
+  fill: #222;
+  stroke: #666;
+  stroke-width: .5px;
+}
+
+path.state {
+  fill: #222;
+  stroke: #666;
+  stroke-width: .5px;
+}
+
+.country-label{
+  fill: #666;
+  font-family: sans-serif;
+}
+
+.states-label{
+  fill: #888;
+  font-family: sans-serif;
+}
+
+svg {
+  background-color: black;
+  border: 1px solid #777;
+}
+
 #nodeHistory {
     height: 400px;
     float: left;
@@ -20,11 +47,6 @@
   width: 87%;
 }
 
-.bar:hover {
-    fill: white;
-}
-.graph {} 
-.statespath {}
 
 /*#queryForm {
     position: absolute;
@@ -53,7 +75,8 @@
     width: auto;
     height: auto;
     padding: 3px;
-    background-color: #ddd;
+    background-color: rgba(100,200,130,0.8);
+    color: white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -68,7 +91,8 @@
     width: auto;
     height: auto;
     padding: 3px;
-    background-color: #ddd;
+    background-color: rgba(250,50,150,0.8);
+    color: white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -81,33 +105,8 @@
 .hidden {
     display: none;
 }
-      
-#nodeToolTip p {
-    margin: 0;
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 20px;
-}
 
-svg {
-  background-color: black;
-  border: 1px solid #777;
-}
 
-path {
-  fill: #444;
-  stroke: #888;
-  stroke-width: .5px;
-}
 
-path.state {
-  fill: #444;
-  stroke: #bbb;
-  stroke-width: .5px;
-}
 
-path.county {
-  fill: #444;
-  stroke: #eee;
-  stroke-width: .5px;
-}
+ 

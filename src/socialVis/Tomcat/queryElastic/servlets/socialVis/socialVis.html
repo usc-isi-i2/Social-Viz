@@ -5,7 +5,7 @@
 <script type="text/javascript" src="lib/d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="socialVis-v1.js"></script>
 <script type="text/javascript" src="lib/topojson.v1.min.js"></script>
-<script type="text/javascript" src="map.js"></script>
+<script type="text/javascript" src="mapTest1.js"></script>
 
 </head>
 
@@ -31,7 +31,7 @@
 		if (transitionGap == "")
 			transitionGap = 1500;
 		setTransitionGapInvoker(transitionGap);
-		//console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode);
+		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap);
 		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
 		req = new XMLHttpRequest();
 		req.onreadystatechange = mycallback;
@@ -99,6 +99,8 @@
 		
 	}
 
+
+
 </script>
 
 
@@ -131,6 +133,7 @@
 			</tr>
 		</table>
 	</div>
+	<br>
 
 	<div id = "pauseTransitionForm">
 		<table>
