@@ -3,6 +3,9 @@
 
 import org.json.JSONObject;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -44,10 +48,11 @@ public class queryServlet extends HttpServlet {
 			String edDate = request.getParameter("edDate");
 			String phoneNum = request.getParameter("phoneNum");
 			String maxNode = request.getParameter("maxNode");
+			String category = request.getParameter("category");
 			
 			JSONObject obj = new JSONObject();
 			
-			QueryElastic qe = new QueryElastic(stDate, edDate, phoneNum, maxNode);				//query elastic search
+			QueryElastic qe = new QueryElastic(stDate, edDate, phoneNum, maxNode, category);				//query elastic search
 			out.println(qe.getFormattedDate());
 		}
 		catch (Exception e) {
@@ -58,28 +63,51 @@ public class queryServlet extends HttpServlet {
 
 	
 	public class QueryElastic {
-		private String start, end, nums, maxN;
+		private String start, end, nums, maxN, category, categoryQueryString;
 		private JSONObject json;
 
-		public QueryElastic(String stDate, String edDate, String phoneNum, String maxNode){
-			start = stDate;
-			end = edDate;
-			nums = phoneNum;
-			maxN = maxNode;
+		public QueryElastic(String stDate, String edDate, String phoneNum, String maxNode, String cate){
+			this.start = stDate;
+			this.end = edDate;
+			this.nums = phoneNum;
+			this.maxN = maxNode;
+			this.category = cate;
+			switch(this.category){
+		      	case "age":{
+		      		this.categoryQueryString = "hasFeatureCollection.person_age_feature.featureValue";
+		      		break;
+		      	}
+		      	case "ethnicity":{
+		      		this.categoryQueryString = "hasFeatureCollection.person_ethnicity_feature.featureValue";
+		      		break;
+		      	}
+		      	case "eyecolor":{
+		      		this.categoryQueryString = "hasFeatureCollection.person_eyecolor_feature.featureValue";
+		      		break;
+		      	}
+		      	case "haircolor":{
+		      		this.categoryQueryString = "hasFeatureCollection.person_haircolor_feature.featureValue";
+		      		break;
+		      	}
+		      	case "":{
+		      		this.categoryQueryString = "dateCreated";
+		      		break;
+		      	}
+		    }
 		}
 		
 		public String getFormattedDate(){
 			long st = System.currentTimeMillis();
 			String phones = retrieveNum();												//retrieve popular phone numbers
 			String count = this.getQueryCount(phones);									//get the number of result 
-			String res = queryRes(phones, count);												//get query result of these phone numbers
+			String res = queryRes(phones, count);										//get query result of these phone numbers
 			long ed = System.currentTimeMillis();
 			System.out.println("Query takes " + (ed - st) + " ms");
-//			this.writeRes(res, "C:\\wamp\\www\\d3Note\\socialVis\\testElastic\\queryRes.json");
+			this.writeRes(res, "C:\\wamp\\www\\d3Note\\socialVis\\testElastic\\queryRes.json");
 			
 //			String res = this.readRes();
 			
-			ElasticToSchema1 elastic = new ElasticToSchema1(res, "http://localhost:8080/queryElastic/servlets/socialVis/testElastic/dataset/newCityGeo.csv");          //C:\\wamp\\www\\d3Note\\socialVis\\testElastic\\dataset\\
+			ElasticToSchema1 elastic = new ElasticToSchema1(res, "http://localhost:8080/queryElastic/servlets/socialVis/testElastic/dataset/newCityGeo.csv", this.category, this.categoryQueryString);          //C:\\wamp\\www\\d3Note\\socialVis\\testElastic\\dataset\\
 			System.out.println("Finish retrieve data");
 			return elastic.getResult();
 		}
@@ -122,11 +150,16 @@ public class queryServlet extends HttpServlet {
 		
 		public String buildSearchQuery(String phones, String count){									//build query string 
 			StringBuilder sb = new StringBuilder();
-			String part1 = "{\"fields\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\",\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\",\"hasFeatureCollection.phonenumber_feature.phonenumber\", \"dateCreated\",\"hasFeatureCollection.uri\"],\"query\": {\"filtered\": {\"query\": {\"terms\": {\"hasFeatureCollection.phonenumber_feature.phonenumber\": [";
-			String part2 = "]}}, \"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"terms\": {\"hasFeatureCollection.phonenumber_feature.wasGeneratedBy.wasAttributedTo\": [\"http://memex.zapto.org/data/software/extractor/stanford/version/1\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
+			String part0 = "{\"fields\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\",\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\",\"hasFeatureCollection.phonenumber_feature.phonenumber\", \"dateCreated\",\"hasFeatureCollection.uri\"";
+			String part1 = "],\"query\": {\"filtered\": {\"query\": {\"terms\": {\"hasFeatureCollection.phonenumber_feature.phonenumber\": [";
+			String part2 = "]}}, \"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"exists\": {\"field\": [\"" + this.categoryQueryString + "\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
 			String part3 = "\",\"lte\": \"";
 			String part4 = "\"}}}]}}}},\"sort\": { \"dateCreated\": { \"order\": \"asc\" }},\"size\": ";
 			String part5 = "}";
+			sb.append(part0);
+			if (!this.category.equals("")){
+				sb.append(",\"" + this.categoryQueryString + "\"");
+			}
 			sb.append(part1);
 			sb.append(phones);
 			sb.append(part2);
@@ -158,7 +191,7 @@ public class queryServlet extends HttpServlet {
 		public String buildCountQuery(String phones){
 			StringBuilder sb = new StringBuilder();
 			String part1 = "{\"fields\": [],\"query\": {\"filtered\": {\"query\": {\"terms\": {\"hasFeatureCollection.phonenumber_feature.phonenumber\": [";
-			String part2 = "]}}, \"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"terms\": {\"hasFeatureCollection.phonenumber_feature.wasGeneratedBy.wasAttributedTo\": [\"http://memex.zapto.org/data/software/extractor/stanford/version/1\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
+			String part2 = "]}}, \"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"exists\": {\"field\": [\"" + this.categoryQueryString + "\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
 			String part3 = "\",\"lte\": \"";
 			String part4 = "\"}}}]}}}},\"sort\": { \"dateCreated\": { \"order\": \"asc\" }},\"size\": 0}";
 			sb.append(part1);
@@ -215,7 +248,7 @@ public class queryServlet extends HttpServlet {
 		}
 		
 	 	public String buildAggQuery(){													//build aggregation query string
-	 		String part1 = "{\"fields\": [],\"query\": {\"filtered\": {\"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"terms\": {\"hasFeatureCollection.phonenumber_feature.wasGeneratedBy.wasAttributedTo\": [\"http://memex.zapto.org/data/software/extractor/stanford/version/1\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
+	 		String part1 = "{\"fields\": [],\"query\": {\"filtered\": {\"filter\": {\"and\": {\"filters\": [{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality\"]}},{\"exists\": {\"field\": [\"hasFeatureCollection.phonenumber_feature.uri\"]}},{\"exists\": {\"field\": [\"" + this.categoryQueryString + "\"]}},{\"range\": {\"dateCreated\": {\"gte\": \"";
 	 		String part2 = "\",\"lte\":\"";
 			String part3 = "\"}}}]}}}},\"aggs\": {\"popular_phones\": {\"terms\": {\"field\": \"hasFeatureCollection.phonenumber_feature.phonenumber\",\"size\":";
 			String part4 = "}}},\"size\": 0}";
@@ -234,14 +267,20 @@ public class queryServlet extends HttpServlet {
 		
 		private JSONObject executeQuery(String query){									//execute query throw HTTP request
 			try {
-//				String userName = "";
-//				String passWord = "";
-//				String authen = "";				
-//				HttpURLConnection con = (HttpURLConnection) new URL("http://karma-dig-service.cloudapp.net:9090/dig-latest/WebPage/_search").openConnection();
+				String authen = "ZGFycGFtZW1leDpkYXJwYW1lbWV4";
+				HttpsURLConnection con = (HttpsURLConnection) new URL("https://esc.memexproxy.com/dig-latest/WebPage/_search").openConnection();
+				
+				con.setHostnameVerifier(new HostnameVerifier(){
 
-				String authen = "bWVtZXg6ZGlnZGln";
-				HttpURLConnection con = (HttpURLConnection) new URL("http://karma-dig-service.cloudapp.net:9090/dig-latest/WebPage/_search").openConnection();
-
+					@Override
+					public boolean verify(String arg0, SSLSession arg1) {
+						// TODO Auto-generated method stub
+						return true;
+					}
+					
+				});
+				
+				
 				con.setDoOutput(true);
 			    con.setRequestMethod("POST");
 			    con.setRequestProperty("Authorization", "Basic " + authen);
@@ -262,21 +301,22 @@ public class queryServlet extends HttpServlet {
 	}
 	
 	
-	
-
 	public class ElasticToSchema1{
-		private String queryRes, geoPath;
+		private String queryRes, geoPath, category, categoryKey;
 		private JSONObject result = new JSONObject();
 		private Map<String, List<Double>> geoLoc = new HashMap<String, List<Double>>();
 		private Map<String, Node> nodeMap = new HashMap<String, Node>();
 		private Map<String, Cluster> clusterMap = new HashMap<String, Cluster>();
 		private Set<String> dateSet = new HashSet<String>();
 		private Set<String> misGeo = new HashSet<String>();
+		private Map<String, Integer> categoryMap = new HashMap<String, Integer>();
 		
-		public ElasticToSchema1(String queryRes, String geoPath){
+		public ElasticToSchema1(String queryRes, String geoPath, String cate, String cateKey){
 			this.queryRes = queryRes;
 			this.geoPath = geoPath;
-			this.loadGeo(geoPath);
+			this.category = cate;
+			this.categoryKey = cateKey;
+			this.loadGeo(this.geoPath);
 		}
 		
 		public String getResult(){
@@ -295,6 +335,8 @@ public class queryServlet extends HttpServlet {
 			List<String> sortDate = new ArrayList<String>(this.dateSet);
 			Collections.sort(sortDate);
 			try {
+				this.result.put("category", this.category);
+				
 				JSONArray dateAry = new JSONArray();
 				for (String tmp : sortDate){
 					dateAry.put(tmp);
@@ -334,6 +376,7 @@ public class queryServlet extends HttpServlet {
 					nodeObj.put("label", node.label);
 					nodeObj.put("id", node.id);
 					nodeObj.put("color", node.color);
+					nodeObj.put("category", node.nodeCategory);
 					JSONArray appearAry = new JSONArray();
 					JSONArray changeTimes = new JSONArray();
 					JSONArray appearTimes = new JSONArray();
@@ -367,17 +410,18 @@ public class queryServlet extends HttpServlet {
 		}
 		
 		private void loadQueryRes(){
+			JSONObject obj = null;
 			try {
 				JSONObject queryRes = new JSONObject(this.queryRes);
 				JSONArray res = queryRes.getJSONObject("hits").getJSONArray("hits");
 				for (int i = 0; i < res.length(); i++){
-					JSONObject obj = res.getJSONObject(i).getJSONObject("fields");
+					obj = res.getJSONObject(i).getJSONObject("fields");
 					String tmpDate = obj.getJSONArray("dateCreated").getString(0);
 					String date = tmpDate.substring(0, tmpDate.indexOf("T"));
 					String state = obj.getJSONArray("hasFeatureCollection.place_postalAddress_feature.featureObject.addressRegion").getString(0);
 					String city = obj.getJSONArray("hasFeatureCollection.place_postalAddress_feature.featureObject.addressLocality").getString(0);
-					int tmpIdx = 0;//Math.min(obj.getJSONArray("hasFeatureCollection.phonenumber_feature.phonenumber").length(), 1);
-					String phone = obj.getJSONArray("hasFeatureCollection.phonenumber_feature.phonenumber").getString(tmpIdx);
+					String categoryVal = (this.category.equals("")) ? "" : obj.getJSONArray(this.categoryKey).get(0).toString();
+					String phone = obj.getJSONArray("hasFeatureCollection.phonenumber_feature.phonenumber").getString(0);
 					if (!this.dateSet.contains(date))
 						this.dateSet.add(date);
 					String key = state.toLowerCase() + "/" + city.toLowerCase();
@@ -394,7 +438,11 @@ public class queryServlet extends HttpServlet {
 					}
 					int cltId = this.clusterMap.get(key).id;
 					if (!this.nodeMap.containsKey(phone)){
-						Node node = new Node(phone, this.nodeMap.size(), cltId);
+						int color = cltId;
+						if (!this.category.equals("")){
+							color = getCategoryColor(this.category, categoryVal);
+						}
+						Node node = new Node(phone, this.nodeMap.size(), color, categoryVal);
 						this.nodeMap.put(phone, node);
 					}
 					Node node = this.nodeMap.get(phone);
@@ -406,7 +454,28 @@ public class queryServlet extends HttpServlet {
 					}
 				}
 			} catch (Exception e){
+				System.out.println(obj.toString());
 				e.printStackTrace();
+			}
+		}
+		
+		private int getCategoryColor(String category, String val){									//set color based on category
+			if (category.equals("age")){
+				int res = -1;
+				try {
+					res = Integer.parseInt(val) / 5;
+				} catch (Exception e){
+					e.printStackTrace();
+				}
+				return res;
+			} else {
+				if (this.categoryMap.containsKey(val)){
+					return this.categoryMap.get(val);
+				} else {
+					int res = this.categoryMap.size();
+					this.categoryMap.put(val, res);
+					return res;
+				}
 			}
 		}
 		
@@ -442,13 +511,14 @@ public class queryServlet extends HttpServlet {
 		
 		class Node{
 			int id, color;
-			String label;
+			String label, nodeCategory;
 			Map<String, Integer> appear = new HashMap<String, Integer>();
 			Map<String, Integer> appearTimes = new HashMap<String, Integer>();
-			Node(String l, int i, int c){
+			Node(String l, int i, int c, String cate){
 				label = l;
 				id = i;
 				color = c;
+				nodeCategory = cate;
 			}
 		}
 		
@@ -467,7 +537,6 @@ public class queryServlet extends HttpServlet {
 		}
 		
 	}
-	
 	
 	
 }

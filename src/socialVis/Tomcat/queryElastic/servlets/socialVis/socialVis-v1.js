@@ -28,6 +28,7 @@ SocialVis = function(){
 	oScale = null;
 	chargeForceScale = null;
 	tickSpeedScale = null;
+	widthScale = null;
 
 	svg = null;
 	force = null;
@@ -40,8 +41,12 @@ SocialVis = function(){
 	stopTransitBreakIndex = null;
 	initializedFlag = null;
 	resetTransitionFlag = null;
+	showNodePathFlag = null;
 	currentDateIdx = null;
 	
+	pathMap = null;
+	categoryMap = null;
+	category = null;
 
 	//initialize variables
 	function initialize(){
@@ -59,6 +64,7 @@ SocialVis = function(){
 		resetTransitionFlag = false;						//whether or not reset the transition
 		currentDateIdx = 0;									//count the times of transition process
 		transitionGapTime = 1500;							//time for each transition
+		showNodePathFlag = true;							//show node's moving path
 
 		//decide color of node
 		cScale = d3.scale.category20();
@@ -79,10 +85,14 @@ SocialVis = function(){
 		linkColorScale = d3.scale.linear()         
     		.range([originRadius, originRadius * 2.5]);
 
+    	//calculate the width for node path
+    	widthScale = d3.scale.linear()
+    		.range([1, 10])
+
     	//set the speed for node when tick
     	tickSpeedScale = d3.scale.linear()
     		.domain([500, 5000])
-    		.range([0.25, 0.05]);
+    		.range([0.2, 0.05]);
     	tickSpeedFactor = tickSpeedScale(transitionGapTime);
 
 		//create svg
@@ -93,9 +103,10 @@ SocialVis = function(){
 		    .attr("preserveAspectRatio", "xMidYMid")      //for map
 		    .on("mousemove", mousemove);
 
-		nodesG = svg.append("g");
+		
 		clustersG = svg.append("g");
 		linksG = svg.append("g");
+		nodesG = svg.append("g");
 
 		//place to show mouse coordinate
 		pos = svg.append("text")
@@ -123,6 +134,8 @@ SocialVis = function(){
 		nodesData = [];										//data for all nodes
 		clustersData = [];									//data for clusters
 		datesData = []; 									//data for dates
+		pathMap = new Map();								//map for recording node's path	
+		categoryMap = new Map();							//map for assign color to node by category
 	}
 
 
@@ -148,7 +161,21 @@ SocialVis = function(){
 				        // d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
 				        return d.y;
 				    });  
-		    }    
+		    } else {
+		    	// d.x = clustersData[d.cluster].x;
+		    	// d.y = clustersData[d.cluster].y;
+		    	// d.preX = d.x;
+		    	// d.preY = d.y;
+		    	// d3.select(this)	 
+			    //     .attr("cx", function(d) { 
+				   //  	// d.x = Math.max(d.radius, Math.min(windowWidth - d.radius, d.x)); 
+				   //  	return d.x;
+				   //  })
+				   //  .attr("cy", function(d) { 
+				   //      // d.y = Math.max(d.radius, Math.min(windowHeight - d.radius, d.y)); 
+				   //      return d.y;
+				   //  });  
+		    }   
 	    }); 
 	}  
 
@@ -221,6 +248,35 @@ SocialVis = function(){
 			}
 			var obj = d3.select(this)
 			var clusterIdx = d.appear[index];
+
+			//add node's path
+			if (index > 0 && clusterIdx != -1 && d.appear[index - 1] != -1 && clusterIdx != d.appear[index - 1]){
+				var minv = Math.min(clusterIdx, d.appear[index - 1]);
+				var maxv = Math.max(clusterIdx, d.appear[index - 1]);
+				var key = minv + "-" + maxv;
+				if (!pathMap.has(key)){
+					linksG.append("line")
+						.datum({
+							"start" : minv,
+							"end" : maxv
+						})
+						.attr("class", "pathLink")
+						.classed("hidden", function(d){
+							return !showNodePathFlag;
+						})
+						.attr("id", "pathLink" + key)
+						.attr("x1", clustersData[minv].x)
+			            .attr("y1", clustersData[minv].y)
+			            .attr("x2", clustersData[maxv].x)
+			            .attr("y2", clustersData[maxv].y)
+			            .attr("stroke","red")
+			            .attr("stroke-opacity", 0.6);
+			        pathMap.set(key, 0)
+				}
+				pathMap.set(key, pathMap.get(key) + 1)
+				linksG.selectAll("#pathLink" + key)
+					.attr("stroke-width", widthScale(pathMap.get(key)));
+			}
 			
 			//set cumulative distance
 			d.distanceAry[index] = index == 0 ? 0 : d.distanceAry[index - 1];
@@ -285,6 +341,7 @@ SocialVis = function(){
 	        	return "node" + d.id;
 	        })
 	        .attr("fill", function(d, i){
+	        	// d.categoryType = setNodeCategory(category, d.category);
 	        	d.cluster = -1;
 	        	d.curPostCount = 0;
 	        	d.distanceAry = [];
@@ -310,7 +367,13 @@ SocialVis = function(){
 			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();         
-			    var content = "Id: " + d.id + "<br>City: " + clustersData[d.cluster].city + "<br>Phone: " + d.label + "<br>postTimes: " + d.curPostCount + "<br>Distance: " + Math.ceil(d.distance);
+			    var content = "Id: " + d.id + 
+			    	"<br>City: " + clustersData[d.cluster].city + 
+			    	"<br>Phone: " + d.label + 
+			    	"<br>postTimes: " + d.curPostCount + 
+			    	"<br>Distance: " + Math.ceil(d.distance) + 
+			    	"<br>category: " + d.category;
+
 			    $("#nodeToolTip").html(content);
 			    highlightNodePath(d.id);
 			})
@@ -360,7 +423,7 @@ SocialVis = function(){
 					linksG.append("line")
 						.attr("class", "clusterPath")
 						.attr("stroke-width", 2)
-			            .attr("stroke", "red")
+			            .attr("stroke", "yellow")
 			            .attr("stroke-opacity", 0.8)
 			            .attr("x1", clustersData[key].x)
 			            .attr("y1", clustersData[key].y)
@@ -378,7 +441,7 @@ SocialVis = function(){
 			            .attr("x2", d.x + 2)
 			            .attr("y2", d.y + 2)
 				});
-		        linksG.moveToFront();
+		        // linksG.moveToFront();
 	        }) 
 	        .on("mouseout", function(d){
 	        	//hide the tool tip for nodes
@@ -422,22 +485,27 @@ SocialVis = function(){
 	    		return d.y;
 	    	});
 
-	    // node.each(function(d){
-	    // 	if (!d.isAppear){
-	    // 		d.x = clustersData[d.color].x;
-	    // 		d.y = clustersData[d.color].y;
-	    // 	} else {
-	    // 		d.x = clustersData[d.cluster].x;
-	    // 		d.y = clustersData[d.cluster].y;
-	    // 	}
-	    // 	d3.select(this)
-	    // 		.attr("cx", d.x)
-	    // 		.attr("cy", d.y);
-	    // })
-
 	    force.start();
-	    clustersG.moveToFront();
-	    nodesG.moveToFront();
+	    updateNodePath();
+	    // clustersG.moveToFront();
+	    // nodesG.moveToFront();
+	}
+
+	//update node's path
+	function updateNodePath(){
+		linksG.selectAll(".pathLink")
+			.attr("x1", function(d){
+				return clustersData[d.start].x;
+			})
+			.attr("y1", function(d){
+				return clustersData[d.start].y;
+			})
+			.attr("x2", function(d){
+				return clustersData[d.end].x;
+			})
+			.attr("y2", function(d){
+				return clustersData[d.end].y;
+			});
 	}
  
 
@@ -460,17 +528,13 @@ SocialVis = function(){
 
 	//Calculate distance of two geo locations
 	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-	  var R = 6371; // Radius of the earth in km
-	  var dLat = (Math.PI/180) * (lat2-lat1); 
-	  var dLon = (Math.PI/180) * (lon2-lon1); 
-	  var a = 
-	    Math.sin(dLat/2) * Math.sin(dLat/2) +
-	    Math.cos((Math.PI/180) * (lat1)) * Math.cos((Math.PI/180) * (lat2)) * 
-	    Math.sin(dLon/2) * Math.sin(dLon/2)
-	    ; 
-	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-	  var d = R * c; // Distance in km
-	  return d;
+	  	var R = 6371; // Radius of the earth in km
+	  	var dLat = (Math.PI/180) * (lat2-lat1); 
+	  	var dLon = (Math.PI/180) * (lon2-lon1); 
+	  	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos((Math.PI/180) * (lat1)) * Math.cos((Math.PI/180) * (lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+	  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  	var d = R * c; // Distance in km
+	  	return d;
 	}
 
 	//add tail when node moves, the less the second parameter of timer, the smoother the tail
@@ -499,7 +563,7 @@ SocialVis = function(){
 	                .attr("stroke-width", 0)
 	                .remove();
 	        })
-	}, 200);
+	}, 350);
 
 
 	//create wolrdMap class and draw map
@@ -593,7 +657,7 @@ SocialVis = function(){
 		            .attr("x2", clustersData[cltIdx].x)
 		            .attr("y2", clustersData[cltIdx].y)
 		        dashgapCount += 2;
-		        linksG.moveToFront();
+		        // linksG.moveToFront();
 				pre = cltIdx;
 			}
 		}
@@ -629,8 +693,18 @@ SocialVis = function(){
 				transit();
 			}, 1000);
 		}, transitionGapTime);
-		
+	}
 
+	//whether or not show the node's moving path
+	function setShowNodePath(val){
+		showNodePathFlag = val;
+		if (val){
+			linksG.selectAll(".pathLink")
+				.classed("hidden", false);
+		} else {
+			linksG.selectAll(".pathLink")
+				.classed("hidden", true);
+		}
 	}
 
 	//execute once the document loaded
@@ -645,12 +719,15 @@ SocialVis = function(){
 		clustersData = data.clusters;
 		nodesData = data.nodes;
 		datesData = data.dates;
+		category = data.category;
+		categoryMap.clear();
 		initializeClusters();
 		updateClusters(1);
 		initializeNodes();
 		// oScale.domain([1, Math.ceil(Math.log(datesData.length))]);
 		oScale.domain([1, datesData.length * 3]);
 		rScale.domain([0, datesData.length / 2 + 1]);
+		widthScale.domain([1, datesData.length / 4 + 1]);
 		chargeForceScale.domain([0, datesData.length / 2 + 1]);
 		currentDateIdx = 0;
 
@@ -714,5 +791,9 @@ SocialVis = function(){
 		} else {
 			tickSpeedFactor = tickSpeedScale(val);
 		}
+	}
+
+	this.setShowNodePathAPI = function(val){
+		setShowNodePath(val);
 	}
 };

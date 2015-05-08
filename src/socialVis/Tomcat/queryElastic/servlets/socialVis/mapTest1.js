@@ -41,6 +41,10 @@ WorldMap = function(svgInstance){
 		// countryLabelG = svg.append("g")
 		statesLabelG = svg.append("g")
 
+		statesLabelG.moveToBack();
+		statesG.moveToBack();
+		countryG.moveToBack();
+
 		d3.json("map/world-110m2.json", function ready(error, world) {
 
 		    countryG.selectAll('.country')
