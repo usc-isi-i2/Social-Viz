@@ -4,6 +4,7 @@ SocialVis = function(){
 	nodeRadius = null;
 	originRadius = null;
 	clusterRadius = null;
+	pieRadius = null;
 	chargeForceFactor = null;
 	tickSpeedFactor = null;
 	transitionGapTime = null;
@@ -17,10 +18,13 @@ SocialVis = function(){
 	nodesG = null;
 	clustersG = null;
 	linksG = null;
+	pieChartG = null;
 	cluster = null;
 	node = null;
 	comet = null;
 	link = null;
+	pie = null;
+	arc = null;
 
 	linkColorScale = null;
 	cScale = null;
@@ -29,6 +33,7 @@ SocialVis = function(){
 	chargeForceScale = null;
 	tickSpeedScale = null;
 	widthScale = null;
+	nodePathColorScale = null;
 
 	svg = null;
 	force = null;
@@ -43,6 +48,7 @@ SocialVis = function(){
 	resetTransitionFlag = null;
 	showNodePathFlag = null;
 	currentDateIdx = null;
+	minWeightNodePath = null;
 	
 	pathMap = null;
 	categoryMap = null;
@@ -65,6 +71,18 @@ SocialVis = function(){
 		currentDateIdx = 0;									//count the times of transition process
 		transitionGapTime = 1500;							//time for each transition
 		showNodePathFlag = true;							//show node's moving path
+		minWeightNodePath = 2;								//minimum weight of node path that can be shown
+		
+		pieRadius = 30;                         			//the raduis of pie chart
+		pie = d3.layout.pie()                    			//pie layout
+		    .sort(null)
+		    .value(function(d){
+		        return 1;
+		    });
+		arc = d3.svg.arc()
+		    .outerRadius(pieRadius)
+		    .innerRadius(pieRadius * 0.8);
+		
 
 		//decide color of node
 		cScale = d3.scale.category20();
@@ -89,6 +107,10 @@ SocialVis = function(){
     	widthScale = d3.scale.linear()
     		.range([1, 10])
 
+    	//color scale for node path based on the weight of path
+    	nodePathColorScale = d3.scale.linear()
+    		.range(["#00FF00", "#FF0000"]);
+
     	//set the speed for node when tick
     	tickSpeedScale = d3.scale.linear()
     		.domain([500, 5000])
@@ -107,6 +129,7 @@ SocialVis = function(){
 		clustersG = svg.append("g");
 		linksG = svg.append("g");
 		nodesG = svg.append("g");
+		pieChartG = svg.append("g")
 
 		//place to show mouse coordinate
 		pos = svg.append("text")
@@ -258,22 +281,52 @@ SocialVis = function(){
 					linksG.append("line")
 						.datum({
 							"start" : minv,
-							"end" : maxv
+							"end" : maxv,
+							"key" : key,
+							"weight" : 1
 						})
 						.attr("class", "pathLink")
 						.classed("hidden", function(d){
-							return !showNodePathFlag;
+							return !(showNodePathFlag && 1 >= minWeightNodePath);
 						})
 						.attr("id", "pathLink" + key)
 						.attr("x1", clustersData[minv].x)
 			            .attr("y1", clustersData[minv].y)
 			            .attr("x2", clustersData[maxv].x)
 			            .attr("y2", clustersData[maxv].y)
-			            .attr("stroke","red")
-			            .attr("stroke-opacity", 0.6);
-			        pathMap.set(key, 0)
+			            .attr("stroke", function(d){
+			            	return nodePathColorScale(d.weight);
+			            })
+			            .attr("stroke-opacity", 0.8)
+			            .on("mouseover", function(d){
+			            	var historyText = ""
+			            	var nodePathHistory = pathMap.get(d.key);
+			            	for (var i = 0; i < nodePathHistory.length; i++){ 
+			            		var tmp = nodePathHistory[i];
+			            		// console.log(tmp)
+			            		historyText += "<span>" + tmp.date + " : " + tmp.phone + "</span><br>";
+			            	}
+			            	$("#nodeHistory").html(historyText);
+			            })
+			            .on("mouseout", function(){
+			            	$("#nodeHistory").html("");
+			            });
+			        pathMap.set(key, [])
+				} else {
+					linksG.select("#pathLink" + key)
+						.classed("hidden", function(d){
+							d.weight += 1;
+							return !(showNodePathFlag && d.weight >= minWeightNodePath);
+						})
+						.attr("stroke", function(d){
+			            	return nodePathColorScale(d.weight);
+			            });
 				}
-				pathMap.set(key, pathMap.get(key) + 1)
+				pathMap.get(key).push({
+					"phone" : d.label,
+					"date" : datesData[index]
+				})
+				// console.log(key + " " + pathMap.get(key).length)
 				linksG.selectAll("#pathLink" + key)
 					.attr("stroke-width", widthScale(pathMap.get(key)));
 			}
@@ -376,12 +429,14 @@ SocialVis = function(){
 
 			    $("#nodeToolTip").html(content);
 			    highlightNodePath(d.id);
+			    
 			})
 			.on("mouseout", function(d){
 				d3.select("#nodeToolTip")               //hide the tool tip for nodes 
 			        .classed("hidden", true)
 			        .moveToBack();
-			    quithighlightNodePath(d.id)
+			    quithighlightNodePath(d.id);
+			    removePie();
 			});
 	}
 
@@ -581,6 +636,46 @@ SocialVis = function(){
 			.text(Math.round(ary[0]) + ", " + Math.round(ary[1]))
 	}
 
+	//draw pie chart
+	function drawPie(data){
+		var pos = d3.mouse(this);
+		var tmpPath = pieChartG.attr("transform", "translate(" + pos[0] + "," + pos[1] + ")")
+	        .selectAll(".pieChart") 
+	        .data(pie(data))
+	        .enter()
+	        .append("path")
+	        .attr("class", "pieChart")
+	        .attr("fill", function(d){
+	            return cScale(d.data);
+	        })
+	        .attr("d", arc)
+	        .each(function(){
+	            this._current = {
+	                startAngle : 0,
+	                endAngle : 0
+	            }
+	        })
+	        .transition()
+	        .duration(1000)
+	        .attrTween('d', function(d){
+	            var interpolate = d3.interpolate(this._current, d);
+	            this._current = interpolate(0);
+	            return function(t){
+	                return arc(interpolate(t));
+	            }
+	        })
+	    pieChartG.moveToFront();
+	}
+
+	//remove pie chart
+	function removePie(){
+		d3.selectAll(".pieChart")
+	        .transition()
+	        .duration(500)
+	        .attr("opacity", 0)
+	        .remove();
+	}
+
 	//reset variables for new query.
 	function resetTransit(){
 		if (!initializedFlag){
@@ -700,11 +795,23 @@ SocialVis = function(){
 		showNodePathFlag = val;
 		if (val){
 			linksG.selectAll(".pathLink")
-				.classed("hidden", false);
+				.classed("hidden", function(d){
+					if (d.weight >= minWeightNodePath){
+						return false;
+					} else {
+						return true;
+					}
+				});
 		} else {
 			linksG.selectAll(".pathLink")
 				.classed("hidden", true);
 		}
+	}
+
+	//set the minimum acceptable weight to show node path
+	function setNodePathMinWeight(val){
+		minWeightNodePath = val;
+		setShowNodePath(showNodePathFlag);
 	}
 
 	//execute once the document loaded
@@ -729,6 +836,7 @@ SocialVis = function(){
 		rScale.domain([0, datesData.length / 2 + 1]);
 		widthScale.domain([1, datesData.length / 4 + 1]);
 		chargeForceScale.domain([0, datesData.length / 2 + 1]);
+		nodePathColorScale.domain([0, Math.sqrt(datesData.length)]);
 		currentDateIdx = 0;
 
 		setTimeout(function(){
@@ -795,5 +903,9 @@ SocialVis = function(){
 
 	this.setShowNodePathAPI = function(val){
 		setShowNodePath(val);
+	}
+
+	this.setNodePathMinWeightAPI = function(val){
+		setNodePathMinWeight(val);
 	}
 };

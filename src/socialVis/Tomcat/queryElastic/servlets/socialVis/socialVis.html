@@ -29,9 +29,7 @@
 			transitionGap = 1500;
 		setTransitionGapInvoker(transitionGap);
 		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap + "\n" + category);
-		
 		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode + "&category=" + category;
-		console.log(url)
 		req = new XMLHttpRequest();
 		req.onreadystatechange = mycallback;
 		req.open("GET", url, true);
@@ -104,6 +102,13 @@
 		socialVisInstance.setShowNodePathAPI(val);
 	}
 
+	//set the the minimum weight for node path that will appear on the screen
+	function setNodePathMinWeightInvoker(){
+		var val = $("#minNodePathWeight").val();
+		console.log("Set the minimum acceptable weight of node path: " + val)
+		socialVisInstance.setNodePathMinWeightAPI(val);
+	}
+
 
 
 </script>
@@ -141,7 +146,17 @@
 
 	<input type="checkbox" id="showNodePathCheck" checked onclick="setShowNodePathInvoker()">NodePath<br>
 
-	<div id = "chooseTransitionDayForm">
+	<div id = "setNodePathMinWeightForm">
+		<table>
+			<tr>
+				<td><input type="text" id="minNodePathWeight" placeholder="default: 2" ></td>
+				<td><input type="button" value = "Set" onclick="setNodePathMinWeightInvoker()"></td>
+			</tr>
+		</table>
+	</div>
+	<br>
+
+<!-- 	<div id = "chooseTransitionDayForm">
 		<table>
 			<tr>
 				<td><input type="text" id="chooseTransitionText" placeholder="transition No." ></td>
@@ -149,7 +164,7 @@
 			</tr>
 		</table>
 	</div>
-	<br>
+	<br> -->
 
 	<div id = "pauseTransitionForm">
 		<table>

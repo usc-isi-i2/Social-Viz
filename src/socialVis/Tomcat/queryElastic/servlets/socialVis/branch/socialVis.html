@@ -24,11 +24,13 @@
 		var phoneNumbers = document.getElementById("pNumbers").value;
 		var maxNode = document.getElementById("maxNode").value;
 		var transitionGap = document.getElementById("transitionGapText").value;
+		var category = document.getElementById("category").value;
 		if (transitionGap == "")
 			transitionGap = 1500;
 		setTransitionGapInvoker(transitionGap);
-		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap);
-		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
+		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap + "\n" + category);
+		
+		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode + "&category=" + category;
 		console.log(url)
 		req = new XMLHttpRequest();
 		req.onreadystatechange = mycallback;
@@ -123,11 +125,19 @@
 			<tr><td>Numbers: </td><td><input type = "text" id = "pNumbers" placeholder = "Numbers split by /" ></td></tr>
 			<tr><td>Max node: </td><td><input type = "text", id = "maxNode" placeholder = "number of shown node"></td></tr>
 			<tr><td>Transition gap: </td><td><input type = "text", id = "transitionGapText" placeholder = "default: 1500"></td></tr>
+			<tr><td>Category:</td><td>
+				<select id="category">
+					<option value="" disabled selected>Select your option</option>
+				  	<option value="age">Age</option>
+				  	<option value="ethnicity">Ethnicity</option>
+				  	<option value="eyecolor">Eye Color</option>
+				  	<option value="haircolor">Hair Color</option>
+				</select>
+			</td></tr>
 		</table>
 		<input type="button" value = "Search" onclick="executeQuery()">
 	</div>
 	<br>
-
 
 	<input type="checkbox" id="showNodePathCheck" checked onclick="setShowNodePathInvoker()">NodePath<br>
 
@@ -147,6 +157,7 @@
 		</table>
 	</div>
 	<br>
+
 	
 	<hr>
 	<br>
