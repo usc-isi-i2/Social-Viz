@@ -77,7 +77,7 @@ SocialVis = function(){
 		pie = d3.layout.pie()                    			//pie layout
 		    .sort(null)
 		    .value(function(d){
-		        return d.count;
+		        return 1;
 		    });
 		arc = d3.svg.arc()
 		    .outerRadius(pieRadius)
@@ -368,8 +368,8 @@ SocialVis = function(){
 	        .on("mouseover", function(d){
 	        	ary = d3.mouse(this);
 			 	d3.select("#nodeToolTip")               //set the tool tip for nodes    
-			        .style("left", (ary[0] + (window.innerWidth - windowWidth) + 20) + "px")              
-			        .style("top",(ary[1] - 20) + "px")
+			        .style("left", (ary[0] + (window.innerWidth - windowWidth) + 10) + "px")              
+			        .style("top",(ary[1] + 10) + "px")
 			        .classed("hidden", false)
 			        .moveToFront();         
 			    var content = "Id: " + d.id + 
@@ -377,18 +377,10 @@ SocialVis = function(){
 			    	"<br>Phone: " + d.label + 
 			    	"<br>postTimes: " + d.curPostCount + 
 			    	"<br>Distance: " + Math.ceil(d.distance) + 
-			    	"<br>mainCategory: " + d.category;
-			    var mapIter = d.nodeCategoryMap.entries();
-				for (var i = 0; i < d.nodeCategoryMap.size; i++){
-					var entry = mapIter.next().value;
-					content += "<br>" + entry[0] + "&nbsp;&nbsp;";
-					content += '<span style="width:12;background-color:' + cScale(categoryMap.get(entry[0])) + ';color:' + cScale(categoryMap.get(entry[0])) + '">qc</span>';
-				}
-				console.log(content)
+			    	"<br>category: " + d.category;
+
 			    $("#nodeToolTip").html(content);
-
 			    highlightNodePath(d.id);
-
 			    drawPie(d.nodeCategoryMap, [d.x, d.y]);
 			})
 			.on("mouseout", function(d){
@@ -674,24 +666,23 @@ SocialVis = function(){
 		var data = [];
 		for (var i = 0; i < cateMap.size; i++){
 			var entry = mapIter.next().value;
-			// for (var j = 0; j < entry[1]; j++){
-			// 	data.push(categoryMap.get(entry[0]));
-			// }
-			data.push({
-				"cate" : entry[0],
-				"count" : entry[1]
-			});
+			for (var i = 0; i < entry[1]; i++){
+				data.push(categoryMap.get(entry[0]));
+			}
+			// data.push({
+			// 	"color" : categoryMap.get(entry[0]),
+			// 	"count" : entry[1]
+			// });
 		}
-		// console.log(data);
+		console.log(data);
 		var tmpPath = pieChartG.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
 	        .selectAll(".pieChart") 
 	        .data(pie(data))
 	        .enter()
-	        .append("g")
-	        .attr("class", "pieChart");
-	    tmpPath.append("path")
+	        .append("path")
+	        .attr("class", "pieChart")
 	        .attr("fill", function(d){	        	
-	            return cScale(categoryMap.get(d.data.cate));
+	            return cScale(d.data);
 	        })
 	        .attr("d", arc)
 	        .each(function(){
@@ -701,7 +692,7 @@ SocialVis = function(){
 	            }
 	        })
 	        .transition()
-	        .duration(300)
+	        .duration(1000)
 	        .attrTween('d', function(d){
 	            var interpolate = d3.interpolate(this._current, d);
 	            this._current = interpolate(0);
@@ -747,13 +738,6 @@ SocialVis = function(){
 		cluster = cluster.data([]);
 		initializedFlag = false;
 		resetTransitionFlag = false;
-		categoryMap.clear();
-		pathMap.clear();
-		linksG.selectAll("line")
-			.transition()
-			.duration(300)
-			.attr("opacity", 0)
-			.remove();
 		console.log("Reset data");
 	}
 
@@ -886,10 +870,6 @@ SocialVis = function(){
 				targetMap.set(key, targetMap.get(key) + val);
 			}
 		} 
-		// if (targetMap.size > 1){
-		// 	console.log(targetMap.keys())
-		// 	console.log(targetMap.values())
-		// }
 	}
 
 	//execute once the document loaded
@@ -901,11 +881,11 @@ SocialVis = function(){
 
 	//start generate social vis layout
 	function generateLayout(data){
-		resetData();
 		clustersData = data.clusters;
 		nodesData = data.nodes;
 		datesData = data.dates;
 		category = data.category;
+		categoryMap.clear();
 		readMap(categoryMap, data.categoryMap);
 		initializeClusters();
 		updateClusters(1);

@@ -15,7 +15,7 @@
 <script type="text/javascript">	
 	var req = false;
 	var socialVisInstance = new SocialVis();
-	// socialVisInstance.generateSocialVis("testElastic/eclipseOutput.json");
+	// socialVisInstance.generateSocialVis("testElastic/eclipseOutput1.json");
 
 	//excute when search button in the form is clicked
 	function executeQuery(){
@@ -29,6 +29,14 @@
 			transitionGap = 1500;
 		setTransitionGapInvoker(transitionGap);
 		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap + "\n" + category);
+
+		resetDataInvoker();
+		// //for local data test
+		// setTimeout(function(){
+		// 	socialVisInstance.generateSocialVis("testElastic/eclipseOutput1.json");
+		// }, 2000);
+		
+
 		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode + "&category=" + category;
 		req = new XMLHttpRequest();
 		req.onreadystatechange = mycallback;
@@ -107,6 +115,11 @@
 		var val = $("#minNodePathWeight").val();
 		console.log("Set the minimum acceptable weight of node path: " + val)
 		socialVisInstance.setNodePathMinWeightAPI(val);
+	}
+
+	//reset visualization for loading new query result
+	function resetDataInvoker(){
+		socialVisInstance.resetDataAPI();
 	}
 
 
