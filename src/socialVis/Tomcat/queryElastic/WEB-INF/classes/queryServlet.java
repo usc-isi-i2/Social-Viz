@@ -301,6 +301,7 @@ public class queryServlet extends HttpServlet {
 	}
 	
 	
+
 	public class ElasticToSchema1{
 		private String queryRes, geoPath, category, categoryKey;
 		private JSONObject result = new JSONObject();
@@ -310,11 +311,13 @@ public class queryServlet extends HttpServlet {
 		private Set<String> dateSet = new HashSet<String>();
 		private Set<String> misGeo = new HashSet<String>();
 		private Map<String, Integer> categoryMap = new HashMap<String, Integer>();
+		private boolean noCategory;
 		
 		public ElasticToSchema1(String queryRes, String geoPath, String cate, String cateKey){
 			this.queryRes = queryRes;
 			this.geoPath = geoPath;
 			this.category = cate;
+			this.noCategory = this.category.equals("");
 			this.categoryKey = cateKey;
 			this.loadGeo(this.geoPath);
 		}
@@ -343,6 +346,12 @@ public class queryServlet extends HttpServlet {
 				}
 				this.result.put("dates", dateAry);
 				
+				JSONObject categoryObj = new JSONObject();
+				for (Map.Entry<String, Integer> et : this.categoryMap.entrySet()){
+					categoryObj.put(et.getKey(), et.getValue());
+				}
+				this.result.put("categoryMap", categoryObj);
+				
 				JSONArray cltAry = new JSONArray();
 				Comparator<Cluster> comp = new Comparator<Cluster>(){
 					public int compare(Cluster c1, Cluster c2){
@@ -363,6 +372,8 @@ public class queryServlet extends HttpServlet {
 				}
 				this.result.put("clusters", cltAry);
 				
+				int maxPostTimes = 0;
+				int maxMoveTimes = 0;
 				JSONArray nodeAry = new JSONArray();
 				Comparator<Node> comp1 = new Comparator<Node>(){
 					public int compare(Node n1, Node n2){
@@ -375,8 +386,6 @@ public class queryServlet extends HttpServlet {
 					JSONObject nodeObj = new JSONObject();
 					nodeObj.put("label", node.label);
 					nodeObj.put("id", node.id);
-					nodeObj.put("color", node.color);
-					nodeObj.put("category", node.nodeCategory);
 					JSONArray appearAry = new JSONArray();
 					JSONArray changeTimes = new JSONArray();
 					JSONArray appearTimes = new JSONArray();
@@ -397,20 +406,62 @@ public class queryServlet extends HttpServlet {
 							preTime += node.appearTimes.get(sortDate.get(i));
 						}
 						appearTimes.put(preTime);
+						
+						if (i == sortDate.size() - 1){
+							maxMoveTimes = Math.max(maxMoveTimes, count);
+							maxPostTimes = Math.max(maxPostTimes, preTime);
+						}
 					}
 					nodeObj.put("changeTimes", changeTimes);
 					nodeObj.put("appear", appearAry);
 					nodeObj.put("appearTimes", appearTimes);
+					
+					JSONArray categoryAry = new JSONArray();
+					if (!this.noCategory){
+						Map<String, Integer> categoryCount = new HashMap<String, Integer>();
+						int maxCount = 1;
+						String maxCate = "";
+						for (int i = 0; i < sortDate.size(); i++){
+							JSONObject obj = new JSONObject();
+							if (node.nodeCategoryMap.containsKey(sortDate.get(i))){
+								Map<String, Integer> tmpMap = node.nodeCategoryMap.get(sortDate.get(i));
+								for (Map.Entry<String, Integer> et : tmpMap.entrySet()){
+									obj.put(et.getKey(), et.getValue());
+									if (!categoryCount.containsKey(et.getKey())){
+										categoryCount.put(et.getKey(), 1);
+									} else {
+										int val = categoryCount.get(et.getKey()) + 1;
+										categoryCount.put(et.getKey(), val);
+										if (val > maxCount){
+											maxCount = val;
+											maxCate = et.getKey();
+										}
+									}
+								}
+							}
+							categoryAry.put(obj);						
+						}
+						if (maxCount > 1){
+							node.nodeCategory = maxCate;
+							node.color = this.categoryMap.get(maxCate);
+						}
+					}
+					nodeObj.put("color", node.color);
+					nodeObj.put("category", node.nodeCategory);
+					nodeObj.put("categoryRecord", categoryAry);
+					
 					nodeAry.put(nodeObj);
 				}
 				this.result.put("nodes", nodeAry);
+				this.result.put("maxMoveTimes", maxMoveTimes);
+				this.result.put("maxPostTimes", maxPostTimes);
 			} catch (Exception e){
 				e.printStackTrace();
 			}
 		}
 		
 		private void loadQueryRes(){
-			JSONObject obj = null;
+			JSONObject obj = null;			
 			try {
 				JSONObject queryRes = new JSONObject(this.queryRes);
 				JSONArray res = queryRes.getJSONObject("hits").getJSONArray("hits");
@@ -439,7 +490,7 @@ public class queryServlet extends HttpServlet {
 					int cltId = this.clusterMap.get(key).id;
 					if (!this.nodeMap.containsKey(phone)){
 						int color = cltId;
-						if (!this.category.equals("")){
+						if (!noCategory){
 							color = getCategoryColor(this.category, categoryVal);
 						}
 						Node node = new Node(phone, this.nodeMap.size(), color, categoryVal);
@@ -449,8 +500,22 @@ public class queryServlet extends HttpServlet {
 					if (!node.appear.containsKey(date)){
 						node.appear.put(date, cltId);
 						node.appearTimes.put(date, 1);
+						if (!noCategory){
+							node.nodeCategoryMap.put(date, new HashMap<String, Integer>());			
+						}
 					} else {
 						node.appearTimes.put(date, node.appearTimes.get(date) + 1);
+					}
+					if (!noCategory){
+						Map<String, Integer> tmpMap = node.nodeCategoryMap.get(date);
+						if (!this.categoryMap.containsKey(categoryVal)){
+							getCategoryColor(this.category, categoryVal);
+						}
+						if (!tmpMap.containsKey(categoryVal)){
+							tmpMap.put(categoryVal, 1);
+						} else {
+							tmpMap.put(categoryVal, tmpMap.get(categoryVal) + 1);
+						}
 					}
 				}
 			} catch (Exception e){
@@ -467,13 +532,16 @@ public class queryServlet extends HttpServlet {
 				} catch (Exception e){
 					e.printStackTrace();
 				}
+				if (!this.categoryMap.containsKey(val)){
+					this.categoryMap.put(val, res);
+				}
 				return res;
 			} else {
 				if (this.categoryMap.containsKey(val)){
 					return this.categoryMap.get(val);
 				} else {
 					int res = this.categoryMap.size();
-					this.categoryMap.put(val, res);
+					this.categoryMap.put(val, res); 
 					return res;
 				}
 			}
@@ -514,6 +582,7 @@ public class queryServlet extends HttpServlet {
 			String label, nodeCategory;
 			Map<String, Integer> appear = new HashMap<String, Integer>();
 			Map<String, Integer> appearTimes = new HashMap<String, Integer>();
+			Map<String, Map<String, Integer>> nodeCategoryMap = new HashMap<String, Map<String, Integer>>();
 			Node(String l, int i, int c, String cate){
 				label = l;
 				id = i;
@@ -537,6 +606,7 @@ public class queryServlet extends HttpServlet {
 		}
 		
 	}
+	
 	
 	
 }

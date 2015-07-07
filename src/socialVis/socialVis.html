@@ -5,7 +5,7 @@
 <script type="text/javascript" src="lib/d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="socialVis-v1.js"></script>
 <script type="text/javascript" src="lib/topojson.v1.min.js"></script>
-<script type="text/javascript" src="map.js"></script>
+<script type="text/javascript" src="mapTest1.js"></script>
 
 </head>
 
@@ -23,14 +23,29 @@
 		var edDate = document.getElementById("endDate").value;
 		var phoneNumbers = document.getElementById("pNumbers").value;
 		var maxNode = document.getElementById("maxNode").value;
-		//console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode);
-		var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode;
-		req = new XMLHttpRequest();
-		req.onreadystatechange = mycallback;
-		req.open("GET", url, true);
-		req.send(null);
+		var transitionGap = document.getElementById("transitionGapText").value;
+		var category = document.getElementById("category").value;
+		if (transitionGap == "")
+			transitionGap = 1500;
+		setTransitionGapInvoker(transitionGap);
+		console.log(stDate + "\n" + edDate + "\n" + phoneNumbers + "\n" + maxNode + "\n" + transitionGap + "\n" + category);
+
+		resetDataInvoker();
+
+		//for local data test		
+		setTimeout(function(){
+			socialVisInstance.generateSocialVis("testElastic/eclipseOutput.json");
+		}, 2000);
+		
+
+		// var url = "http://localhost:8080/queryElastic/queryServlet?" + "stDate="+ stDate + "&edDate=" + edDate + "&phoneNum=" + phoneNumbers + "&maxNode=" + maxNode + "&category=" + category;
+		// req = new XMLHttpRequest();
+		// req.onreadystatechange = mycallback;
+		// req.open("GET", url, true);
+		// req.send(null);
 	}
 
+	//call back function of AJAX
 	function mycallback(){	
 		if (req.readyState == 4) {
 			//console.log(req.status);
@@ -41,6 +56,11 @@
 				socialVisInstance.generateSocialVisFromServlet(doc);			
 			}
 		} 
+	}
+
+	//reset transition
+	function resetTransitionInvoker(){
+		socialVisInstance.resetTransition();
 	}
 
 	//useless
@@ -74,6 +94,48 @@
 		socialVisInstance.jumpTransition(parameter);
 	}
 
+	//set the time gap of each transition
+	function setTransitionGapInvoker(value){
+		var val = parseInt(value);
+		if (val == NaN || val < 100 || val > 5000){
+			alert("Invalid transition gap. Set it to 2000.")
+			socialVisInstance.setTransitionGap(1500);
+		} else
+			socialVisInstance.setTransitionGap(val);
+	}
+
+	//set the appearance of node's moving path
+	function setShowNodePathInvoker(){
+		var val = document.getElementById("showNodePathCheck").checked;
+		console.log("clicked checkbox of showNodePath: " + val)
+		socialVisInstance.setShowNodePathAPI(val);
+	}
+
+	//set the the minimum weight for node path that will appear on the screen
+	function setNodePathMinWeightInvoker(){
+		var val = $("#minNodePathWeight").val();
+		console.log("Set the minimum acceptable weight of node path: " + val)
+		socialVisInstance.setNodePathMinWeightAPI(val);
+	}
+
+	//reset visualization for loading new query result
+	function resetDataInvoker(){
+		socialVisInstance.resetDataAPI();
+	}
+
+	//set the width of node path increases when the weight of path increases
+	function setIncreaseNodePathWidthInvoker(){
+		var val = document.getElementById("nodePathWidth").checked;
+		console.log("clicked checkbox of node path width: " + val)
+		socialVisInstance.setIncreaseNodePathWidthAPI(val);
+	}
+
+	//set the parameter of node's raduis
+	function setNodeRadiusParameterInvoker(){
+		var val = document.getElementById("nodeRadiusParameterSelector").value;
+		console.log("Set node radius parameter: " + val);
+		socialVisInstance.setNodeRadiusParameterAPI(val);
+	}
 
 
 </script>
@@ -94,12 +156,49 @@
 			<tr><td>End date: </td><td><input type="text" id="endDate" placeholder="2014-07-20" ></td></tr>
 			<tr><td>Numbers: </td><td><input type = "text" id = "pNumbers" placeholder = "Numbers split by /" ></td></tr>
 			<tr><td>Max node: </td><td><input type = "text", id = "maxNode" placeholder = "number of shown node"></td></tr>
+			<tr><td>Transition gap: </td><td><input type = "text", id = "transitionGapText" placeholder = "default: 1500"></td></tr>
+			<tr><td>Category:</td><td>
+				<select id="category">
+					<option value="" disabled selected>Select your option</option>
+				  	<option value="age">Age</option>
+				  	<option value="ethnicity">Ethnicity</option>
+				  	<option value="eyecolor">Eye Color</option>
+				  	<option value="haircolor">Hair Color</option>
+				</select>
+			</td></tr>
 		</table>
 		<input type="button" value = "Search" onclick="executeQuery()">
 	</div>
 	<br>
 
-	<div id = "chooseTransitionDayForm">
+	<input type="checkbox" id="showNodePathCheck" checked onclick="setShowNodePathInvoker()">NodePath<br>
+
+	<input type="checkbox" id="nodePathWidth" checked onclick="setIncreaseNodePathWidthInvoker()">NodePathWidth<br>
+	<br>
+
+	<div id = "setNodePathMinWeightForm">
+		<span>Minimum weight of node path</span>
+		<br>
+		<table>
+			<tr>
+				<td><input type="text" id="minNodePathWeight" placeholder="default: 2" ></td>
+				<td><input type="button" value = "Set" onclick="setNodePathMinWeightInvoker()"></td>
+			</tr>
+		</table>
+	</div>
+	<br>
+
+	<div id = "nodeRadiusParameter">
+		<span>Node's radius Indicates:</span>
+		<br>
+		<select id = "nodeRadiusParameterSelector" onchange = "setNodeRadiusParameterInvoker()">
+			<option value = "moveTimes" selected>Move times</option>
+			<option value = "postTimes">Post times</option>
+			<option value = "moveDistance">Move distance</option>
+		</select>
+	</div>
+
+<!-- 	<div id = "chooseTransitionDayForm">
 		<table>
 			<tr>
 				<td><input type="text" id="chooseTransitionText" placeholder="transition No." ></td>
@@ -107,13 +206,19 @@
 			</tr>
 		</table>
 	</div>
+	<br> -->
 
+	<br>
 	<div id = "pauseTransitionForm">
 		<table>
 			<tr><td><input type="button" value = "Stop" onclick="stopTransitionInvoker()"></td><td><input type="button" value = "Resume" onclick="resumeTransitionInvoker()"></td></tr>
 		</table>
 	</div>
-	<br><hr><br>
+	<br>
+
+	
+	<hr>
+	<br>
 
 	<div id = "nodeHistory">
 	</div>
